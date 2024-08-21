@@ -176,7 +176,8 @@ const PopoverTrigger = () => {
 }
 
 const PopoverContent = () => {
-  const { transition, content, context: floatingContext, ...context } = usePopoverContext()
+  const { transition, content, context: floatingContext, zIndex, ...context } = usePopoverContext()
+
   return transition.isMounted && <FloatingPortal>
     <FloatingFocusManager context={floatingContext} modal={false}>
       <div
@@ -187,6 +188,7 @@ const PopoverContent = () => {
             top: context.y ?? 0,
             left: context.x ?? 0,
             width: 'max-content',
+            zIndex,
             ...transition.styles,
           }
         })}
