@@ -1,0 +1,28 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      '@calm-ui/ripple':
+        specifier: workspace:^
+        version: link:../ripple
+      '@calm-ui/theme':
+        specifier: workspace:^
+        version: link:../theme
+      '@zhuh/style-inject':
+        specifier: ^1.0.1
+        version: 1.0.1
+
+packages:
+
+  '@zhuh/style-inject@1.0.1':
+    resolution: {integrity: sha512-mo06qrcxzYyxsYVLF8BmpetnAtZ9vpEDDmoe+0OUh7saJLN9ctuncpQdZgUahriFwu3AsRSSswHn9Ca5BbJk4Q==}
+
+snapshots:
+
+  '@zhuh/style-inject@1.0.1': {}

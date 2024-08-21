@@ -1,0 +1,32 @@
+{
+  "name": "@calm-ui/button",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "rollup -wc",
+    "build": "rollup -c"
+  },
+  "dependencies": {
+    "@calm-ui/ripple": "workspace:^",
+    "@calm-ui/theme": "workspace:^",
+    "@ctrl/tinycolor": "^4.1.0",
+    "@zhuh/style-inject": "^1.0.1",
+    "clsx": "^2.1.1"
+  },
+  "peerDependencies": {
+    "react": "18.x"
+  },
+  "license": "MIT"
+}
