@@ -34,6 +34,7 @@
   "dependencies": {
     "@calm-ui/button": "workspace:^",
     "@calm-ui/modal": "workspace:^",
+    "@calm-ui/popover": "workspace:^",
     "@calm-ui/ripple": "workspace:^",
     "@calm-ui/theme": "workspace:^"
   },

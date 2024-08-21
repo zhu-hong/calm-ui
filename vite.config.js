@@ -3,14 +3,17 @@ import react from '@vitejs/plugin-react-swc'
 import { resolve } from 'node:path'
 import unocss from 'unocss/vite'
 import { Features } from 'lightningcss'
-import { alias } from './alias'
 
 export default defineConfig({
   base: './',
   resolve: {
     alias: {
       '@/': resolve(__dirname, 'src'),
-      ...alias,
+      '@calm-ui/theme': resolve(__dirname, './packages/theme/index.tsx'),
+      '@calm-ui/ripple': resolve(__dirname, './packages/ripple/src/index.jsx'),
+      '@calm-ui/button': resolve(__dirname, './packages/button/src/index.tsx'),
+      '@calm-ui/modal': resolve(__dirname, './packages/modal/src/index.tsx'),
+      '@calm-ui/popover': resolve(__dirname, './packages/popover/src/index.tsx'),
     },
   },
   plugins: [

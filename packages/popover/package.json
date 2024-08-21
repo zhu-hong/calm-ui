@@ -1,0 +1,28 @@
+{
+  "name": "@calm-ui/popover",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "rollup -wc",
+    "build": "rollup -c"
+  },
+  "dependencies": {
+    "@floating-ui/react": "^0.26.22"
+  },
+  "peerDependencies": {
+    "react": "18.x"
+  },
+  "license": "MIT"
+}

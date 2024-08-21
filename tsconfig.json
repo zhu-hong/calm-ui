@@ -8,10 +8,11 @@
       "@/*": [
         "./src/*"
       ],
+      "@calm-ui/theme": ["./packages/theme/index"],
+      "@calm-ui/ripple": ["./packages/ripple/src/index"],
       "@calm-ui/button": ["./packages/button/src/index"],
       "@calm-ui/modal": ["./packages/modal/src/index"],
-      "@calm-ui/ripple": ["./packages/ripple/src/index"],
-      "@calm-ui/theme": ["./packages/theme/index"],
+      "@calm-ui/popover": ["./packages/popover/src/index"],
     },
     "moduleResolution": "Bundler",
     "jsx": "react-jsx",

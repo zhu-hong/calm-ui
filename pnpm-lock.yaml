@@ -14,6 +14,9 @@ importers:
       '@calm-ui/modal':
         specifier: workspace:^
         version: link:packages/modal
+      '@calm-ui/popover':
+        specifier: workspace:^
+        version: link:packages/popover
       '@calm-ui/ripple':
         specifier: workspace:^
         version: link:packages/ripple
@@ -120,6 +123,15 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      react:
+        specifier: 18.x
+        version: 18.3.1
+
+  packages/popover:
+    dependencies:
+      '@floating-ui/react':
+        specifier: ^0.26.22
+        version: 0.26.22(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.x
         version: 18.3.1

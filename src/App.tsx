@@ -2,6 +2,7 @@ import { memo, useEffect, useRef, useState } from 'react'
 import { ThemeProvider } from '@calm-ui/theme'
 import { Button, IconButton } from '@calm-ui/button'
 import { Dialog, DialogAutoFocus, DialogClose, Drawer, DrawerClose } from '@calm-ui/modal'
+import { Popover, PopoverClose } from '@calm-ui/popover'
 
 const Log = memo(() => {
   console.log('log')
@@ -13,14 +14,20 @@ const App = () => {
   const [open, setOpen] = useState(false)
   const [open2, setOpen2] = useState(false)
   const ref = useRef(null)
+  const btnRef = useRef<HTMLButtonElement>(null)
   useEffect(() => {
     console.log(ref)
+    btnRef.current?.scrollIntoView({
+      block: 'center',
+      inline: 'center',
+    })
     const t = setInterval(() => {
       setCount((c) => c + 1)
     }, 1000)
     return () => clearInterval(t)
   }, [])
   return <div>
+    <div className="h-screen"></div>
     <div className='p-32px w-full overflow-hidden h-520px relative' ref={ref}>
       <ThemeProvider value={{
         palette: {
@@ -52,7 +59,18 @@ const App = () => {
           <p>outlined button</p>
           <Button outlined theme='primary' className='text-32px fontmono'>GO{count}</Button>
           <Button outlined theme='danger' className='bg-white'>GO</Button>
-          <Button outlined theme='success'>GO</Button>
+          <Popover
+            content={
+              <div className='p-64px rounded border bg-white'>
+                <p>1231234512345</p>
+                <input type="text" />
+                <PopoverClose>close</PopoverClose>
+              </div>
+            }
+            placement='bottom-end'
+          >
+            <Button ref={btnRef} outlined theme='success'>Popover</Button>
+          </Popover>
           <Button outlined theme='warning'>GO</Button>
           <Button outlined theme='default'>GO</Button>
         </div>
@@ -102,6 +120,7 @@ const App = () => {
         </IconButton>
       </div>
     </div>
+    <div className="h-screen"></div>
     <Drawer open={open2} onOpenChange={setOpen2} zIndex={1000} keepMount overlay={false}>
       <div style={{width:320,height:100,backgroundColor:'black'}}></div>
       <DrawerClose />
@@ -110,6 +129,9 @@ const App = () => {
     <Dialog open={open} onOpenChange={setOpen}>
       <div style={{padding:32}}>
         <DialogClose />
+        <DialogClose asChild>
+          <Button theme='default' outlined>取消</Button>
+        </DialogClose>
         <p>正常autoFocus</p>
         <DialogAutoFocus>
           <input type="text" />
