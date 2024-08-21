@@ -206,49 +206,45 @@ const ModalContent = forwardRef<
     prevTransitionStatus.current = transitionStatus
   }, [transitionStatus])
 
-  return <FloatingPortal>
-    {
-      (keepMount || isMounted) && <>
-        <FloatingOverlay
-          className={clsx('cm-modal-overlay', classes?.overlay)}
-          lockScroll={isMounted}
-          style={{
-            ...overlayTransition.styles,
-            // @ts-ignore
-            display: (!overlay||!isMounted) ? 'none' : overlayTransition.styles.display,
-            zIndex,
-          }}
-        />
+  return (keepMount || isMounted) && <FloatingPortal>
+    <FloatingOverlay
+      className={clsx('cm-modal-overlay', classes?.overlay)}
+      lockScroll={isMounted}
+      style={{
+        ...overlayTransition.styles,
+        // @ts-ignore
+        display: (!overlay||!isMounted) ? 'none' : overlayTransition.styles.display,
+        zIndex,
+      }}
+    />
+    <div
+      className={classes?.wrapper}
+      style={{
+        // @ts-ignore
+        display: isMounted ? undefined : 'none',
+        zIndex: zIndex + 1,
+        pointerEvents: overlay ? undefined : 'none',
+      }}
+    >
+      <FloatingFocusManager
+        context={floatingContext}
+        initialFocus={initialFocus.current?initialFocus:0}
+        disabled={!isMounted}
+      >
         <div
-          className={classes?.wrapper}
+          {...context.getFloatingProps(props)}
+          ref={ref}
+          aria-labelledby={context.labelId}
+          aria-describedby={context.descriptionId}
           style={{
-            // @ts-ignore
-            display: isMounted ? undefined : 'none',
-            zIndex: zIndex + 1,
-            pointerEvents: overlay ? undefined : 'none',
+            ...props.style,
+            ...contentTransition.styles,
+            pointerEvents:overlay?undefined: 'auto',
           }}
-        >
-          <FloatingFocusManager
-            context={floatingContext}
-            initialFocus={initialFocus.current?initialFocus:0}
-            disabled={!isMounted}
-          >
-            <div
-              {...context.getFloatingProps(props)}
-              ref={ref}
-              aria-labelledby={context.labelId}
-              aria-describedby={context.descriptionId}
-              style={{
-                ...props.style,
-                ...contentTransition.styles,
-                pointerEvents:overlay?undefined: 'auto',
-              }}
-              className={clsx(classes?.content, props.className)}
-            />
-          </FloatingFocusManager>
-        </div>
-      </>
-    }
+          className={clsx(classes?.content, props.className)}
+        />
+      </FloatingFocusManager>
+    </div>
   </FloatingPortal>
 })
 
