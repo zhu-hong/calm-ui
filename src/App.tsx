@@ -4,6 +4,7 @@ import { Button, IconButton } from '@calm-ui/button'
 import { Dialog, DialogAutoFocus, DialogClose, Drawer, DrawerClose } from '@calm-ui/modal'
 import { Popover, PopoverClose } from '@calm-ui/popover'
 import { Tooltip } from '@calm-ui/tooltip'
+import { Pagination } from '@calm-ui/pagination'
 
 const Log = memo(() => {
   console.log('log')
@@ -15,12 +16,14 @@ const App = () => {
   const [open2, setOpen2] = useState(false)
   const ref = useRef(null)
   const btnRef = useRef<HTMLButtonElement>(null)
+  const [perPage, setPerPage] = useState(20)
+  const [page, setPage] = useState(1)
   useEffect(() => {
     console.log(ref)
-    btnRef.current?.scrollIntoView({
-      block: 'center',
-      inline: 'center',
-    })
+    // btnRef.current?.scrollIntoView({
+    //   block: 'center',
+    //   inline: 'center',
+    // })
   }, [])
   return <div>
     <div className="h-screen"></div>
@@ -122,6 +125,9 @@ const App = () => {
       </div>
     </div>
     <div className="h-screen"></div>
+    <div className='p-32px'>
+      <Pagination perPage={perPage} onPerPageChange={setPerPage} total={1000} page={page} onPageChange={setPage} />
+    </div>
     <Drawer open={open2} onOpenChange={setOpen2} zIndex={1000} keepMount overlay={false}>
       <div style={{width:320,height:100,backgroundColor:'black'}}></div>
       <DrawerClose />

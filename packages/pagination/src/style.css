@@ -1,0 +1,28 @@
+.cm-pagination-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+
+  .cm-button {
+    height: 32px;
+    line-height: 32px;
+    min-width: 32px;
+    border-radius: 16px;
+    padding: 0 6px;
+  }
+
+  .cm-pagination-perpages, .cm-pagination-pages {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .cm-pagination-placeholder {
+    flex: auto;
+  }
+  .cm-pagination-count {
+    flex: none;
+    margin: 0 8px;
+  }
+}

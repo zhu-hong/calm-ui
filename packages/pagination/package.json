@@ -1,0 +1,30 @@
+{
+  "name": "@calm-ui/pagination",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "rollup -wc",
+    "build": "rollup -c"
+  },
+  "dependencies": {
+    "@calm-ui/button": "workspace:^",
+    "@zhuh/style-inject": "^1.0.1",
+    "clsx": "^2.1.1"
+  },
+  "peerDependencies": {
+    "react": "18.x"
+  },
+  "license": "MIT"
+}
