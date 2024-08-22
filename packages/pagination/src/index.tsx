@@ -1,4 +1,4 @@
-import { forwardRef, HTMLAttributes } from 'react'
+import { forwardRef, HTMLAttributes, useMemo } from 'react'
 import clsx from 'clsx'
 import { Button, IconButton } from '@calm-ui/button'
 
@@ -17,7 +17,9 @@ export const Pagination = forwardRef<
   HTMLDivElement,
   HTMLAttributes<HTMLElement> & PaginationProps
 >(({ total = 0, page = 1, perPage = 20, perPages = [10, 20, 50, 100], onPageChange, onPerPageChange, ...props }, ref) => {
-  const totalPage = Math.ceil(total / perPage)
+  const totalPage = useMemo(() => {
+    return Math.ceil(total / perPage)
+  }, [total, perPage])
 
   let centerPage = page
   const centerCountBase = 5
@@ -53,7 +55,7 @@ export const Pagination = forwardRef<
     onPageChange?.(pageNum)
   }
 
-  return <div {...props} ref={ref} className={clsx('cm-pagination-wrapper')}>
+  return <div {...props} ref={ref} className={clsx('cm-pagination-wrapper', props.className)}>
     <div className='cm-pagination-perpages'>
       {
         perPages.map((pp) => <Button text={pp !== perPage} theme={pp === perPage?'primary':'default'} key={pp} onClick={() => changePerPage(pp)}>{pp}</Button>)
