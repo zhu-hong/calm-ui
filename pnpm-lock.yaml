@@ -23,6 +23,9 @@ importers:
       '@calm-ui/theme':
         specifier: workspace:^
         version: link:packages/theme
+      '@calm-ui/tooltip':
+        specifier: workspace:^
+        version: link:packages/tooltip
     devDependencies:
       '@babel/plugin-transform-react-jsx':
         specifier: ^7.25.2
