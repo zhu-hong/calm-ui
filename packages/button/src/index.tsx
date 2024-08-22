@@ -105,6 +105,10 @@ export const Button = memo(forwardRef<
     return startIcon
   }, [loading, startIcon, loadingInner, loadingSize])
 
+  const isPrimary = useMemo(() => {
+    return theme === 'primary' && !outlined && !text && !tag
+  }, [theme, outlined, text, tag])
+
   const onClick: MouseEventHandler<HTMLButtonElement> = useCallback(async (e) => {
     props.onClick?.(e)
 
@@ -135,6 +139,7 @@ export const Button = memo(forwardRef<
       '--cm-button-border-width': borderWidth,
       '--cm-button-border-color': borderColor,
       '--cm-button-border-hover-color': borderHoverColor,
+      fontWeight: isPrimary ? 500 : undefined,
     }, props.style)}
     onClick={onClick}
   >
