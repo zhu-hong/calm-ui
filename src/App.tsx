@@ -85,11 +85,12 @@ const App = () => {
         </div>
         <div className='mt-32px flex items-center gap-12px'>
           <p>tag button</p>
-          <Button tag theme='primary'>GO</Button>
-          <Button tag theme='danger'>GO</Button>
-          <Button tag theme='success'>GO</Button>
-          <Button tag theme='warning'>GO</Button>
-          <Button tag theme='default'>GO</Button>
+          <Button tag theme='primary' className='px-14px! py-2px! text-sm'>GO</Button>
+          <Button tag theme='danger' className='px-14px! py-2px! text-sm'>GO</Button>
+          <Button tag theme='success' className='px-14px! py-2px! text-sm'>GO</Button>
+          <Button tag theme='warning' className='px-14px! py-2px! text-sm'>GO</Button>
+          <Button tag theme='default' className='px-14px! py-2px! text-sm'>GO</Button>
+          <Button tag theme='#0b58d2' className='px-14px! py-2px! text-sm'>GO</Button>
         </div>
       </ThemeProvider>
       <div className='mt-32px flex items-center gap-12px'>

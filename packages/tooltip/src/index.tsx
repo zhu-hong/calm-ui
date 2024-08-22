@@ -191,7 +191,6 @@ const TooltipContent = () => {
           padding: '8px 10px',
           backgroundColor: tooltipColor,
           color: '#ffffff',
-          opacity: .95,
           ...styles,
         }
       })}
