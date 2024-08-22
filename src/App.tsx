@@ -3,6 +3,7 @@ import { ThemeProvider } from '@calm-ui/theme'
 import { Button, IconButton } from '@calm-ui/button'
 import { Dialog, DialogAutoFocus, DialogClose, Drawer, DrawerClose } from '@calm-ui/modal'
 import { Popover, PopoverClose } from '@calm-ui/popover'
+import { Tooltip } from '@calm-ui/tooltip'
 
 const Log = memo(() => {
   console.log('log')
@@ -10,7 +11,6 @@ const Log = memo(() => {
 })
 
 const App = () => {
-  const [count, setCount] = useState(0)
   const [open, setOpen] = useState(false)
   const [open2, setOpen2] = useState(false)
   const ref = useRef(null)
@@ -21,10 +21,6 @@ const App = () => {
       block: 'center',
       inline: 'center',
     })
-    const t = setInterval(() => {
-      setCount((c) => c + 1)
-    }, 1000)
-    return () => clearInterval(t)
   }, [])
   return <div>
     <div className="h-screen"></div>
@@ -39,7 +35,7 @@ const App = () => {
         },
       }}>
         <div className='flex items-center gap-12px flex-wrap relative'>
-          <Button theme='primary' className='font-500 w-full'>
+          <Button theme='primary' className='font-500 text-32px'>
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32">
               <g fill="none">
                 <path fill="#86d72f" d="M29.84 15.92C29.84 23.61 18.92 30 15.92 30S2 23.61 2 15.92S8.23 2 15.92 2s13.92 6.23 13.92 13.92"></path>
@@ -48,7 +44,7 @@ const App = () => {
                 <path fill="#fff" d="M12.62 15.62c.61-.61.47-1.73-.31-2.51c-.78-.77-1.9-.92-2.51-.31s-.47 1.73.31 2.51s1.9.92 2.51.31m13.28 0c.61-.61.47-1.73-.31-2.51c-.77-.77-1.9-.92-2.51-.31s-.47 1.73.31 2.51s1.9.92 2.51.31"></path>
               </g>
             </svg>
-            123
+            Primary
           </Button>
           <Button theme='danger' autoFocus onClick={() => setOpen(true)}>Dialog</Button>
           <Button theme='success' onClick={() => setOpen2(true)}>Drawer KeepMount</Button>
@@ -57,7 +53,7 @@ const App = () => {
         </div>
         <div className='mt-32px flex items-center gap-12px'>
           <p>outlined button</p>
-          <Button outlined theme='primary' className='text-32px fontmono'>GO{count}</Button>
+          <Button outlined theme='primary' className='text-32px fontmono'>GO</Button>
           <Button outlined theme='danger' className='bg-white'>GO</Button>
           <Popover
             content={
@@ -76,7 +72,12 @@ const App = () => {
         </div>
         <div className='mt-32px flex items-center gap-12px'>
           <p>text button</p>
-          <Button text theme='primary'>GO</Button>
+          <Tooltip content='tooltiptooltiptooltiptooltiptooltiptooltiptooltiptooltiptooltiptooltiptooltiptooltip' delay={0} placement='top-start'>
+            <Button text theme='primary' className='max-w-120px'><span className='truncate'>tooltiptooltiptooltiptooltiptooltiptooltiptooltiptooltiptooltiptooltiptooltiptooltip</span></Button>
+          </Tooltip>
+          <Tooltip content='tooltip' placement='top'>
+            <p>tooltop</p>
+          </Tooltip>
           <Button text theme='danger'>GO</Button>
           <Button text theme='success'>GO</Button>
           <Button text theme='warning'>GO</Button>

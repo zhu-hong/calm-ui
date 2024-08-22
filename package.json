@@ -11,6 +11,7 @@
   "devDependencies": {
     "@babel/plugin-transform-react-jsx": "^7.25.2",
     "@babel/preset-react": "^7.24.7",
+    "@floating-ui/react": "^0.26.22",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-node-resolve": "^15.2.3",

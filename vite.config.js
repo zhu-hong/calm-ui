@@ -14,6 +14,7 @@ export default defineConfig({
       '@calm-ui/button': resolve(__dirname, './packages/button/src/index.tsx'),
       '@calm-ui/modal': resolve(__dirname, './packages/modal/src/index.tsx'),
       '@calm-ui/popover': resolve(__dirname, './packages/popover/src/index.tsx'),
+      '@calm-ui/tooltip': resolve(__dirname, './packages/tooltip/src/index.tsx'),
     },
   },
   plugins: [

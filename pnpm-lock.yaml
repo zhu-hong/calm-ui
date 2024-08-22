@@ -30,6 +30,9 @@ importers:
       '@babel/preset-react':
         specifier: ^7.24.7
         version: 7.24.7(@babel/core@7.25.2)
+      '@floating-ui/react':
+        specifier: ^0.26.22
+        version: 0.26.22(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@rollup/plugin-babel':
         specifier: ^6.0.4
         version: 6.0.4(@babel/core@7.25.2)(rollup@4.21.0)
@@ -153,6 +156,18 @@ importers:
 
   packages/theme:
     dependencies:
+      react:
+        specifier: 18.x
+        version: 18.3.1
+
+  packages/tooltip:
+    dependencies:
+      '@calm-ui/theme':
+        specifier: workspace:^
+        version: link:../theme
+      '@floating-ui/react':
+        specifier: ^0.26.22
+        version: 0.26.22(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.x
         version: 18.3.1

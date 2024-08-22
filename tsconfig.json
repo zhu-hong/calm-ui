@@ -13,6 +13,7 @@
       "@calm-ui/button": ["./packages/button/src/index"],
       "@calm-ui/modal": ["./packages/modal/src/index"],
       "@calm-ui/popover": ["./packages/popover/src/index"],
+      "@calm-ui/tooltip": ["./packages/tooltip/src/index"],
     },
     "moduleResolution": "Bundler",
     "jsx": "react-jsx",
