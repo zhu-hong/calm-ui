@@ -1,0 +1,8 @@
+.cm-tooltip-wrapper {
+  width: max-content;
+  max-width: 250px;
+  padding: 8px 10px;
+  opacity: .95;
+  background-color: var(--cm-tooltip-bg-color);
+  color: #ffffff;
+}

@@ -1,4 +1,4 @@
-import { cloneElement, createContext, FC, isValidElement, ReactNode, useContext, useMemo, useRef, useState } from 'react'
+import { cloneElement, createContext, CSSProperties, FC, isValidElement, ReactNode, useContext, useMemo, useRef, useState } from 'react'
 import {
   arrow,
   autoUpdate,
@@ -20,6 +20,8 @@ import {
 } from '@floating-ui/react'
 import { useThemeContext } from '@calm-ui/theme'
 
+import './style.css'
+
 type TooltipOptions = {
   placement?: Placement
   zIndex?: number
@@ -35,7 +37,7 @@ const useTooltip = ({
   zIndex = 50,
   children: trigger,
   content,
-  delay = 270,
+  delay = 520,
 }: TooltipOptions) => {
   const [open, setOpen] = useState(false)
   const arrowRef = useRef(null)
@@ -60,11 +62,7 @@ const useTooltip = ({
   const { context } = data
 
   const hover = useHover(context, {
-    restMs: 270,
-    delay: {
-      open: delay,
-      close: 50,
-    },
+    restMs: delay,
   })
   const focus = useFocus(context)
   const dismiss = useDismiss(context)
@@ -184,24 +182,19 @@ const TooltipContent = () => {
         className: 'cm-tooltip-wrapper',
         style: {
           position: context.strategy,
-          top: context.y ?? 0,
-          left: context.x ?? 0,
-          width: 'max-content',
+          top: isNaN(context.y) ? 0 : (context.y ?? 0),
+          left: isNaN(context.x) ? 0 : (context.x ?? 0),
           zIndex,
-          padding: '8px 10px',
-          backgroundColor: tooltipColor,
-          color: '#ffffff',
+          '--cm-tooltip-bg-color': tooltipColor,
           ...styles,
-        }
+        } as CSSProperties,
       })}
     >
       {content}
       <FloatingArrow
         ref={context.arrowRef}
         context={floatingContext}
-        style={{
-          color: tooltipColor,
-        }}
+        fill={tooltipColor}
       />
     </div>
   </FloatingPortal>

@@ -31,7 +31,6 @@ const App = () => {
           danger: '#dc2626',
           success: '#34d399',
           warning: '#e879f9',
-          default: '#222222',
         },
       }}>
         <div className='flex items-center gap-12px flex-wrap relative'>
@@ -72,11 +71,11 @@ const App = () => {
         </div>
         <div className='mt-32px flex items-center gap-12px'>
           <p>text button</p>
-          <Tooltip content='tooltiptooltiptooltiptooltiptooltiptooltiptooltiptooltiptooltiptooltiptooltiptooltip' delay={0} placement='top-start'>
-            <Button text theme='primary' className='max-w-120px'><span className='truncate'>tooltiptooltiptooltiptooltiptooltiptooltiptooltiptooltiptooltiptooltiptooltiptooltip</span></Button>
+          <Tooltip content='Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa veritatis ab at earum voluptates dolore rem provident, perferendis, fugit rerum quaerat laudantium quis maxime beatae quibusdam excepturi iste? Iure, nisi?' placement='top-start'>
+            <Button text theme='primary' className='max-w-120px'><span className='truncate'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa veritatis ab at earum voluptates dolore rem provident, perferendis, fugit rerum quaerat laudantium quis maxime beatae quibusdam excepturi iste? Iure, nisi?</span></Button>
           </Tooltip>
           <Tooltip content='tooltip' placement='top'>
-            <p>tooltop</p>
+            <p tabIndex={0}>tooltop</p>
           </Tooltip>
           <Button text theme='danger'>GO</Button>
           <Button text theme='success'>GO</Button>

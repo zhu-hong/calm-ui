@@ -27,6 +27,7 @@ import {
   useEffect,
   FC,
   MouseEvent,
+  CSSProperties,
 } from 'react'
 import clsx from 'clsx'
 import { IconButton } from '@calm-ui/button'
@@ -212,19 +213,17 @@ const ModalContent = forwardRef<
       lockScroll={isMounted}
       style={{
         ...overlayTransition.styles,
-        // @ts-ignore
         display: (!overlay||!isMounted) ? 'none' : overlayTransition.styles.display,
         zIndex,
-      }}
+      } as CSSProperties}
     />
     <div
       className={classes?.wrapper}
       style={{
-        // @ts-ignore
         display: isMounted ? undefined : 'none',
         zIndex: zIndex + 1,
         pointerEvents: overlay ? undefined : 'none',
-      }}
+      } as CSSProperties}
     >
       <FloatingFocusManager
         context={floatingContext}
