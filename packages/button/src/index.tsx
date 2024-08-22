@@ -130,7 +130,7 @@ export const Button = memo(forwardRef<
     {...props}
     focusRipple
     as='button'
-    className={clsx('cm-button', props.className)}
+    className={clsx('cm-button', isPrimary && 'cm-primary-button', props.className)}
     disabled={props.disabled || loading || loadingInner}
     style={Object.assign({
       '--cm-button-bg-color': bgColor,
@@ -139,7 +139,6 @@ export const Button = memo(forwardRef<
       '--cm-button-border-width': borderWidth,
       '--cm-button-border-color': borderColor,
       '--cm-button-border-hover-color': borderHoverColor,
-      fontWeight: isPrimary ? 500 : undefined,
     }, props.style)}
     onClick={onClick}
   >
