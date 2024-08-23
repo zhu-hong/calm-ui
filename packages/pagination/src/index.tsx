@@ -1,4 +1,4 @@
-import { forwardRef, HTMLAttributes, useMemo } from 'react'
+import { forwardRef, HTMLAttributes, useEffect, useMemo } from 'react'
 import clsx from 'clsx'
 import { Button, IconButton } from '@calm-ui/button'
 
@@ -18,29 +18,43 @@ export const Pagination = forwardRef<
   HTMLAttributes<HTMLElement> & PaginationProps
 >(({ total = 0, page = 1, perPage = 20, perPages = [10, 20, 50, 100], onPageChange, onPerPageChange, ...props }, ref) => {
   const totalPage = useMemo(() => {
-    return Math.ceil(total / perPage)
+    return Math.max(Math.ceil(total / perPage), 1)
   }, [total, perPage])
 
-  let centerPage = page
-  const centerCountBase = 5
-  const centerCount = Math.min(totalPage - 2, centerCountBase)
-  const ceilPage = Math.ceil(centerCount / 2)
-  
-  let centerPages: number[] = []
-  
-  if(totalPage > 2) {
-    if(page < 1 + ceilPage) {
-      centerPage = 1 + ceilPage
-    } else if (page > totalPage - ceilPage) {
-      centerPage = totalPage - ceilPage
+  const pager = useMemo(() => {
+    let centerPage = page
+    const centerCountBase = 5
+    const centerCount = Math.min(totalPage - 2, centerCountBase)
+    const ceilPage = Math.ceil(centerCount / 2)
+    
+    let centerPages: number[] = []
+    
+    if(totalPage > 2) {
+      if(page < 1 + ceilPage) {
+        centerPage = 1 + ceilPage
+      } else if (page > totalPage - ceilPage) {
+        centerPage = totalPage - ceilPage
+      }
+    
+      if(centerCount < centerCountBase) {
+        centerPages = Array.from({ length: centerCount }, (_, i) => i + 2)
+      } else {
+        centerPages = Array.from({ length: centerCount }, (_, i) => i + centerPage - Math.floor(centerCount / 2))
+      }
     }
-  
-    if(centerCount < centerCountBase) {
-      centerPages = Array.from({ length: centerCount }, (_, i) => i + 2)
-    } else {
-      centerPages = Array.from({ length: centerCount }, (_, i) => i + centerPage - Math.floor(centerCount / 2))
+
+    const showPrevEllipsis = totalPage > centerCount + 2 && page > 1 + ceilPage
+    const showNextEllipsis = totalPage > centerCount + 2 && page < totalPage - ceilPage
+
+    return {
+      centerPage,
+      centerCount,
+      ceilPage,
+      centerPages,
+      showPrevEllipsis,
+      showNextEllipsis,
     }
-  }
+  }, [totalPage, page])
 
   const changePerPage = (perPageNum: number) => {
     if(perPageNum === perPage) return
@@ -54,6 +68,12 @@ export const Pagination = forwardRef<
 
     onPageChange?.(pageNum)
   }
+
+  useEffect(() => {
+    if(page <= totalPage) return
+
+    onPageChange?.(totalPage)
+  }, [page, totalPage])
 
   return <div {...props} ref={ref} className={clsx('cm-pagination-wrapper', props.className)}>
     <div className='cm-pagination-perpages'>
@@ -73,7 +93,7 @@ export const Pagination = forwardRef<
       <Button text={page !== 1} theme={1 === page ? 'primary' : 'default'} onClick={() => changePage(1)}>1</Button>
 
       {
-        totalPage > centerCount + 2 && page > 1 + ceilPage && <Button text theme='default' onClick={() => changePage(Math.max(centerPage - centerCount, 2))}>
+        pager.showPrevEllipsis && <Button text theme='default' onClick={() => changePage(Math.max(pager.centerPage - pager.centerCount, 2))}>
           <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
             <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0"></path>
           </svg>
@@ -81,11 +101,11 @@ export const Pagination = forwardRef<
       }
 
       {
-        centerPages.map((p) => <Button text={page !== p} theme={p === page ? 'primary' : 'default'} onClick={() => changePage(p)} key={p}>{ p }</Button>)
+        pager.centerPages.map((p) => <Button text={page !== p} theme={p === page ? 'primary' : 'default'} onClick={() => changePage(p)} key={p}>{ p }</Button>)
       }
 
       {
-        totalPage > centerCount + 2 && page < totalPage - ceilPage && <Button text theme='default' onClick={() => changePage(Math.min(centerPage + centerCount, totalPage - 1))}>
+        pager.showNextEllipsis && <Button text theme='default' onClick={() => changePage(Math.min(pager.centerPage + pager.centerCount, totalPage - 1))}>
           <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
             <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0"></path>
           </svg>
