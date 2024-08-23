@@ -15,7 +15,7 @@ export const Dialog: FC<Omit<ComponentProps<typeof Modal>, 'contentTransition'>>
   return <Modal {...props} classes={{
     ...props.classes,
     wrapper: clsx('cm-dialog', props.classes?.wrapper),
-    content: clsx('cm-modal-content cm-dialog-content', props.classes?.content),
+    content: clsx('cm-dialog-content', props.classes?.content),
   }} contentTransition={{
     initial: {
       opacity: 0,
@@ -32,7 +32,7 @@ export const Drawer: FC<Omit<ComponentProps<typeof Modal>, 'contentTransition'>>
   return <Modal {...props} classes={{
     ...props.classes,
     wrapper: clsx('cm-drawer', props.classes?.wrapper),
-    content: clsx('cm-modal-content cm-drawer-content', props.classes?.content),
+    content: clsx('cm-drawer-content', props.classes?.content),
   }} contentTransition={{
     initial: {
       opacity: 0,

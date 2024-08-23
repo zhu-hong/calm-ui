@@ -240,7 +240,7 @@ const ModalContent = forwardRef<
             ...contentTransition.styles,
             pointerEvents:overlay?undefined: 'auto',
           }}
-          className={clsx(classes?.content, props.className)}
+          className={clsx('cm-modal-content', classes?.content, props.className)}
         />
       </FloatingFocusManager>
     </div>
