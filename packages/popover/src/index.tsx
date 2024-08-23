@@ -183,7 +183,7 @@ const PopoverContent = () => {
       <div
         ref={floatingContext.refs.setFloating}
         {...context.getFloatingProps({
-          className: 'cm-popover-wrapper',
+          className: 'cm-popover',
           style: {
             position: context.strategy,
             top: context.y ?? 0,

@@ -14,7 +14,7 @@ import clsx from 'clsx'
 export const Dialog: FC<Omit<ComponentProps<typeof Modal>, 'contentTransition'>> = (props) => {
   return <Modal {...props} classes={{
     ...props.classes,
-    wrapper: clsx('cm-dialog-wrapper', props.classes?.wrapper),
+    wrapper: clsx('cm-dialog', props.classes?.wrapper),
     content: clsx('cm-modal-content cm-dialog-content', props.classes?.content),
   }} contentTransition={{
     initial: {
@@ -31,7 +31,7 @@ export const Dialog: FC<Omit<ComponentProps<typeof Modal>, 'contentTransition'>>
 export const Drawer: FC<Omit<ComponentProps<typeof Modal>, 'contentTransition'>> = (props) => {
   return <Modal {...props} classes={{
     ...props.classes,
-    wrapper: clsx('cm-drawer-wrapper', props.classes?.wrapper),
+    wrapper: clsx('cm-drawer', props.classes?.wrapper),
     content: clsx('cm-modal-content cm-drawer-content', props.classes?.content),
   }} contentTransition={{
     initial: {

@@ -179,7 +179,7 @@ const TooltipContent = () => {
     <div
       ref={floatingContext.refs.setFloating}
       {...context.getFloatingProps({
-        className: 'cm-tooltip-wrapper',
+        className: 'cm-tooltip',
         style: {
           position: context.strategy,
           top: isNaN(context.y) ? 0 : (context.y ?? 0),

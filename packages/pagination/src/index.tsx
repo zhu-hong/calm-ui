@@ -75,7 +75,7 @@ export const Pagination = forwardRef<
     onPageChange?.(totalPage)
   }, [page, totalPage])
 
-  return <div {...props} ref={ref} className={clsx('cm-pagination-wrapper', props.className)}>
+  return <div {...props} ref={ref} className={clsx('cm-pagination', props.className)}>
     <div className='cm-pagination-perpages'>
       {
         perPages.map((pp) => <Button text={pp !== perPage} theme={pp === perPage?'primary':'default'} key={pp} onClick={() => changePerPage(pp)}>{pp}</Button>)
