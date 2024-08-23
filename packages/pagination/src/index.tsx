@@ -54,7 +54,7 @@ export const Pagination = forwardRef<
       showPrevEllipsis,
       showNextEllipsis,
     }
-  }, [totalPage, page])
+  }, [page, totalPage])
 
   const changePerPage = (perPageNum: number) => {
     if(perPageNum === perPage) return
