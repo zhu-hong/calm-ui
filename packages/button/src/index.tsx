@@ -84,9 +84,10 @@ export const Button = memo(forwardRef<
   }, [outlined, textColor])
 
   const borderHoverColor = useMemo<string>(() => {
-    if(outlined) return textColor
+    if(!outlined) return 'transparent'
 
-    return 'transparent'
+    const { r, g, b } = new TinyColor(textColor).toRgb()
+    return `rgba(${r},${g},${b},.6)`
   }, [outlined, textColor])
 
   const startIconInner = useMemo(() => {

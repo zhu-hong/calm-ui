@@ -8,7 +8,9 @@
   background-color: var(--cm-button-bg-color);
   border-color: var(--cm-button-border-color);
   border-width: var(--cm-button-border-width);
-  transition: background-color 170ms linear;
+  transition-property: background-color,border;
+  transition-duration: 170ms;
+  transition-timing-function: linear;
   -webkit-tap-highlight-color: transparent;
   outline: none;
   user-select: none;

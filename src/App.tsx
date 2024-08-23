@@ -124,7 +124,6 @@ const App = () => {
         </IconButton>
       </div>
     </div>
-    <div className="h-screen"></div>
     <div className='p-32px'>
       <Pagination perPage={perPage} onPerPageChange={setPerPage} total={1000} page={page} onPageChange={setPage} />
     </div>
