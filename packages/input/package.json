@@ -24,6 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "@calm-ui/theme": "workspace:^",
+    "@zhuh/style-inject": "^1.0.1",
     "clsx": "^2.1.1"
   }
 }
