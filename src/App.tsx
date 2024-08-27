@@ -77,7 +77,7 @@ const App = () => {
             content={
               <div className='p-64px rounded border bg-white'>
                 <p>1231234512345</p>
-                <input type="text" />
+                <Input placeholder='请输入' autoFocus type='password' />
                 <PopoverClose>close</PopoverClose>
               </div>
             }
