@@ -8,6 +8,7 @@ import {
   inline,
   offset,
   Placement,
+  safePolygon,
   shift,
   useDismiss,
   useFloating,
@@ -28,6 +29,7 @@ type TooltipOptions = {
   delay?: number
   children: ReactNode
   content: ReactNode
+  enterable?: boolean
 }
 
 type ContextType = (ReturnType<typeof useTooltip>) | null
@@ -38,6 +40,7 @@ const useTooltip = ({
   children: trigger,
   content,
   delay = 520,
+  enterable,
 }: TooltipOptions) => {
   const [open, setOpen] = useState(false)
   const arrowRef = useRef(null)
@@ -63,6 +66,7 @@ const useTooltip = ({
 
   const hover = useHover(context, {
     restMs: delay,
+    handleClose: enterable ? safePolygon() : null,
   })
   const focus = useFocus(context)
   const dismiss = useDismiss(context)
@@ -114,6 +118,7 @@ export const Tooltip: FC<TooltipOptions & { children: ReactNode; content: ReactN
   children,
   content,
   delay,
+  enterable,
 }) => {
   const tooltip = useTooltip({
     placement,
@@ -121,6 +126,7 @@ export const Tooltip: FC<TooltipOptions & { children: ReactNode; content: ReactN
     children,
     content,
     delay,
+    enterable,
   })
 
   return <TooltipContext.Provider value={tooltip}>
