@@ -15,6 +15,7 @@
       "@calm-ui/popover": ["./packages/popover/src/index"],
       "@calm-ui/tooltip": ["./packages/tooltip/src/index"],
       "@calm-ui/pagination": ["./packages/pagination/src/index"],
+      "@calm-ui/input": ["./packages/input/src/index"],
     },
     "moduleResolution": "Bundler",
     "jsx": "react-jsx",

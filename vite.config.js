@@ -16,6 +16,7 @@ export default defineConfig({
       '@calm-ui/popover': resolve(__dirname, './packages/popover/src/index.tsx'),
       '@calm-ui/tooltip': resolve(__dirname, './packages/tooltip/src/index.tsx'),
       '@calm-ui/pagination': resolve(__dirname, './packages/pagination/src/index.tsx'),
+      '@calm-ui/input': resolve(__dirname, './packages/input/src/index.tsx'),
     },
   },
   plugins: [

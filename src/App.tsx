@@ -5,6 +5,7 @@ import { Dialog, DialogAutoFocus, DialogClose, Drawer, DrawerClose } from '@calm
 import { Popover, PopoverClose } from '@calm-ui/popover'
 import { Tooltip } from '@calm-ui/tooltip'
 import { Pagination } from '@calm-ui/pagination'
+import { Input, Textarea } from '@calm-ui/input'
 
 const Log = memo(() => {
   console.log('log')
@@ -27,6 +28,21 @@ const App = () => {
   }, [])
   return <div>
     <div className="h-screen"></div>
+    <div className="p-32">
+      <Input placeholder='请输入' autoFocus type='password' suffix={
+        <IconButton className='!p-4px !mr-4px'>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path>
+          </svg>
+        </IconButton>
+      } />
+      <div className="h-32"></div>
+      <Textarea rows={5} placeholder={`1
+2
+3
+4
+5`} className='w-520px' />
+    </div>
     <div className='p-32px w-full overflow-hidden h-520px relative' ref={ref}>
       <ThemeProvider value={{
         palette: {
@@ -48,7 +64,7 @@ const App = () => {
             </svg>
             Primary
           </Button>
-          <Button theme='danger' autoFocus onClick={() => setOpen(true)}>Dialog</Button>
+          <Button theme='danger' onClick={() => setOpen(true)}>Dialog</Button>
           <Button theme='success' onClick={() => setOpen2(true)}>Drawer KeepMount</Button>
           <Button theme='warning' loading>Loading Button</Button>
           <Button theme='default'>GO</Button>
@@ -140,7 +156,12 @@ const App = () => {
         </DialogClose>
         <p>正常autoFocus</p>
         <DialogAutoFocus>
-          <input type="text" />
+          
+          <Textarea rows={5} placeholder={`1
+2
+3
+4
+5`} className='w-520px' />
         </DialogAutoFocus>
       </div>
     </Dialog>

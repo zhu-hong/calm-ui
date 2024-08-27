@@ -11,6 +11,9 @@ importers:
       '@calm-ui/button':
         specifier: workspace:^
         version: link:packages/button
+      '@calm-ui/input':
+        specifier: workspace:^
+        version: link:packages/input
       '@calm-ui/modal':
         specifier: workspace:^
         version: link:packages/modal
@@ -111,6 +114,18 @@ importers:
       '@zhuh/style-inject':
         specifier: ^1.0.1
         version: 1.0.1
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      react:
+        specifier: 18.x
+        version: 18.3.1
+
+  packages/input:
+    dependencies:
+      '@calm-ui/theme':
+        specifier: workspace:^
+        version: link:../theme
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
