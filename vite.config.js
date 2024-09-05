@@ -17,6 +17,7 @@ export default defineConfig({
       '@calm-ui/tooltip': resolve(__dirname, './packages/tooltip/src/index.tsx'),
       '@calm-ui/pagination': resolve(__dirname, './packages/pagination/src/index.tsx'),
       '@calm-ui/input': resolve(__dirname, './packages/input/src/index.tsx'),
+      '@calm-ui/switch': resolve(__dirname, './packages/switch/src/index.tsx'),
     },
   },
   plugins: [

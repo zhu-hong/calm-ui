@@ -7,6 +7,7 @@ import clsx from 'clsx'
 import './style.css'
 
 type BtnProps = ButtonHTMLAttributes<HTMLButtonElement> & RippleProps & {
+  as?: keyof JSX.IntrinsicElements
   theme?: keyof ReturnType<typeof useThemeContext>['palette'] | (string&{});
   text?: boolean;
   outlined?: boolean;
@@ -26,6 +27,7 @@ export const Button = memo(forwardRef<
   BtnProps
 >(({
   children,
+  as = 'button',
   theme = 'primary',
   text = false,
   outlined = false,
@@ -130,7 +132,7 @@ export const Button = memo(forwardRef<
     ref={ref}
     {...props}
     focusRipple
-    as='button'
+    as={as}
     className={clsx('cm-button', isPrimary && 'cm-primary-button', props.className)}
     disabled={props.disabled || loading || loadingInner}
     style={Object.assign({
@@ -153,6 +155,7 @@ export const IconButton = memo(forwardRef<
   HTMLButtonElement,
   ButtonHTMLAttributes<HTMLButtonElement> & RippleProps & {
     theme?: BtnProps['theme'];
+    as?: BtnProps['as'];
   }
 >(({ theme, ...props }, ref) => {
   return <Button

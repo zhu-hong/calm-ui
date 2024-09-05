@@ -6,6 +6,7 @@ import { Popover, PopoverClose } from '@calm-ui/popover'
 import { Tooltip } from '@calm-ui/tooltip'
 import { Pagination } from '@calm-ui/pagination'
 import { Input, Textarea } from '@calm-ui/input'
+import { Switch } from '@calm-ui/switch'
 
 const Log = memo(() => {
   console.log('log')
@@ -19,6 +20,8 @@ const App = () => {
   const btnRef = useRef<HTMLButtonElement>(null)
   const [perPage, setPerPage] = useState(20)
   const [page, setPage] = useState(1)
+  const [checked, setChecked] = useState(false)
+  const [disabled, setDisabled] = useState(false)
   useEffect(() => {
     console.log(ref)
     // btnRef.current?.scrollIntoView({
@@ -28,16 +31,31 @@ const App = () => {
   }, [])
   return <div>
     <div className="h-screen"></div>
-    <div className="p-32">
-      <Input placeholder='请输入' autoFocus type='password' suffix={
-        <IconButton className='!p-4px !mr-4px'>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path>
-          </svg>
-        </IconButton>
-      } />
+    <form id="myForm" name="myForm" onSubmit={(e) => {
+      e.preventDefault()
+      console.log(new FormData(document.querySelector('form')!))
+    }}>
+      <div>
+        <label htmlFor="username">Enter name:</label>
+        <input type="text" id="username" name="username" />
+      </div>
+      <div>
+        <label htmlFor="useracc">Enter account number:</label>
+        <input type="text" id="useracc" name="useracc" />
+      </div>
+      <div>
+        <label htmlFor="userfile">Upload file:</label>
+        <input type="file" id="userfile" name="userfile" />
+      </div>
+      <input type="checkbox" name='switch' role='switch' value='kale' required />
+      <input type="submit" value="Submit!" />
+    </form>
+
+    <div className="p-32px">
+      <div className="h-32px"></div>
+      <Input placeholder='请输入' className='w-320px' readOnly autoFocus />
       <div className="h-32"></div>
-      <Textarea rows={5} placeholder={`1
+      <Textarea autoFocus placeholder={`1
 2
 3
 4
@@ -46,12 +64,18 @@ const App = () => {
     <div className='p-32px w-full overflow-hidden h-520px relative' ref={ref}>
       <ThemeProvider value={{
         palette: {
-          primary: '#fb7185',
+          primary: '#0b58d2',
           danger: '#dc2626',
           success: '#34d399',
           warning: '#e879f9',
         },
       }}>
+        <div className="p-32px">
+          <form>
+            <Switch checked={checked} onCheckedChange={setChecked} disabled={disabled} />
+            <Switch checked={disabled} onCheckedChange={setDisabled} />
+          </form>
+        </div>
         <div className='flex items-center gap-12px flex-wrap relative'>
           <Button theme='primary' className='font-500 text-32px'>
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32">

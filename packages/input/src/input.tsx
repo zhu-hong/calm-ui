@@ -14,7 +14,7 @@ export const Input = forwardRef<
 >(({ prefix, suffix, wrapperAttrs, ...props }, ref) => {
   const { palette: { primary } } = useThemeContext()
 
-  return <div {...wrapperAttrs} className={clsx('cm-input-wrapper', wrapperAttrs?.className)} style={{
+  return <div {...wrapperAttrs} className={clsx('cm-input-wrapper', props.disabled && 'cm-input-disabled',  wrapperAttrs?.className)} style={{
     '--cm-primary-color': primary,
   } as CSSProperties}>
     {prefix}

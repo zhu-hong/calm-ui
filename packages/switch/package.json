@@ -1,0 +1,33 @@
+{
+  "name": "@calm-ui/switch",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "switch.d.ts",
+  "module": "dist/index.js",
+  "files": [
+    "dist",
+    "*.d.ts"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./switch.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "rollup -wc",
+    "build": "rollup -c"
+  },
+  "peerDependencies": {
+    "react": "18.x"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@calm-ui/theme": "workspace:^",
+    "@ctrl/tinycolor": "^4.1.0",
+    "@radix-ui/react-switch": "^1.1.0",
+    "@zhuh/style-inject": "^1.0.1",
+    "clsx": "^2.1.1"
+  }
+}

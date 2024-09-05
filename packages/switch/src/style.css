@@ -1,0 +1,95 @@
+.cm-switch {
+  padding: 12px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+
+  &:disabled {
+    cursor: default;
+    
+    .cm-switch-thumb {
+      opacity: .7;
+    }
+  }
+
+  &:focus-visible  {
+    .cm-switch-thumb-inner::before {
+      opacity: .3;
+    }
+  }
+
+  &:not(:disabled):hover {
+    .cm-switch-thumb-inner::before {
+      opacity: .1;
+    }
+  }
+
+  .cm-switch-thumb {
+    display: block;
+    width: 34px;
+    height: 14px;
+    border-radius: 7px;
+    background-color: var(--cm-switch-track-bgcolor);
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+    &[data-state="checked"] .cm-switch-thumb-inner {
+      transform: translateX(20px);
+    }
+  }
+
+  .cm-switch-thumb-inner {
+    display: block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: currentColor;
+    position: relative;
+    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: currentColor;
+      opacity: 0;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      transition-property: opacity;
+      transition-duration: 550ms;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      animation: 2500ms cmSwitchPulsate cubic-bezier(0.4, 0, 0.2, 1) infinite 200ms;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: currentColor;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    }
+  }
+}
+
+@keyframes cmSwitchPulsate {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

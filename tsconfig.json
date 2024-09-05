@@ -16,6 +16,7 @@
       "@calm-ui/tooltip": ["./packages/tooltip/src/index"],
       "@calm-ui/pagination": ["./packages/pagination/src/index"],
       "@calm-ui/input": ["./packages/input/src/index"],
+      "@calm-ui/switch": ["./packages/switch/src/index"],
     },
     "moduleResolution": "Bundler",
     "jsx": "react-jsx",
