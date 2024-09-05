@@ -61,7 +61,7 @@ const App = () => {
 4
 5`} className='w-520px' />
     </div>
-    <div className='p-32px w-full overflow-hidden h-520px relative' ref={ref}>
+    <div className='p-32px w-full overflow-hidden relative' ref={ref}>
       <ThemeProvider value={{
         palette: {
           primary: '#0b58d2',
@@ -163,9 +163,9 @@ const App = () => {
           </svg>
         </IconButton>
       </div>
-    </div>
-    <div className='p-32px'>
-      <Pagination perPage={perPage} onPerPageChange={setPerPage} total={1000} page={page} onPageChange={setPage} />
+      <div className='p-32px'>
+        <Pagination perPage={perPage} onPerPageChange={setPerPage} total={1000} page={page} onPageChange={setPage} />
+      </div>
     </div>
     <Drawer open={open2} onOpenChange={setOpen2} zIndex={1000} keepMount overlay={false}>
       <div style={{width:320,height:100,backgroundColor:'black'}}></div>
