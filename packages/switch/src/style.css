@@ -35,6 +35,10 @@
     &[data-state="checked"] .cm-switch-thumb-inner {
       transform: translateX(20px);
     }
+
+    &[data-state="unchecked"] .cm-switch-thumb-inner::before {
+      background-color: #000000;
+    }
   }
 
   .cm-switch-thumb-inner {
@@ -42,9 +46,11 @@
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    background-color: currentColor;
     position: relative;
-    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    transition-property: transform;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: currentColor;
 
     &::before, &::after {
       content: "";
@@ -53,8 +59,8 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: currentColor;
       border-radius: 50%;
+      background-color: currentColor;
     }
 
     &::before {
@@ -62,7 +68,7 @@
       width: 38px;
       height: 38px;
       transition-property: opacity;
-      transition-duration: 170ms;
+      transition-duration: 150ms;
       transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     }
 

@@ -3,7 +3,7 @@
   padding: 6px 12px;
   background-color: var(--cm-button-bg-color);
   border-color: var(--cm-button-border-color);
-  border-width: var(--cm-button-border-width);
+  border-width: 1px;
   transition-property: background-color,border;
   transition-duration: 170ms;
   transition-timing-function: linear;

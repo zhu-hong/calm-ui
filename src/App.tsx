@@ -14,6 +14,8 @@ const Log = memo(() => {
   return 'log'
 })
 
+const COLORS = ['#058373','#0B58D2','#fb7185']
+
 const App = () => {
   const [open, setOpen] = useState(false)
   const [open2, setOpen2] = useState(false)
@@ -21,9 +23,10 @@ const App = () => {
   const btnRef = useRef<HTMLButtonElement>(null)
   const [perPage, setPerPage] = useState(20)
   const [page, setPage] = useState(1)
-  const [switchChecked, setSwitchChecked] = useState(false)
-  const [switchDisabled, setSwitchDisabled] = useState(false)
+  const [switchChecked, setSwitchChecked] = useState(true)
+  const [switchDisabled, setSwitchDisabled] = useState(true)
   const [checkboxChecked, setCheckboxChecked] = useState<boolean|'indeterminate'>('indeterminate')
+  const [primaryColor, setPrimaryColor] = useState(COLORS[2])
 
   useEffect(() => {
     console.log(ref)
@@ -47,12 +50,20 @@ const App = () => {
     <div className='p-32px w-full overflow-hidden relative' ref={ref}>
       <ThemeProvider value={{
         palette: {
-          primary: '#058373',
+          primary: primaryColor,
           danger: '#dc2626',
           success: '#34d399',
           warning: '#e879f9',
         },
       }}>
+        <div className="p-32px">
+          <p>主题色</p>
+          <div className="flex gap-8px mt-8px">
+            {
+              COLORS.map((c) => <Button theme={c} key={c} onClick={() => setPrimaryColor(c)} outlined={primaryColor!==c}>{c}</Button>)
+            }
+          </div>
+        </div>
         <div className="p-32px">
           <form>
             <p>switch</p>
@@ -86,7 +97,7 @@ const App = () => {
           <Button theme='warning' loading>Loading Button</Button>
           <Button theme='default'>GO</Button>
         </div>
-        <div className='mt-32px flex items-center gap-12px'>
+        <div className='mt-32px flex items-center gap-12px flex-wrap'>
           <p>outlined button</p>
           <Button outlined theme='primary' className='text-32px fontmono'>GO</Button>
           <Button outlined theme='danger' className='bg-white'>GO</Button>
@@ -105,7 +116,7 @@ const App = () => {
           <Button outlined theme='warning'>GO</Button>
           <Button outlined theme='default'>GO</Button>
         </div>
-        <div className='mt-32px flex items-center gap-12px'>
+        <div className='mt-32px flex items-center gap-12px flex-wrap'>
           <p>text button</p>
           <Tooltip enterable content='Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa veritatis ab at earum voluptates dolore rem provident, perferendis, fugit rerum quaerat laudantium quis maxime beatae quibusdam excepturi iste? Iure, nisi?' placement='top-start'>
             <Button text theme='primary' className='max-w-120px'><span className='truncate'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa veritatis ab at earum voluptates dolore rem provident, perferendis, fugit rerum quaerat laudantium quis maxime beatae quibusdam excepturi iste? Iure, nisi?</span></Button>
@@ -118,7 +129,7 @@ const App = () => {
           <Button text theme='warning'>GO</Button>
           <Button text theme='default'>GO</Button>
         </div>
-        <div className='mt-32px flex items-center gap-12px'>
+        <div className='mt-32px flex items-center gap-12px flex-wrap'>
           <p>tag button</p>
           <Button tag theme='primary' className='px-14px! py-2px! text-sm'>GO</Button>
           <Button tag theme='danger' className='px-14px! py-2px! text-sm'>GO</Button>
@@ -128,7 +139,7 @@ const App = () => {
           <Button tag theme='#0b58d2' className='px-14px! py-2px! text-sm'>GO</Button>
         </div>
       </ThemeProvider>
-      <div className='mt-32px flex items-center gap-12px'>
+      <div className='mt-32px flex items-center gap-12px flex-wrap'>
         <p>icon button</p>
         <IconButton theme='primary'>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">

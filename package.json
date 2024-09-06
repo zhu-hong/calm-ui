@@ -39,6 +39,7 @@
     "@calm-ui/modal": "workspace:^",
     "@calm-ui/pagination": "workspace:^",
     "@calm-ui/popover": "workspace:^",
+    "@calm-ui/radio-group": "workspace:^",
     "@calm-ui/ripple": "workspace:^",
     "@calm-ui/switch": "workspace:^",
     "@calm-ui/theme": "workspace:^",

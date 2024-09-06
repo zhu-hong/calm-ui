@@ -19,6 +19,7 @@ export default defineConfig({
       '@calm-ui/input': resolve(__dirname, './packages/input/src/index.tsx'),
       '@calm-ui/switch': resolve(__dirname, './packages/switch/src/index.tsx'),
       '@calm-ui/checkbox': resolve(__dirname, './packages/checkbox/src/index.tsx'),
+      '@calm-ui/radio-group': resolve(__dirname, './packages/radio-group/src/index.tsx'),
     },
   },
   plugins: [

@@ -7,7 +7,7 @@ import clsx from 'clsx'
 import { Root, Thumb } from '@radix-ui/react-switch'
 
 export const Switch: typeof Root = forwardRef(({ ...props }, ref) => {
-  const { palette: { primary, default: defaultColor } } = useThemeContext()
+  const { palette: { primary } } = useThemeContext()
 
   const checked = useMemo(() => {
     return props.checked ?? props.defaultChecked ?? false
@@ -18,9 +18,9 @@ export const Switch: typeof Root = forwardRef(({ ...props }, ref) => {
   }, [checked, primary])
   
   const trackColor = useMemo(() => {
-    const { r, g, b } = new TinyColor(checked?primary:defaultColor).toRgb()
+    const { r, g, b } = new TinyColor(checked?primary:'#000000').toRgb()
     return `rgba(${r},${g},${b},${.3})`
-  }, [checked, primary, defaultColor])
+  }, [checked, primary])
 
   return <Root
     {...props}

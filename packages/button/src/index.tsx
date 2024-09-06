@@ -74,10 +74,6 @@ export const Button = memo(forwardRef<
     return '#FFFFFF'
   }, [themeColor, text, outlined, tag])
 
-  const borderWidth = useMemo<string>(() => {
-    return outlined ? '1px' : '0px'
-  }, [outlined])
-
   const borderColor = useMemo<string>(() => {
     if(!outlined) return 'transparent'
 
@@ -139,7 +135,6 @@ export const Button = memo(forwardRef<
       '--cm-button-bg-color': bgColor,
       '--cm-button-bg-hover-color': bgHoverColor,
       '--cm-button-text-color': textColor,
-      '--cm-button-border-width': borderWidth,
       '--cm-button-border-color': borderColor,
       '--cm-button-border-hover-color': borderHoverColor,
     }, props.style)}
