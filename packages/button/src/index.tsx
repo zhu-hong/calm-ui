@@ -90,7 +90,7 @@ export const Button = memo(forwardRef<
 
   const startIconInner = useMemo(() => {
     if(loadingInner || loading) {
-      return <svg xmlns="http://www.w3.org/2000/svg" width={loadingSize??'1em'} height={loadingSize??'1em'} viewBox="0 0 24 24" style={{marginRight:'8px'}}>
+      return <svg xmlns="http://www.w3.org/2000/svg" width={loadingSize??'1em'} height={loadingSize??'1em'} viewBox="0 0 24 24" style={{marginRight:'8px',flex:'none'}}>
         <g stroke="currentColor">
           <circle cx="12" cy="12" r="9.5" fill="none" strokeLinecap="round" strokeWidth="2.5">
             <animate attributeName="stroke-dasharray" calcMode="spline" dur="1.5s" keySplines="0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1" keyTimes="0;0.475;0.95;1" repeatCount="indefinite" values="0 150;42 150;42 150;42 150" />
