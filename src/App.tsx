@@ -57,9 +57,6 @@ const App = () => {
       <ThemeProvider value={{
         palette: {
           primary: primaryColor,
-          danger: '#dc2626',
-          success: '#34d399',
-          warning: '#e879f9',
         },
       }}>
         <div className="p-32px">
@@ -111,7 +108,7 @@ const App = () => {
             </Button>
             <Button theme='danger' onClick={() => setOpen(true)}>Dialog</Button>
             <Button theme='success' onClick={() => setOpen2(true)}>Drawer KeepMount</Button>
-            <Button theme='warning' loading>Loading Button</Button>
+            <Button theme='warning'>GO</Button>
             <Button theme='default'>GO</Button>
           </div>
           <div className='mt-32px flex items-center gap-12px flex-wrap'>
@@ -130,7 +127,7 @@ const App = () => {
             >
               <Button ref={btnRef} outlined theme='success'>Popover</Button>
             </Popover>
-            <Button outlined theme='warning'>GO</Button>
+            <Button outlined theme='warning' loading>LOADING BUTTON</Button>
             <Button outlined theme='default'>GO</Button>
           </div>
           <div className='mt-32px flex items-center gap-12px flex-wrap'>
