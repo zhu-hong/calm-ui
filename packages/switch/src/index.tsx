@@ -4,12 +4,9 @@ import { CSSProperties, forwardRef, useMemo } from 'react'
 import { useThemeContext } from '@calm-ui/theme'
 import { TinyColor } from '@ctrl/tinycolor'
 import clsx from 'clsx'
-import { Root, Thumb, SwitchProps } from '@radix-ui/react-switch'
+import { Root, Thumb } from '@radix-ui/react-switch'
 
-export const Switch = forwardRef<
-  HTMLButtonElement,
-  SwitchProps
->(({ ...props }, ref) => {
+export const Switch: typeof Root = forwardRef(({ ...props }, ref) => {
   const { palette: { primary, default: defaultColor } } = useThemeContext()
 
   const checked = useMemo(() => {
@@ -22,7 +19,7 @@ export const Switch = forwardRef<
   
   const trackColor = useMemo(() => {
     const { r, g, b } = new TinyColor(checked?primary:defaultColor).toRgb()
-    return `rgba(${r},${g},${b},${.2})`
+    return `rgba(${r},${g},${b},${.3})`
   }, [checked, primary, defaultColor])
 
   return <Root

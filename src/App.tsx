@@ -30,27 +30,6 @@ const App = () => {
     // })
   }, [])
   return <div>
-    <div className="h-screen"></div>
-    <form id="myForm" name="myForm" onSubmit={(e) => {
-      e.preventDefault()
-      console.log(new FormData(document.querySelector('form')!))
-    }}>
-      <div>
-        <label htmlFor="username">Enter name:</label>
-        <input type="text" id="username" name="username" />
-      </div>
-      <div>
-        <label htmlFor="useracc">Enter account number:</label>
-        <input type="text" id="useracc" name="useracc" />
-      </div>
-      <div>
-        <label htmlFor="userfile">Upload file:</label>
-        <input type="file" id="userfile" name="userfile" />
-      </div>
-      <input type="checkbox" name='switch' role='switch' value='kale' required />
-      <input type="submit" value="Submit!" />
-    </form>
-
     <div className="p-32px">
       <div className="h-32px"></div>
       <Input placeholder='请输入' className='w-320px' readOnly autoFocus />
@@ -64,7 +43,7 @@ const App = () => {
     <div className='p-32px w-full overflow-hidden relative' ref={ref}>
       <ThemeProvider value={{
         palette: {
-          primary: '#0b58d2',
+          primary: '#058373',
           danger: '#dc2626',
           success: '#34d399',
           warning: '#e879f9',
