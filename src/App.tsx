@@ -1,4 +1,4 @@
-import { memo, useEffect, useRef, useState } from 'react'
+import { memo, useState } from 'react'
 import { ThemeProvider } from '@calm-ui/theme'
 import { Button, IconButton } from '@calm-ui/button'
 import { Dialog, DialogAutoFocus, DialogClose, Drawer, DrawerClose } from '@calm-ui/modal'
@@ -12,7 +12,7 @@ import { Radio, RadioGroup } from '@calm-ui/radio-group'
 
 const Log = memo(() => {
   console.log('log')
-  return '不随组件关闭而销毁的log'
+  return '不随抽屉关闭而销毁的子组件'
 })
 
 const COLORS = ['#058373','#0B58D2','#fb7185']
@@ -20,22 +20,12 @@ const COLORS = ['#058373','#0B58D2','#fb7185']
 const App = () => {
   const [open, setOpen] = useState(false)
   const [open2, setOpen2] = useState(false)
-  const ref = useRef(null)
-  const btnRef = useRef<HTMLButtonElement>(null)
   const [perPage, setPerPage] = useState(20)
   const [page, setPage] = useState(1)
   const [switchChecked, setSwitchChecked] = useState(true)
   const [switchDisabled, setSwitchDisabled] = useState(true)
   const [checkboxChecked, setCheckboxChecked] = useState<boolean|'indeterminate'>('indeterminate')
-  const [primaryColor, setPrimaryColor] = useState(COLORS[2])
-
-  useEffect(() => {
-    console.log(ref)
-    // btnRef.current?.scrollIntoView({
-    //   block: 'center',
-    //   inline: 'center',
-    // })
-  }, [])
+  const [primaryColor, setPrimaryColor] = useState(COLORS[1])
 
   return <div>
     <div className="p-32px">
@@ -44,8 +34,8 @@ const App = () => {
         <label htmlFor='input'>Input：</label>
         <Input id='input' placeholder='请输入' className='w-320px' value='Input' disabled />
       </div>
-      <div className="flex mt-32px">
-        <label htmlFor='textarea'>Textarea：</label>
+      <div className="flex mt-32px items-center">
+        <label htmlFor='textarea' className='self-start'>Textarea：</label>
         <Textarea id='textarea' autoFocus placeholder={`1
 2
 3
@@ -53,7 +43,7 @@ const App = () => {
 5`} className='w-520px' />
       </div>
     </div>
-    <div className='w-full overflow-hidden relative' ref={ref}>
+    <div className='w-full overflow-hidden relative'>
       <ThemeProvider value={{
         palette: {
           primary: primaryColor,
@@ -116,6 +106,7 @@ const App = () => {
             <Button outlined theme='primary' className='text-32px fontmono'>GO</Button>
             <Button outlined theme='danger' className='bg-white'>GO</Button>
             <Popover
+              triggerType='hover'
               content={
                 <div className='p-64px rounded border bg-white'>
                   <p>1231234512345</p>
@@ -125,7 +116,7 @@ const App = () => {
               }
               placement='bottom-end'
             >
-              <Button ref={btnRef} outlined theme='success'>Popover</Button>
+              <Button outlined theme='success'>Popover</Button>
             </Popover>
             <Button outlined theme='warning' loading>LOADING BUTTON</Button>
             <Button outlined theme='default'>GO</Button>
@@ -141,14 +132,6 @@ const App = () => {
             <Button text theme='success'>GO</Button>
             <Button text theme='warning'>GO</Button>
             <Button text theme='default'>GO</Button>
-          </div>
-          <div className='mt-32px flex items-center gap-12px flex-wrap'>
-            <p>tag button</p>
-            <Button tag theme='primary' className='px-14px! py-2px! text-sm'>GO</Button>
-            <Button tag theme='danger' className='px-14px! py-2px! text-sm'>GO</Button>
-            <Button tag theme='success' className='px-14px! py-2px! text-sm'>GO</Button>
-            <Button tag theme='warning' className='px-14px! py-2px! text-sm'>GO</Button>
-            <Button tag theme='default' className='px-14px! py-2px! text-sm'>GO</Button>
           </div>
           <div className='mt-32px flex items-center gap-12px flex-wrap'>
             <p>icon button</p>

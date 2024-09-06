@@ -11,7 +11,6 @@ type BtnProps = ButtonHTMLAttributes<HTMLButtonElement> & RippleProps & {
   theme?: keyof ReturnType<typeof useThemeContext>['palette'] | (string&{});
   text?: boolean;
   outlined?: boolean;
-  tag?: boolean;
   delay?: number;
   startIcon?: ReactNode;
   endIcon?: ReactNode;
@@ -31,7 +30,6 @@ export const Button = memo(forwardRef<
   theme = 'primary',
   text = false,
   outlined = false,
-  tag = false,
   delay = 500,
   startIcon,
   endIcon,
@@ -49,48 +47,50 @@ export const Button = memo(forwardRef<
   }, [theme, themeContext])
 
   const bgColor = useMemo<string>(() => {
-    if(text) return 'transparent'
+    if(text || outlined) return 'transparent'
 
-    if(outlined || tag) {
-      const { r, g, b } = new TinyColor(themeColor).toRgb()
-      return `rgba(${r},${g},${b},.1)`
-    }
     return themeColor
-  }, [themeColor, text, outlined, tag])
+  }, [themeColor, text, outlined])
 
   const bgHoverColor = useMemo<string>(() => {
-    if(text || outlined || tag) {
+    if(text || outlined) {
       const { r, g, b } = new TinyColor(themeColor).toRgb()
-      return `rgba(${r},${g},${b},${text?'.1':'.2'})`
+      return `rgba(${r},${g},${b}, .1)`
     }
-    const { h, s, l, a } = new TinyColor(bgColor).toHsl()
 
+    const { h, s, l, a } = new TinyColor(bgColor).toHsl()
     return new TinyColor(`hsl(${h},${s},${Math.max(l-0.05,0)},${a})`).toHexString()
-  }, [themeColor, text, outlined, tag])
+  }, [themeColor, text, outlined])
 
   const textColor = useMemo<string>(() => {
-    if(text || outlined || tag) return themeColor
+    if(text || outlined) return themeColor
 
     return '#FFFFFF'
-  }, [themeColor, text, outlined, tag])
+  }, [themeColor, text, outlined])
+
+  const borderWidth = useMemo(() => {
+    if(outlined) return '1px'
+
+    return '0px'
+  }, [outlined])
 
   const borderColor = useMemo<string>(() => {
     if(!outlined) return 'transparent'
 
     const { r, g, b } = new TinyColor(textColor).toRgb()
-    return `rgba(${r},${g},${b},.3)`
+    return `rgba(${r},${g},${b},.2)`
   }, [outlined, textColor])
 
   const borderHoverColor = useMemo<string>(() => {
     if(!outlined) return 'transparent'
 
     const { r, g, b } = new TinyColor(textColor).toRgb()
-    return `rgba(${r},${g},${b},.6)`
+    return `rgba(${r},${g},${b},.4)`
   }, [outlined, textColor])
 
   const startIconInner = useMemo(() => {
     if(loadingInner || loading) {
-      return <svg xmlns="http://www.w3.org/2000/svg" width={loadingSize??'1em'} height={loadingSize??'1em'} viewBox="0 0 24 24">
+      return <svg xmlns="http://www.w3.org/2000/svg" width={loadingSize??'1em'} height={loadingSize??'1em'} viewBox="0 0 24 24" style={{marginRight:'8px'}}>
         <g stroke="currentColor">
           <circle cx="12" cy="12" r="9.5" fill="none" strokeLinecap="round" strokeWidth="2.5">
             <animate attributeName="stroke-dasharray" calcMode="spline" dur="1.5s" keySplines="0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1" keyTimes="0;0.475;0.95;1" repeatCount="indefinite" values="0 150;42 150;42 150;42 150" />
@@ -105,8 +105,8 @@ export const Button = memo(forwardRef<
   }, [loading, startIcon, loadingInner, loadingSize])
 
   const isPrimary = useMemo(() => {
-    return theme === 'primary' && !outlined && !text && !tag
-  }, [theme, outlined, text, tag])
+    return theme === 'primary' && !outlined && !text
+  }, [theme, outlined, text])
 
   const onClick: MouseEventHandler<HTMLButtonElement> = useCallback(async (e) => {
     props.onClick?.(e)
@@ -125,8 +125,8 @@ export const Button = memo(forwardRef<
   }, [action, props.onClick])
 
   return <Ripple
-    ref={ref}
     {...props}
+    ref={ref}
     focusRipple
     as={as}
     className={clsx('cm-button', isPrimary && 'cm-primary-button', props.className)}
@@ -135,6 +135,7 @@ export const Button = memo(forwardRef<
       '--cm-button-bg-color': bgColor,
       '--cm-button-bg-hover-color': bgHoverColor,
       '--cm-button-text-color': textColor,
+      '--cm-button-border-width': borderWidth,
       '--cm-button-border-color': borderColor,
       '--cm-button-border-hover-color': borderHoverColor,
     }, props.style)}
@@ -154,8 +155,8 @@ export const IconButton = memo(forwardRef<
   }
 >(({ theme, ...props }, ref) => {
   return <Button
-    ref={ref}
     {...props}
+    ref={ref}
     text
     centerRipple
     focusRipple

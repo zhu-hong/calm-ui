@@ -175,7 +175,7 @@ export const Modal = forwardRef<
   })
 
   return <ModalContext.Provider value={modal}>
-    <ModalContent ref={ref} {...props} />
+    <ModalContent {...props} ref={ref} />
   </ModalContext.Provider>
 })
 

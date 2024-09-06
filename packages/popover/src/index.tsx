@@ -6,10 +6,12 @@ import {
   FloatingPortal,
   offset,
   Placement,
+  safePolygon,
   shift,
   useClick,
   useDismiss,
   useFloating,
+  useHover,
   useInteractions,
   useMergeRefs,
   useRole,
@@ -22,6 +24,7 @@ type PopoverOptions = {
   onOpenChange?: (open: boolean) => void
   placement?: Placement
   zIndex?: number
+  triggerType?: 'click'|'hover'
   children: ReactNode
   content: ReactNode
 }
@@ -34,6 +37,7 @@ const usePopover = ({
   open: controlledOpen,
   onOpenChange: setControlledOpen,
   zIndex = 50,
+  triggerType,
   children: trigger,
   content,
 }: PopoverOptions) => {
@@ -56,14 +60,19 @@ const usePopover = ({
 
   const { context } = data
   const click = useClick(context, {
-    enabled: controlledOpen === undefined,
+    enabled: controlledOpen === undefined && triggerType === 'click',
+  })
+  const hover = useHover(context, {
+    enabled: controlledOpen === undefined && triggerType === 'hover',
+    restMs: 150,
+    handleClose: safePolygon(),
   })
   const dismiss = useDismiss(context)
   const role = useRole(context, {
     role: 'dialog',
   })
 
-  const interactions = useInteractions([click, dismiss, role])
+  const interactions = useInteractions([click, hover, dismiss, role])
 
   const transition = useTransitionStyles(context, {
     duration: 150,
@@ -132,6 +141,7 @@ export const Popover: FC<PopoverOptions & { children: ReactNode; content: ReactN
   onOpenChange,
   placement,
   zIndex,
+  triggerType = 'click',
   children,
   content,
 }) => {
@@ -141,6 +151,7 @@ export const Popover: FC<PopoverOptions & { children: ReactNode; content: ReactN
     onOpenChange,
     placement,
     zIndex,
+    triggerType,
     children,
     content,
   })

@@ -3,10 +3,10 @@
   padding: 6px 12px;
   background-color: var(--cm-button-bg-color);
   border-color: var(--cm-button-border-color);
-  border-width: 1px;
-  transition-property: background-color,border;
-  transition-duration: 170ms;
-  transition-timing-function: linear;
+  border-width: var(--cm-button-border-width);
+  transition-property: background-color, border-color;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   -webkit-tap-highlight-color: transparent;
   outline: none;
   user-select: none;
@@ -18,7 +18,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
   }
   &:not(:disabled):hover {
     background-color: var(--cm-button-bg-hover-color);

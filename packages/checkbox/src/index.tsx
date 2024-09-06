@@ -10,7 +10,7 @@ export const Checkbox = forwardRef<
     return props.checked ?? props.defaultChecked ?? false
   }, [props.checked, props.defaultChecked])
 
-  return <Root asChild ref={ref} {...props}>
+  return <Root {...props} asChild ref={ref}>
     <IconButton theme={checked?'primary':'default'} style={{padding:'6px'}}>
       <Indicator forceMount asChild>
         {
