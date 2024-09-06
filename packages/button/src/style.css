@@ -1,8 +1,4 @@
 .cm-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
   color: var(--cm-button-text-color);
   padding: 6px 12px;
   background-color: var(--cm-button-bg-color);
@@ -14,12 +10,15 @@
   -webkit-tap-highlight-color: transparent;
   outline: none;
   user-select: none;
-  &.cm-primary-button {
-    font-weight: 500;
-  }
   &.cm-icon-button {
     padding: 8px;
     border-radius: 50%;
+  }
+  &:not(.cm-icon-button) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
   }
   &:not(:disabled):hover {
     background-color: var(--cm-button-bg-hover-color);

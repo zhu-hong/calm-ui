@@ -7,6 +7,7 @@ import { Tooltip } from '@calm-ui/tooltip'
 import { Pagination } from '@calm-ui/pagination'
 import { Input, Textarea } from '@calm-ui/input'
 import { Switch } from '@calm-ui/switch'
+import { Checkbox } from '@calm-ui/checkbox'
 
 const Log = memo(() => {
   console.log('log')
@@ -20,8 +21,10 @@ const App = () => {
   const btnRef = useRef<HTMLButtonElement>(null)
   const [perPage, setPerPage] = useState(20)
   const [page, setPage] = useState(1)
-  const [checked, setChecked] = useState(false)
-  const [disabled, setDisabled] = useState(false)
+  const [switchChecked, setSwitchChecked] = useState(false)
+  const [switchDisabled, setSwitchDisabled] = useState(false)
+  const [checkboxChecked, setCheckboxChecked] = useState<boolean|'indeterminate'>('indeterminate')
+
   useEffect(() => {
     console.log(ref)
     // btnRef.current?.scrollIntoView({
@@ -29,6 +32,7 @@ const App = () => {
     //   inline: 'center',
     // })
   }, [])
+
   return <div>
     <div className="p-32px">
       <div className="h-32px"></div>
@@ -51,8 +55,18 @@ const App = () => {
       }}>
         <div className="p-32px">
           <form>
-            <Switch checked={checked} onCheckedChange={setChecked} disabled={disabled} />
-            <Switch checked={disabled} onCheckedChange={setDisabled} />
+            <p>switch</p>
+            <Switch checked={switchChecked} onCheckedChange={setSwitchChecked} disabled={switchDisabled} />
+            <br />
+            <Switch id='ds' checked={switchDisabled} onCheckedChange={setSwitchDisabled} />
+            <label htmlFor="ds">disable</label>
+            <br />
+            <br />
+            <p>checkbox</p>
+            <Checkbox checked={checkboxChecked} onCheckedChange={(state) => {
+              console.log(state)
+              setCheckboxChecked(state)
+            }} />
           </form>
         </div>
         <div className='flex items-center gap-12px flex-wrap relative'>

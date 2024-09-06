@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@calm-ui/button": "workspace:^",
+    "@calm-ui/checkbox": "workspace:^",
     "@calm-ui/input": "workspace:^",
     "@calm-ui/modal": "workspace:^",
     "@calm-ui/pagination": "workspace:^",

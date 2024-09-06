@@ -1,4 +1,4 @@
-import type { Root } from '@radix-ui/react-switch'
+import { Root } from '@radix-ui/react-switch'
 
 declare const Switch: typeof Root
 
