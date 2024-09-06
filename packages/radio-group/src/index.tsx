@@ -7,6 +7,9 @@ export const RadioGroup: typeof Root = forwardRef(({ ...props }, ref) => {
 
 export const Radio: typeof Item = forwardRef(({ ...props }, ref) => {
   return <Item {...props} ref={ref}>
-    <Indicator asChild forceMount></Indicator>
+    <Indicator asChild forceMount>
+      <span></span>
+      <span></span>
+    </Indicator>
   </Item>
 })

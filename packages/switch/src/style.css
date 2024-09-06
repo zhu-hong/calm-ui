@@ -12,15 +12,15 @@
     }
   }
 
-  &:focus-visible  {
-    .cm-switch-thumb-inner::before {
-      opacity: .3;
-    }
-  }
-
   &:not(:disabled):hover {
     .cm-switch-thumb-inner::before {
       opacity: .1;
+    }
+  }
+
+  &:focus-visible, &:not(:disabled):active  {
+    .cm-switch-thumb-inner::before {
+      opacity: .3;
     }
   }
 

@@ -9,11 +9,15 @@
   align-items: center;
   &.cm-input-disabled {
     background-color: #E0E0E0;
+    color: #656666;
     pointer-events: none;
     cursor: default;
+    &::before {
+      background-color: #CACCCC;
+    }
   }
   &:not(.cm-input-disabled):hover {
-    background-color: #ebebeb;
+    background-color: #EbEBEB;
   }
   &::before {
     content: "";
@@ -26,9 +30,6 @@
     background-color: #979999;
     transition-property: background-color;
     transition-duration: 170ms;
-  }
-  &.cm-input-disabled::before {
-    background-color: #CACCCC;
   }
   &:not(.cm-input-disabled):hover::before {
     background-color: #212121;
