@@ -81,6 +81,7 @@ const App = () => {
           </form>
         </div>
         <div className='flex items-center gap-12px flex-wrap relative'>
+          <p>normal button</p>
           <Button theme='primary' className='font-500 text-32px'>
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32">
               <g fill="none">
@@ -136,40 +137,39 @@ const App = () => {
           <Button tag theme='success' className='px-14px! py-2px! text-sm'>GO</Button>
           <Button tag theme='warning' className='px-14px! py-2px! text-sm'>GO</Button>
           <Button tag theme='default' className='px-14px! py-2px! text-sm'>GO</Button>
-          <Button tag theme='#0b58d2' className='px-14px! py-2px! text-sm'>GO</Button>
+        </div>
+        <div className='mt-32px flex items-center gap-12px flex-wrap'>
+          <p>icon button</p>
+          <IconButton theme='primary'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path>
+            </svg>
+          </IconButton>
+          <IconButton theme='danger'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path>
+            </svg>
+          </IconButton>
+          <IconButton theme='success'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path>
+            </svg>
+          </IconButton>
+          <IconButton theme='warning'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path>
+            </svg>
+          </IconButton>
+          <IconButton theme='default'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path>
+            </svg>
+          </IconButton>
+        </div>
+        <div className='p-32px'>
+          <Pagination perPage={perPage} onPerPageChange={setPerPage} total={1000} page={page} onPageChange={setPage} />
         </div>
       </ThemeProvider>
-      <div className='mt-32px flex items-center gap-12px flex-wrap'>
-        <p>icon button</p>
-        <IconButton theme='primary'>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path>
-          </svg>
-        </IconButton>
-        <IconButton theme='danger'>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path>
-          </svg>
-        </IconButton>
-        <IconButton theme='success'>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path>
-          </svg>
-        </IconButton>
-        <IconButton theme='warning'>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path>
-          </svg>
-        </IconButton>
-        <IconButton theme='default'>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path>
-          </svg>
-        </IconButton>
-      </div>
-      <div className='p-32px'>
-        <Pagination perPage={perPage} onPerPageChange={setPerPage} total={1000} page={page} onPageChange={setPage} />
-      </div>
     </div>
     <Drawer open={open2} onOpenChange={setOpen2} zIndex={1000} keepMount overlay={false}>
       <div style={{width:320,height:100,backgroundColor:'black'}}></div>
