@@ -8,6 +8,7 @@ import { Pagination } from '@calm-ui/pagination'
 import { Input, Textarea } from '@calm-ui/input'
 import { Switch } from '@calm-ui/switch'
 import { Checkbox } from '@calm-ui/checkbox'
+import { Radio, RadioGroup } from '@calm-ui/radio-group'
 
 const Log = memo(() => {
   console.log('log')
@@ -83,6 +84,15 @@ const App = () => {
               console.log(state)
               setCheckboxChecked(state)
             }} />
+            <br />
+            <br />
+            <p>radio group</p>
+            <RadioGroup defaultValue='kale3'>
+              <Radio value='kale' />
+              <Radio value='kale2' />
+              <Radio value='kale3' disabled />
+              <Radio value='kale4' />
+            </RadioGroup>
           </form>
         </div>
         <div className="p-32px">

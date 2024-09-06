@@ -29,7 +29,7 @@
     width: 34px;
     height: 14px;
     border-radius: 7px;
-    background-color: var(--cm-switch-track-bgcolor);
+    background-color: var(--cm-switch-track-bg-color);
     transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 
     &[data-state="checked"] .cm-switch-thumb-inner {

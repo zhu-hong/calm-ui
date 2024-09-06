@@ -1,0 +1,26 @@
+.cm-radio-group {
+  .cm-icon-button.cm-radio {
+    border-color: transparent;
+
+    .cm-radio-inner {
+      display: block;
+      width: 24px;
+      height: 24px;
+      background-color: currentColor;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100% 100%;
+      mask-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='currentColor' d='M12 20a8 8 0 0 1-8-8a8 8 0 0 1 8-8a8 8 0 0 1 8 8a8 8 0 0 1-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2' /%3E%3C/svg%3E");
+    }
+    &[data-state=checked] {
+      color: var(--cm-radio-checked-text-color);
+      &:not(:disabled):hover {
+        background-color: var(--cm-radio-checked-hover-bg-color);
+      }
+
+      .cm-radio-inner {
+        mask-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='currentColor' d='M12 20a8 8 0 0 1-8-8a8 8 0 0 1 8-8a8 8 0 0 1 8 8a8 8 0 0 1-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 5a5 5 0 0 0-5 5a5 5 0 0 0 5 5a5 5 0 0 0 5-5a5 5 0 0 0-5-5' /%3E%3C/svg%3E");
+      }
+    }
+  }
+}

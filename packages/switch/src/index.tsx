@@ -30,7 +30,7 @@ export const Switch: typeof Root = forwardRef(({ ...props }, ref) => {
     <Thumb
       className='cm-switch-thumb'
       style={{
-        '--cm-switch-track-bgcolor': trackColor,
+        '--cm-switch-track-bg-color': trackColor,
         color: thumbColor,
       } as CSSProperties}
     >
