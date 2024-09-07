@@ -6,44 +6,51 @@
 
   &:disabled {
     cursor: default;
-    
-    .cm-switch-thumb {
+
+    .cm-switch-track {
       opacity: .6;
     }
   }
 
-  &:not(:disabled):hover {
-    .cm-switch-thumb-inner::before {
-      opacity: .1;
-    }
+  &:not(:disabled):hover .cm-switch-thumb::before {
+    opacity: .1;
+  }
+  &:not(:disabled):active .cm-switch-thumb::before {
+    opacity: .15;
   }
 
-  &:focus-visible, &:not(:disabled):active  {
-    .cm-switch-thumb-inner::before {
-      opacity: .3;
-    }
+  &:focus-visible .cm-switch-thumb::before {
+    opacity: .2;
+    animation: 2500ms cmSwitchPulsate cubic-bezier(0.4, 0, 0.2, 1) infinite 200ms;
   }
 
-  .cm-switch-thumb {
+  .cm-switch-track {
     display: block;
     width: 34px;
     height: 14px;
     border-radius: 7px;
-    background-color: var(--cm-switch-track-bg-color);
+    background-color: rgba(0, 0, 0, .38);
     transition-property: background-color;
     transition-duration: 150ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-
-    &[data-state="checked"] .cm-switch-thumb-inner {
-      transform: translateX(20px);
+    
+    &[data-state="checked"] {
+      background-color: var(--cm-switch-track-bg-color);
+      color: var(--cm-switch-thumb-bg-color);
+      .cm-switch-thumb {
+        transform: translateX(20px);
+      }
     }
 
-    &[data-state="unchecked"] .cm-switch-thumb-inner::before {
-      background-color: #000000;
+    &[data-state="unchecked"] {
+      color: #ffffff;
+      .cm-switch-thumb::before {
+        background-color: #000000;
+      }
     }
   }
 
-  .cm-switch-thumb-inner {
+  .cm-switch-thumb {
     display: block;
     width: 14px;
     height: 14px;
@@ -54,7 +61,8 @@
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     background-color: currentColor;
 
-    &::before, &::after {
+    &::before,
+    &::after {
       content: "";
       display: block;
       position: absolute;
@@ -79,5 +87,19 @@
       height: 20px;
       box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
     }
+  }
+}
+
+@keyframes cmSwitchPulsate {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
   }
 }

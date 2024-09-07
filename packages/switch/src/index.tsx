@@ -8,19 +8,11 @@ import { Root, Thumb } from '@radix-ui/react-switch'
 
 export const Switch: typeof Root = forwardRef(({ ...props }, ref) => {
   const { palette: { primary } } = useThemeContext()
-
-  const checked = useMemo(() => {
-    return props.checked ?? props.defaultChecked ?? false
-  }, [props.checked, props.defaultChecked])
-  
-  const thumbColor = useMemo(() => {
-    return checked ? primary : '#ffffff'
-  }, [checked, primary])
   
   const trackColor = useMemo(() => {
-    const { r, g, b } = new TinyColor(checked?primary:'#000000').toRgb()
-    return `rgba(${r},${g},${b},${.3})`
-  }, [checked, primary])
+    const { r, g, b } = new TinyColor(primary).toRgb()
+    return `rgba(${r},${g},${b},${.38})`
+  }, [primary])
 
   return <Root
     {...props}
@@ -28,13 +20,13 @@ export const Switch: typeof Root = forwardRef(({ ...props }, ref) => {
     className={clsx('cm-switch', props.className)}
   >
     <Thumb
-      className='cm-switch-thumb'
+      className='cm-switch-track'
       style={{
         '--cm-switch-track-bg-color': trackColor,
-        color: thumbColor,
+        '--cm-switch-thumb-bg-color': primary,
       } as CSSProperties}
     >
-      <i className='cm-switch-thumb-inner'></i>
+      <i className='cm-switch-thumb'></i>
     </Thumb>
   </Root>
 })

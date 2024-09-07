@@ -67,18 +67,33 @@ const App = () => {
             <br />
             <br />
             <p>checkbox</p>
-            <Checkbox checked={checkboxChecked} onCheckedChange={(state) => {
-              console.log(state)
-              setCheckboxChecked(state)
-            }} />
+            <div className="flex items-center">
+              <Checkbox checked={checkboxChecked} onCheckedChange={(state) => {
+                console.log(state)
+                setCheckboxChecked(state)
+              }} id='checkbox' />
+              <label htmlFor="checkbox">checkbox</label>
+            </div>
             <br />
             <br />
             <p>radio group</p>
             <RadioGroup defaultValue='kale3'>
-              <Radio value='kale' />
-              <Radio value='kale2' />
-              <Radio value='kale3' disabled />
-              <Radio value='kale4' />
+              <div className='flex items-center'>
+                <Radio value='kale' id='kale' />
+                <label htmlFor="kale">kale</label>
+              </div>
+              <div className='flex items-center'>
+                <Radio value='kale2' id='kale2' />
+                <label htmlFor="kale2">kale2</label>
+              </div>
+              <div className='flex items-center'>
+                <Radio value='kale3' id='kale3' disabled />
+                <label htmlFor="kale3">kale3</label>
+              </div>
+              <div className='flex items-center'>
+                <Radio value='kale4' id='kale4' />
+                <label htmlFor="kale4">kale4</label>
+              </div>
             </RadioGroup>
           </form>
         </div>

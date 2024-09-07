@@ -30,7 +30,7 @@ export const Radio: typeof Item = forwardRef(({ ...props }, ref) => {
         ...radioColors,
       } as CSSProperties}
       className='cm-radio'
-      theme='#656666'
+      theme='#666666'
     >
       <Indicator asChild forceMount>
         <span className='cm-radio-inner'></span>
