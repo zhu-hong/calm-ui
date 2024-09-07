@@ -20,7 +20,7 @@ export const createTheme = (theme?: ContextType) => {
         danger: theme?.palette?.danger ?? '#F54A45',
         success: theme?.palette?.success ?? '#00D078',
         warning: theme?.palette?.warning ?? '#FF9900',
-        default: theme?.palette?.default ?? '#323333',
+        default: theme?.palette?.default ?? '#000C25',
       },
     }
   }, [theme])
