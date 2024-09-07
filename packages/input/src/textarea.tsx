@@ -14,7 +14,7 @@ export const Textarea = forwardRef<
 >(({ prefix, suffix, wrapperAttrs, ...props }, ref) => {
   const { palette: { primary } } = useThemeContext()
 
-  return <div {...wrapperAttrs} className={clsx('cm-input', props.disabled && 'cm-input-disabled',  wrapperAttrs?.className)} style={{
+  return <div {...wrapperAttrs} className={clsx('cm-input cm-textarea', props.disabled && 'cm-input-disabled',  wrapperAttrs?.className)} style={{
     '--cm-input-underline-color': primary,
     ...wrapperAttrs?.style,
   } as CSSProperties}>

@@ -63,4 +63,9 @@
     padding: 6px 12px;
     resize: none;
   }
+
+  &.cm-textarea .cm-input-inner {
+    padding: 0px 12px;
+    margin: 6px 0;
+  }
 }
