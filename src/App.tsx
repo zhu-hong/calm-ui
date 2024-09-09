@@ -32,7 +32,7 @@ const App = () => {
       <div className="h-32px"></div>
       <div className="flex items-center">
         <label htmlFor='input'>Input：</label>
-        <Input id='input' placeholder='请输入' className='w-320px' value='Input' disabled />
+        <Input onClick={console.log} id='input' placeholder='请输入' className='w-320px' tabIndex={-1} />
       </div>
       <div className="flex mt-32px items-center">
         <label htmlFor='textarea' className='self-start'>Textarea：</label>
@@ -121,7 +121,6 @@ const App = () => {
             <Button outlined theme='primary' className='text-32px fontmono'>GO</Button>
             <Button outlined theme='danger' className='bg-white'>GO</Button>
             <Popover
-              triggerType='hover'
               content={
                 <div className='p-64px rounded border bg-white'>
                   <p>1231234512345</p>

@@ -1,0 +1,23 @@
+import { CSSProperties, forwardRef, HTMLAttributes } from 'react'
+import clsx from 'clsx'
+import { useThemeContext } from '@calm-ui/theme'
+
+export const INPUT_FOCUSED_CLASSNAME = '.cm-input-effect-focused'
+
+export const InputEffect = forwardRef<
+  HTMLDivElement,
+  HTMLAttributes<HTMLDivElement> & { disabled?: boolean }
+>(({ disabled, ...props }, ref) => {
+  const { palette: { primary } } = useThemeContext()
+
+  return <div
+    {...props}
+    className={clsx('cm-input-effect', disabled && 'cm-input-effect-disabled', props.className)}
+    style={{
+      '--cm-input-effect-underline-color': primary,
+      ...props.style,
+    } as CSSProperties}
+    ref={ref}
+  >
+  </div>
+})

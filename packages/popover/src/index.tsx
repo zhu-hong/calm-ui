@@ -199,7 +199,6 @@ const PopoverContent = () => {
             position: context.strategy,
             top: context.y ?? 0,
             left: context.x ?? 0,
-            width: 'max-content',
             zIndex,
             ...transition.styles,
           }

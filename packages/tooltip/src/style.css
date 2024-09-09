@@ -1,5 +1,5 @@
 .cm-tooltip {
-  width: max-content;
+  width: fit-content;
   max-width: 250px;
   padding: 8px 10px;
   opacity: .95;

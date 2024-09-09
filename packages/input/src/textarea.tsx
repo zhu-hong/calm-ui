@@ -1,25 +1,16 @@
-import { CSSProperties, forwardRef, HTMLAttributes, TextareaHTMLAttributes, ReactNode } from 'react'
+import { forwardRef, HTMLAttributes, TextareaHTMLAttributes } from 'react'
 import clsx from 'clsx'
-import { useThemeContext } from '@calm-ui/theme'
+import { InputEffect } from './effect'
 
 type InputProps = {
   wrapperAttrs?: HTMLAttributes<HTMLDivElement>
-  prefix?: ReactNode
-  suffix?: ReactNode
 }
 
 export const Textarea = forwardRef<
   HTMLTextAreaElement,
   TextareaHTMLAttributes<HTMLTextAreaElement> & InputProps
->(({ prefix, suffix, wrapperAttrs, ...props }, ref) => {
-  const { palette: { primary } } = useThemeContext()
-
-  return <div {...wrapperAttrs} className={clsx('cm-input cm-textarea', props.disabled && 'cm-input-disabled',  wrapperAttrs?.className)} style={{
-    '--cm-input-underline-color': primary,
-    ...wrapperAttrs?.style,
-  } as CSSProperties}>
-    {prefix}
-    <textarea rows={5} {...props} className={clsx('cm-input-inner', props.className)} ref={ref} />
-    {suffix}
-  </div>
+>(({ wrapperAttrs, ...props }, ref) => {
+  return <InputEffect {...wrapperAttrs} disabled={props.disabled}>
+    <textarea rows={5} {...props} className={clsx('cm-textarea', props.className)} ref={ref} />
+  </InputEffect>
 })
