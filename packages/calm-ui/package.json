@@ -1,0 +1,39 @@
+{
+  "name": "calm-ui",
+  "version": "1.0.0",
+  "description": "calm-ui",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "dependencies": {
+    "@calm-ui/button": "workspace:^",
+    "@calm-ui/checkbox": "workspace:^",
+    "@calm-ui/input": "workspace:^",
+    "@calm-ui/modal": "workspace:^",
+    "@calm-ui/pagination": "workspace:^",
+    "@calm-ui/popover": "workspace:^",
+    "@calm-ui/radio-group": "workspace:^",
+    "@calm-ui/ripple": "workspace:^",
+    "@calm-ui/select": "workspace:^",
+    "@calm-ui/switch": "workspace:^",
+    "@calm-ui/theme": "workspace:^",
+    "@calm-ui/tooltip": "workspace:^"
+  },
+  "peerDependencies": {
+    "react": "18.x"
+  },
+  "license": "MIT"
+}

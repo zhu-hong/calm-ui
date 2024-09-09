@@ -1,5 +1,6 @@
 {
-  "name": "calm-ui",
+  "name": "@calm-ui/monorepo",
+  "private": true,
   "version": "1.0.0",
   "description": "calm-ui",
   "type": "module",

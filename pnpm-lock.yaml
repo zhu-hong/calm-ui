@@ -133,6 +133,48 @@ importers:
         specifier: 18.x
         version: 18.3.1
 
+  packages/calm-ui:
+    dependencies:
+      '@calm-ui/button':
+        specifier: workspace:^
+        version: link:../button
+      '@calm-ui/checkbox':
+        specifier: workspace:^
+        version: link:../checkbox
+      '@calm-ui/input':
+        specifier: workspace:^
+        version: link:../input
+      '@calm-ui/modal':
+        specifier: workspace:^
+        version: link:../modal
+      '@calm-ui/pagination':
+        specifier: workspace:^
+        version: link:../pagination
+      '@calm-ui/popover':
+        specifier: workspace:^
+        version: link:../popover
+      '@calm-ui/radio-group':
+        specifier: workspace:^
+        version: link:../radio-group
+      '@calm-ui/ripple':
+        specifier: workspace:^
+        version: link:../ripple
+      '@calm-ui/select':
+        specifier: workspace:^
+        version: link:../select
+      '@calm-ui/switch':
+        specifier: workspace:^
+        version: link:../switch
+      '@calm-ui/theme':
+        specifier: workspace:^
+        version: link:../theme
+      '@calm-ui/tooltip':
+        specifier: workspace:^
+        version: link:../tooltip
+      react:
+        specifier: 18.x
+        version: 18.3.1
+
   packages/checkbox:
     dependencies:
       '@calm-ui/button':
