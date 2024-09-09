@@ -27,7 +27,7 @@ const App = () => {
   const [switchDisabled, setSwitchDisabled] = useState(true)
   const [checkboxChecked, setCheckboxChecked] = useState<boolean|'indeterminate'>('indeterminate')
   const [primaryColor, setPrimaryColor] = useState(COLORS[1])
-  const [selectValue, setSelectValue] = useState(undefined)
+  const [selectValue, setSelectValue] = useState('及时的回复客户送快递卡绝世独立卡')
 
   return <div>
     <div className='w-full overflow-hidden relative'>
@@ -59,20 +59,20 @@ const App = () => {
           }}>
             <div className="flex items-center">
               <label htmlFor='input'>Input：</label>
-              <Input name='input' id='input' placeholder='请输入' className='w-320px' />
+              <Input name='input' id='input' placeholder='请输入' />
             </div>
             <div className="flex mt-32px items-center">
               <label htmlFor='textarea' className='self-start'>Textarea：</label>
               <Textarea name='textarea' id='textarea' autoFocus placeholder={`1
-  2
-  3
-  4
-  5`} className='w-520px' />
+2
+3
+4
+5`} />
             </div>
             <p>switch</p>
-            <Switch checked={switchChecked} value='switch' onCheckedChange={setSwitchChecked} disabled={switchDisabled} />
+            <Switch checked={switchChecked} name='switch' value='switch' onCheckedChange={setSwitchChecked} disabled={switchDisabled} />
             <br />
-            <Switch name='switch' id='ds' checked={switchDisabled} onCheckedChange={setSwitchDisabled} />
+            <Switch id='ds' checked={switchDisabled} onCheckedChange={setSwitchDisabled} />
             <label htmlFor="ds">disable</label>
             <br />
             <br />

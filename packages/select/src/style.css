@@ -15,10 +15,21 @@
     }
   }
 
+  .cm-select-arrow {
+    flex: none;
+    transition-property: transform;
+    transition-duration: 150ms;
+  }
+  &[data-open] {
+    .cm-select-arrow {
+      transform: rotate(180deg);
+    }
+  }
+
   .cm-select-value {
     position: absolute;
     max-width: 100%;
-    padding: 6px 12px;
+    padding: 6px 24px 6px 12px;
     top: 50%;
     left: 0;
     transform: translateY(-50%);

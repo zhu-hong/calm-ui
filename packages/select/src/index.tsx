@@ -3,7 +3,7 @@ import './style.css'
 import { InputEffect, INPUT_EFFECT_FOCUSED_CLASSNAME } from '@calm-ui/input'
 import { Ripple } from '@calm-ui/ripple'
 import { useThemeContext } from '@calm-ui/theme'
-import { CSSProperties, forwardRef, InputHTMLAttributes, useEffect, useMemo, useRef, useState } from 'react'
+import { CSSProperties, forwardRef, HTMLAttributes, InputHTMLAttributes, useEffect, useMemo, useRef, useState } from 'react'
 import clsx from 'clsx'
 import {
   autoUpdate,
@@ -26,12 +26,14 @@ import { TinyColor } from '@ctrl/tinycolor'
 type SelectProps = {
   options?: ({ name?: string; value: any; })[]
   onValueChange?: (value: any) => void
+  wrapperAttrs?: HTMLAttributes<HTMLDivElement>
+  zIndex?: number
 }
 
 export const Select = forwardRef<
   HTMLInputElement,
   InputHTMLAttributes<HTMLInputElement> & SelectProps
->(({ options, onValueChange, ...props }, ref) => {
+>(({ options, onValueChange, wrapperAttrs, zIndex = 50, ...props }, ref) => {
   const { palette: { primary, default: defaultColor } } = useThemeContext()
 
   const [isOpen, setIsOpen] = useState(false)
@@ -171,13 +173,15 @@ export const Select = forwardRef<
       aria-labelledby='select-label'
       aria-autocomplete='none'
       data-open={isOpen ? '' : undefined}
+      disabled={props.disabled}
       {...getReferenceProps({
-        disabled: props.disabled,
-        className: clsx('cm-select', isOpen && INPUT_EFFECT_FOCUSED_CLASSNAME),
+        ...wrapperAttrs,
+        className: clsx('cm-select', isOpen && INPUT_EFFECT_FOCUSED_CLASSNAME, wrapperAttrs?.className),
         tabIndex: 0,
       })}
     >
       <input {...props} type='text' ref={ref} className={clsx('cm-select-input', props.className)} readOnly tabIndex={-1}></input>
+      <svg className='cm-select-arrow' xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24"><path fill="currentColor" d="M11.178 19.569a.998.998 0 0 0 1.644 0l9-13A.999.999 0 0 0 21 5H3a1.002 1.002 0 0 0-.822 1.569z"></path></svg>
       <p className='cm-select-value' aria-hidden aria-label={valueLabel}>{valueLabel}</p>
     </InputEffect>
 
@@ -193,7 +197,7 @@ export const Select = forwardRef<
                 position: strategy,
                 top: y ?? 0,
                 left: x ?? 0,
-                zIndex: 50,
+                zIndex,
                 ...styleCssVar,
               } as CSSProperties,
             })}
