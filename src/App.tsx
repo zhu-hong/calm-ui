@@ -149,6 +149,14 @@ const App = () => {
             <Button text theme='default'>GO</Button>
           </div>
           <div className='mt-32px flex items-center gap-12px flex-wrap'>
+            <p>tag button</p>
+            <Button tag theme='primary'>GO</Button>
+            <Button tag theme='danger'>GO</Button>
+            <Button tag theme='success'>GO</Button>
+            <Button tag theme='warning'>GO</Button>
+            <Button tag theme='default'>GO</Button>
+          </div>
+          <div className='mt-32px flex items-center gap-12px flex-wrap'>
             <p>icon button</p>
             <IconButton theme='primary'>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">

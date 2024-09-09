@@ -11,6 +11,7 @@ type BtnProps = ButtonHTMLAttributes<HTMLButtonElement> & RippleProps & {
   theme?: keyof ReturnType<typeof useThemeContext>['palette'] | (string&{});
   text?: boolean;
   outlined?: boolean;
+  tag?: boolean;
   delay?: number;
   startIcon?: ReactNode;
   endIcon?: ReactNode;
@@ -30,6 +31,7 @@ export const Button = memo(forwardRef<
   theme = 'primary',
   text = false,
   outlined = false,
+  tag = false,
   delay = 500,
   startIcon,
   endIcon,
@@ -49,8 +51,13 @@ export const Button = memo(forwardRef<
   const bgColor = useMemo<string>(() => {
     if(text || outlined) return 'transparent'
 
+    if(tag) {
+      const { r, g, b } = new TinyColor(themeColor).toRgb()
+      return `rgba(${r},${g},${b}, .1)`
+    }
+
     return themeColor
-  }, [themeColor, text, outlined])
+  }, [themeColor, text, outlined, tag])
 
   const bgHoverColor = useMemo<string>(() => {
     if(text || outlined) {
@@ -58,35 +65,40 @@ export const Button = memo(forwardRef<
       return `rgba(${r},${g},${b}, .1)`
     }
 
-    const { h, s, l, a } = new TinyColor(bgColor).toHsl()
+    if(tag) {
+      const { r, g, b } = new TinyColor(themeColor).toRgb()
+      return `rgba(${r},${g},${b}, .2)`
+    }
+
+    const { h, s, l, a } = new TinyColor(themeColor).toHsl()
     return new TinyColor(`hsl(${h},${s},${Math.max(l-0.05,0)},${a})`).toHexString()
-  }, [themeColor, text, outlined])
+  }, [themeColor, text, outlined, tag])
 
   const textColor = useMemo<string>(() => {
-    if(text || outlined) return themeColor
+    if(text || outlined || tag) return themeColor
 
     return '#FFFFFF'
   }, [themeColor, text, outlined])
 
   const borderWidth = useMemo(() => {
-    if(outlined) return '1px'
+    if(outlined || tag) return '1px'
 
     return '0px'
-  }, [outlined])
+  }, [outlined, tag])
 
   const borderColor = useMemo<string>(() => {
-    if(!outlined) return 'transparent'
+    if(!outlined && !tag) return 'transparent'
 
     const { r, g, b } = new TinyColor(textColor).toRgb()
     return `rgba(${r},${g},${b},.2)`
-  }, [outlined, textColor])
+  }, [outlined, tag, textColor])
 
   const borderHoverColor = useMemo<string>(() => {
-    if(!outlined) return 'transparent'
+    if(!outlined && !tag) return 'transparent'
 
     const { r, g, b } = new TinyColor(textColor).toRgb()
     return `rgba(${r},${g},${b},.4)`
-  }, [outlined, textColor])
+  }, [outlined, tag, textColor])
 
   const startIconInner = useMemo(() => {
     if(loadingInner || loading) {
@@ -105,8 +117,8 @@ export const Button = memo(forwardRef<
   }, [loading, startIcon, loadingInner, loadingSize])
 
   const isPrimary = useMemo(() => {
-    return theme === 'primary' && !outlined && !text
-  }, [theme, outlined, text])
+    return theme === 'primary' && !outlined && !text && !tag
+  }, [theme, outlined, text, tag])
 
   const onClick: MouseEventHandler<HTMLButtonElement> = useCallback(async (e) => {
     props.onClick?.(e)
