@@ -9,6 +9,7 @@ import { Input, Textarea } from '@calm-ui/input'
 import { Switch } from '@calm-ui/switch'
 import { Checkbox } from '@calm-ui/checkbox'
 import { Radio, RadioGroup } from '@calm-ui/radio-group'
+import { Select } from '@calm-ui/select'
 
 const Log = memo(() => {
   console.log('log')
@@ -26,23 +27,9 @@ const App = () => {
   const [switchDisabled, setSwitchDisabled] = useState(true)
   const [checkboxChecked, setCheckboxChecked] = useState<boolean|'indeterminate'>('indeterminate')
   const [primaryColor, setPrimaryColor] = useState(COLORS[1])
+  const [selectValue, setSelectValue] = useState(undefined)
 
   return <div>
-    <div className="p-32px">
-      <div className="h-32px"></div>
-      <div className="flex items-center">
-        <label htmlFor='input'>Input：</label>
-        <Input onClick={console.log} id='input' placeholder='请输入' className='w-320px' tabIndex={-1} />
-      </div>
-      <div className="flex mt-32px items-center">
-        <label htmlFor='textarea' className='self-start'>Textarea：</label>
-        <Textarea id='textarea' autoFocus placeholder={`1
-2
-3
-4
-5`} className='w-520px' />
-      </div>
-    </div>
     <div className='w-full overflow-hidden relative'>
       <ThemeProvider value={{
         palette: {
@@ -58,18 +45,40 @@ const App = () => {
           </div>
         </div>
         <div className="p-32px">
-          <form>
+          <form onSubmit={(e) => {
+            e.preventDefault()
+            const fd = new FormData(e.target as HTMLFormElement)
+            console.log({
+              input: fd.get('input'),
+              textarea: fd.get('textarea'),
+              switch: fd.get('switch'),
+              checkbox: fd.get('checkbox'),
+              radio: fd.get('radio'),
+              select: fd.get('select'),
+            })
+          }}>
+            <div className="flex items-center">
+              <label htmlFor='input'>Input：</label>
+              <Input name='input' id='input' placeholder='请输入' className='w-320px' />
+            </div>
+            <div className="flex mt-32px items-center">
+              <label htmlFor='textarea' className='self-start'>Textarea：</label>
+              <Textarea name='textarea' id='textarea' autoFocus placeholder={`1
+  2
+  3
+  4
+  5`} className='w-520px' />
+            </div>
             <p>switch</p>
-            <Switch checked={switchChecked} onCheckedChange={setSwitchChecked} disabled={switchDisabled} />
+            <Switch checked={switchChecked} value='switch' onCheckedChange={setSwitchChecked} disabled={switchDisabled} />
             <br />
-            <Switch id='ds' checked={switchDisabled} onCheckedChange={setSwitchDisabled} />
+            <Switch name='switch' id='ds' checked={switchDisabled} onCheckedChange={setSwitchDisabled} />
             <label htmlFor="ds">disable</label>
             <br />
             <br />
             <p>checkbox</p>
             <div className="flex items-center">
-              <Checkbox checked={checkboxChecked} onCheckedChange={(state) => {
-                console.log(state)
+              <Checkbox name='checkbox' value='checkbox' checked={checkboxChecked} onCheckedChange={(state) => {
                 setCheckboxChecked(state)
               }} id='checkbox' />
               <label htmlFor="checkbox">checkbox</label>
@@ -77,7 +86,7 @@ const App = () => {
             <br />
             <br />
             <p>radio group</p>
-            <RadioGroup defaultValue='kale3'>
+            <RadioGroup defaultValue='kale3' name='radio'>
               <div className='flex items-center'>
                 <Radio value='kale' id='kale' />
                 <label htmlFor="kale">kale</label>
@@ -95,6 +104,30 @@ const App = () => {
                 <label htmlFor="kale4">kale4</label>
               </div>
             </RadioGroup>
+            <br />
+            <div className="flex items-center">
+              <label htmlFor='select'>Select：</label>
+              <Select id='select' placeholder='请选择' value={selectValue} onValueChange={setSelectValue} onChange={console.log} name='select' options={[
+                {
+                  value: 'kale',
+                  name: '卡了',
+                },
+                {
+                  value: 'kale2',
+                  name: '卡了2',
+                },
+                {
+                  value: 'kale3',
+                  name: '卡了3',
+                },
+                {
+                  value: 'kale4',
+                  name: '卡了4',
+                },
+              ]} />
+            </div>
+            <br />
+            <Button type='submit'>SUBMIT</Button>
           </form>
         </div>
         <div className="p-32px">

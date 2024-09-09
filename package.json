@@ -41,6 +41,7 @@
     "@calm-ui/popover": "workspace:^",
     "@calm-ui/radio-group": "workspace:^",
     "@calm-ui/ripple": "workspace:^",
+    "@calm-ui/select": "workspace:^",
     "@calm-ui/switch": "workspace:^",
     "@calm-ui/theme": "workspace:^",
     "@calm-ui/tooltip": "workspace:^"

@@ -32,6 +32,9 @@ importers:
       '@calm-ui/ripple':
         specifier: workspace:^
         version: link:packages/ripple
+      '@calm-ui/select':
+        specifier: workspace:^
+        version: link:packages/select
       '@calm-ui/switch':
         specifier: workspace:^
         version: link:packages/switch
@@ -237,6 +240,33 @@ importers:
       react-transition-state:
         specifier: ^2.1.2
         version: 2.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+
+  packages/select:
+    dependencies:
+      '@calm-ui/input':
+        specifier: workspace:^
+        version: link:../input
+      '@calm-ui/ripple':
+        specifier: workspace:^
+        version: link:../ripple
+      '@calm-ui/theme':
+        specifier: workspace:^
+        version: link:../theme
+      '@ctrl/tinycolor':
+        specifier: ^4.1.0
+        version: 4.1.0
+      '@floating-ui/react':
+        specifier: ^0.26.23
+        version: 0.26.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@zhuh/style-inject':
+        specifier: ^1.0.1
+        version: 1.0.1
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      react:
+        specifier: 18.x
+        version: 18.3.1
 
   packages/switch:
     dependencies:
