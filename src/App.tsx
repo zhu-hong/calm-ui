@@ -59,11 +59,11 @@ const App = () => {
           }}>
             <div className="flex items-center">
               <label htmlFor='input'>Input：</label>
-              <Input name='input' id='input' placeholder='请输入' />
+              <Input name='input' id='input' placeholder='请输入' className='text-lg' />
             </div>
             <div className="flex mt-32px items-center">
               <label htmlFor='textarea' className='self-start'>Textarea：</label>
-              <Textarea name='textarea' id='textarea' autoFocus placeholder={`1
+              <Textarea name='textarea' id='textarea' autoFocus className='text-lg' placeholder={`1
 2
 3
 4
