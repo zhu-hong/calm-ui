@@ -64,7 +64,7 @@ const usePopover = ({
   })
   const hover = useHover(context, {
     enabled: controlledOpen === undefined && triggerType === 'hover',
-    restMs: 150,
+    restMs: 70,
     handleClose: safePolygon(),
   })
   const dismiss = useDismiss(context)

@@ -121,10 +121,11 @@ const App = () => {
             <Button outlined theme='primary' className='text-32px fontmono'>GO</Button>
             <Button outlined theme='danger' className='bg-white'>GO</Button>
             <Popover
+              triggerType='hover'
               content={
                 <div className='p-64px rounded border bg-white'>
                   <p>1231234512345</p>
-                  <Input placeholder='请输入' autoFocus type='password' />
+                  <Input placeholder='请输入' />
                   <PopoverClose>close</PopoverClose>
                 </div>
               }
