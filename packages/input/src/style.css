@@ -8,7 +8,7 @@
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
   display: flex;
   align-items: center;
-  &.cm-input-effect-disabled {
+  &[data-disabled] {
     background-color: rgba(0, 0, 0, 0.12);
     color: #8b8b8b;
     pointer-events: none;
@@ -17,7 +17,7 @@
       background-color: #828282;
     }
   }
-  &:not(.cm-input-effect-disabled):hover {
+  &:not([data-disabled]):hover {
     background-color: rgba(0, 0, 0, 0.09);
   }
   &::before {
@@ -33,7 +33,7 @@
     transition-duration: 200ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
-  &:not(.cm-input-effect-disabled):hover::before {
+  &:not([data-disabled]):hover::before {
     background-color: rgb(30, 30, 30, 1);
   }
   &::after {
@@ -51,23 +51,25 @@
     transition-duration: 170ms;
     transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
   }
-  &:not(.cm-input-effect-disabled).cm-input-effect-focused::after, &:not(.cm-input-effect-disabled):focus-within::after {
+  &:not([data-disabled]).cm-input-effect-focused::after, &:not([data-disabled]):focus-within::after {
     transform: scaleX(1);
   }
-}
 
-.cm-input {
-  padding: 6px 12px;
-  outline: none;
-  border: none;
-  background: transparent;
-}
-
-.cm-textarea {
-  resize: none;
-  outline: none;
-  border: none;
-  padding: 0 12px;
-  margin: 6px 0;
-  background-color: transparent;
+  .cm-input-inner {
+    flex: auto;
+    padding: 10px 12px;
+    outline: none;
+    border: none;
+    background: transparent;
+  }
+  
+  .cm-textarea-inner {
+    flex: auto;
+    resize: none;
+    outline: none;
+    border: none;
+    padding: 0 12px;
+    margin: 6px 0;
+    background-color: transparent;
+  }
 }

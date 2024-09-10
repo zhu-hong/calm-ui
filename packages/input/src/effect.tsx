@@ -12,7 +12,8 @@ export const InputEffect = forwardRef<
 
   return <div
     {...props}
-    className={clsx('cm-input-effect', disabled && 'cm-input-effect-disabled', props.className)}
+    className={clsx('cm-input-effect', props.className)}
+    data-disabled={disabled?true:undefined}
     style={{
       '--cm-input-effect-underline-color': primary,
       ...props.style,

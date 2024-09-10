@@ -10,7 +10,7 @@ export const Textarea = forwardRef<
   HTMLTextAreaElement,
   TextareaHTMLAttributes<HTMLTextAreaElement> & InputProps
 >(({ wrapperAttrs, ...props }, ref) => {
-  return <InputEffect {...wrapperAttrs} disabled={props.disabled}>
-    <textarea rows={5} {...props} className={clsx('cm-textarea', props.className)} ref={ref} />
+  return <InputEffect {...wrapperAttrs} disabled={props.disabled} className={clsx('cm-textarea', wrapperAttrs?.className)}>
+    <textarea rows={5} {...props} className={clsx('cm-textarea-inner', props.className)} ref={ref} />
   </InputEffect>
 })

@@ -2,13 +2,14 @@
   position: relative;
   border: none;
   outline: none;
-  padding: 6px 12px;
+  padding: 10px 12px;
   cursor: pointer;
 
   .cm-select-input {
     cursor: pointer;
     border: none;
     outline: none;
+    flex: auto;
     background-color: transparent;
     &:not(:placeholder-shown) {
       opacity: 0;
@@ -29,7 +30,7 @@
   .cm-select-value {
     position: absolute;
     max-width: 100%;
-    padding: 6px 24px 6px 12px;
+    padding: 10px 24px 10px 12px;
     top: 50%;
     left: 0;
     transform: translateY(-50%);
