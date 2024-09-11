@@ -1,8 +1,7 @@
 .cm-select {
-  position: relative;
   border: none;
   outline: none;
-  padding: 10px 12px;
+  padding: 6px 12px;
   cursor: pointer;
 
   .cm-select-input {
@@ -29,8 +28,9 @@
 
   .cm-select-value {
     position: absolute;
+    line-height: 100%;
     max-width: 100%;
-    padding: 10px 24px 10px 12px;
+    padding: 6px 26px 6px 12px;
     top: 50%;
     left: 0;
     transform: translateY(-50%);

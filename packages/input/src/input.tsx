@@ -2,19 +2,57 @@ import { forwardRef, HTMLAttributes, InputHTMLAttributes, ReactNode } from 'reac
 import { InputEffect } from './effect'
 import clsx from 'clsx'
 
+type InputAttrs = InputHTMLAttributes<HTMLInputElement>
+
 type InputProps = {
-  wrapperAttrs?: HTMLAttributes<HTMLDivElement>
+  inputAttrs?: InputAttrs
   prefix?: ReactNode
   suffix?: ReactNode
+  inputId?: InputAttrs['id']
+  name?: InputAttrs['name']
+  inputType?: InputAttrs['type']
+  placeholder?: InputAttrs['placeholder']
+  maxLength?: InputAttrs['maxLength']
+  value?: InputAttrs['value']
+  onValueChange?: (value: string) => void
+  readOnly?: InputAttrs['readOnly']
+  disabled?: InputAttrs['disabled']
 }
 
 export const Input = forwardRef<
   HTMLInputElement,
-  InputHTMLAttributes<HTMLInputElement> & InputProps
->(({ prefix, suffix, wrapperAttrs, ...props }, ref) => {
-  return <InputEffect {...wrapperAttrs} disabled={props.disabled} className={clsx('cm-input', wrapperAttrs?.className)}>
+  HTMLAttributes<HTMLDivElement> & InputProps
+>(({
+  prefix,
+  suffix,
+  inputId,
+  name,
+  inputType,
+  placeholder,
+  maxLength,
+  value,
+  onValueChange,
+  readOnly,
+  disabled,
+  inputAttrs,
+  ...props
+}, ref) => {
+  return <InputEffect {...props} disabled={disabled ?? inputAttrs?.disabled} className={clsx('cm-input', props.className)}>
     {prefix}
-    <input {...props} className={clsx('cm-input-inner', props.className)} ref={ref} />
+    <input
+      id={inputId}
+      name={name}
+      type={inputType}
+      placeholder={placeholder}
+      maxLength={maxLength}
+      value={value}
+      onChange={(e) => onValueChange?.(e.target.value)}
+      readOnly={readOnly}
+      disabled={disabled}
+      {...inputAttrs}
+      className={clsx('cm-input-inner', inputAttrs?.className)}
+      ref={ref}
+    />
     {suffix}
   </InputEffect>
 })

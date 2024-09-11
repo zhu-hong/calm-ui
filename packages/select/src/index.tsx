@@ -23,17 +23,35 @@ import {
 } from '@floating-ui/react'
 import { TinyColor } from '@ctrl/tinycolor'
 
+type InputAttrs = InputHTMLAttributes<HTMLInputElement>
+
 type SelectProps = {
   options?: ({ name?: string; value: any; })[]
-  onValueChange?: (value: any) => void
-  wrapperAttrs?: HTMLAttributes<HTMLDivElement>
+  inputAttrs?: InputAttrs
   zIndex?: number
+  inputId?: InputAttrs['id']
+  name?: InputAttrs['name']
+  placeholder?: InputAttrs['placeholder']
+  value?: InputAttrs['value']
+  onValueChange?: (value: string) => void
+  disabled?: InputAttrs['disabled']
 }
 
 export const Select = forwardRef<
   HTMLInputElement,
-  InputHTMLAttributes<HTMLInputElement> & SelectProps
->(({ options, onValueChange, wrapperAttrs, zIndex = 50, ...props }, ref) => {
+  HTMLAttributes<HTMLDivElement> & SelectProps
+>(({
+  options,
+  zIndex = 50,
+  inputId,
+  name,
+  placeholder,
+  value,
+  onValueChange,
+  disabled,
+  inputAttrs,
+  ...props
+}, ref) => {
   const { palette: { primary, default: defaultColor } } = useThemeContext()
 
   const [isOpen, setIsOpen] = useState(false)
@@ -78,14 +96,16 @@ export const Select = forwardRef<
 
   useEffect(() => {
     if(!isOpen) return
-    setSelectedIndex(optionList.findIndex((o) => o.value === props.value) ?? null)
-  }, [optionList, props.value, isOpen])
+    const inputValue = inputAttrs?.value ?? value
+    setSelectedIndex(optionList.findIndex((o) => o.value === inputValue) ?? null)
+  }, [optionList, value, inputAttrs?.value, isOpen])
 
   const valueLabel = useMemo(() => {
-    if(props.value === undefined) return undefined
+    const inputValue = inputAttrs?.value ?? value
+    if(inputValue === undefined) return undefined
 
-    return optionList.find((o) => o.value === props.value)?.name ?? `${props.value}`
-  }, [optionList, props.value])
+    return optionList.find((o) => o.value === inputValue)?.name ?? `${inputValue}`
+  }, [optionList, value, inputAttrs?.value])
 
   const { x, y, strategy, refs, context } = useFloating({
     placement: 'bottom-start',
@@ -161,10 +181,11 @@ export const Select = forwardRef<
     typeahead,
   ])
 
-  const handleSelect = (value: any) => {
+  const handleSelect = (optionValue: any) => {
     setIsOpen(false)
-    if(props.value === value) return
-    onValueChange?.(value)
+    const inputValue = inputAttrs?.value ?? value
+    if(optionValue === inputValue) return
+    onValueChange?.(optionValue)
   }
 
   return <>
@@ -173,14 +194,27 @@ export const Select = forwardRef<
       aria-labelledby='select-label'
       aria-autocomplete='none'
       data-open={isOpen ? '' : undefined}
-      disabled={props.disabled}
+      disabled={disabled}
       {...getReferenceProps({
-        ...wrapperAttrs,
-        className: clsx('cm-select', isOpen && INPUT_EFFECT_FOCUSED_CLASSNAME, wrapperAttrs?.className),
+        ...props,
+        className: clsx('cm-select', isOpen && INPUT_EFFECT_FOCUSED_CLASSNAME, props?.className),
         tabIndex: 0,
       })}
     >
-      <input {...props} type='text' ref={ref} className={clsx('cm-select-input', props.className)} readOnly tabIndex={-1}></input>
+      <input
+        id={inputId}
+        name={name}
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => onValueChange?.(e.target.value)}
+        disabled={disabled}
+        {...inputAttrs}
+        ref={ref}
+        type='text'
+        className={clsx('cm-select-input', inputAttrs?.className)}
+        readOnly
+        tabIndex={-1}
+      />
       <svg className='cm-select-arrow' xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24"><path fill="currentColor" d="M11.178 19.569a.998.998 0 0 0 1.644 0l9-13A.999.999 0 0 0 21 5H3a1.002 1.002 0 0 0-.822 1.569z"></path></svg>
       <p className='cm-select-value' aria-hidden aria-label={valueLabel}>{valueLabel}</p>
     </InputEffect>

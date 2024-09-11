@@ -2,15 +2,51 @@ import { forwardRef, HTMLAttributes, TextareaHTMLAttributes } from 'react'
 import clsx from 'clsx'
 import { InputEffect } from './effect'
 
+type InputAttrs = TextareaHTMLAttributes<HTMLTextAreaElement>
+
 type InputProps = {
-  wrapperAttrs?: HTMLAttributes<HTMLDivElement>
+  textareaAttrs?: TextareaHTMLAttributes<HTMLTextAreaElement>
+  inputId?: InputAttrs['id']
+  name?: InputAttrs['name']
+  placeholder?: InputAttrs['placeholder']
+  maxLength?: InputAttrs['maxLength']
+  rows?: InputAttrs['rows']
+  value?: InputAttrs['value']
+  onValueChange?: (value: string) => void
+  readOnly?: InputAttrs['readOnly']
+  disabled?: InputAttrs['disabled']
 }
 
 export const Textarea = forwardRef<
   HTMLTextAreaElement,
-  TextareaHTMLAttributes<HTMLTextAreaElement> & InputProps
->(({ wrapperAttrs, ...props }, ref) => {
-  return <InputEffect {...wrapperAttrs} disabled={props.disabled} className={clsx('cm-textarea', wrapperAttrs?.className)}>
-    <textarea rows={5} {...props} className={clsx('cm-textarea-inner', props.className)} ref={ref} />
+  HTMLAttributes<HTMLDivElement> & InputProps
+>(({
+  inputId,
+  name,
+  placeholder,
+  maxLength,
+  rows,
+  value,
+  onValueChange,
+  readOnly,
+  disabled,
+  textareaAttrs: inputAttrs,
+  ...props
+}, ref) => {
+  return <InputEffect {...props} disabled={inputAttrs?.disabled} className={clsx('cm-textarea', props?.className)}>
+    <textarea
+      id={inputId}
+      name={name}
+      placeholder={placeholder}
+      maxLength={maxLength??100}
+      rows={rows??5}
+      value={value}
+      onChange={(e) => onValueChange?.(e.target.value)}
+      readOnly={readOnly}
+      disabled={disabled}
+      {...inputAttrs}
+      className={clsx('cm-textarea-inner', inputAttrs?.className)}
+      ref={ref}
+    />
   </InputEffect>
 })

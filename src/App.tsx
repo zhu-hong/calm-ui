@@ -57,13 +57,13 @@ const App = () => {
               select: fd.get('select'),
             })
           }}>
-            <div className="flex items-center">
+            <div>
               <label htmlFor='input'>Input：</label>
-              <Input name='input' id='input' placeholder='请输入' className='w-320px' />
+              <Input name='input' inputId='input' placeholder='请输入' className='w-320px' />
             </div>
             <div className="flex mt-32px items-center">
               <label htmlFor='textarea' className='self-start'>Textarea：</label>
-              <Textarea name='textarea' id='textarea' autoFocus className='w-320px' placeholder={`1
+              <Textarea name='textarea' inputId='textarea' autoFocus className='w-320px' onValueChange={console.log} textareaAttrs={{rows:8,maxLength:5}} placeholder={`1
 2
 3
 4
@@ -107,7 +107,7 @@ const App = () => {
             <br />
             <div className="flex items-center">
               <label htmlFor='select'>Select：</label>
-              <Select id='select' placeholder='请选择' value={selectValue} onValueChange={setSelectValue} onChange={console.log} name='select' className='w-320px' options={[
+              <Select inputId='select' placeholder='请选择' value={selectValue} onValueChange={setSelectValue} name='select' options={[
                 {
                   value: 'kale',
                   name: '卡了',
@@ -236,7 +236,6 @@ const App = () => {
         </DialogClose>
         <p>安全的autoFocus</p>
         <DialogAutoFocus>
-          
           <Textarea rows={5} placeholder={`1
 2
 3
