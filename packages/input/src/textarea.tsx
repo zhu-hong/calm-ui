@@ -9,6 +9,7 @@ type InputProps = {
   inputId?: InputAttrs['id']
   name?: InputAttrs['name']
   placeholder?: InputAttrs['placeholder']
+  autoFocus?: InputAttrs['autoFocus']
   maxLength?: InputAttrs['maxLength']
   rows?: InputAttrs['rows']
   value?: InputAttrs['value']
@@ -24,6 +25,7 @@ export const Textarea = forwardRef<
   inputId,
   name,
   placeholder,
+  autoFocus,
   maxLength,
   rows,
   value,
@@ -38,6 +40,7 @@ export const Textarea = forwardRef<
       id={inputId}
       name={name}
       placeholder={placeholder}
+      autoFocus={autoFocus}
       maxLength={maxLength??100}
       rows={rows??5}
       value={value}

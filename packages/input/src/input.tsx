@@ -12,6 +12,7 @@ type InputProps = {
   name?: InputAttrs['name']
   inputType?: InputAttrs['type']
   placeholder?: InputAttrs['placeholder']
+  autoFocus?: InputAttrs['autoFocus']
   maxLength?: InputAttrs['maxLength']
   value?: InputAttrs['value']
   onValueChange?: (value: string) => void
@@ -29,6 +30,7 @@ export const Input = forwardRef<
   name,
   inputType,
   placeholder,
+  autoFocus,
   maxLength,
   value,
   onValueChange,
@@ -44,6 +46,7 @@ export const Input = forwardRef<
       name={name}
       type={inputType}
       placeholder={placeholder}
+      autoFocus={autoFocus}
       maxLength={maxLength}
       value={value}
       onChange={(e) => onValueChange?.(e.target.value)}

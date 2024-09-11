@@ -32,6 +32,7 @@ type SelectProps = {
   inputId?: InputAttrs['id']
   name?: InputAttrs['name']
   placeholder?: InputAttrs['placeholder']
+  autoFocus?: InputAttrs['autoFocus']
   value?: InputAttrs['value']
   onValueChange?: (value: string) => void
   disabled?: InputAttrs['disabled']
@@ -46,6 +47,7 @@ export const Select = forwardRef<
   inputId,
   name,
   placeholder,
+  autoFocus,
   value,
   onValueChange,
   disabled,
@@ -205,6 +207,7 @@ export const Select = forwardRef<
         id={inputId}
         name={name}
         placeholder={placeholder}
+        autoFocus={autoFocus}
         value={value}
         onChange={(e) => onValueChange?.(e.target.value)}
         disabled={disabled}
