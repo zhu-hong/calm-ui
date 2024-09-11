@@ -1,6 +1,6 @@
 {
   "name": "@calm-ui/switch",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "main": "dist/index.js",
   "types": "switch.d.ts",
