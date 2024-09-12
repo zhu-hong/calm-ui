@@ -194,6 +194,21 @@ const TooltipContent = () => {
           '--cm-tooltip-bg-color': tooltipColor,
           ...styles,
         } as CSSProperties,
+        onClick(e) {
+          e.stopPropagation()
+        },
+        onMouseDown(e) {
+          e.stopPropagation()
+        },
+        onTouchStart(e) {
+          e.stopPropagation()
+        },
+        onKeyDown(e) {
+          e.stopPropagation()
+        },
+        onFocus(e) {
+          e.stopPropagation()
+        },
       })}
     >
       {content}

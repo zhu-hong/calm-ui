@@ -105,7 +105,7 @@ const App = () => {
               </div>
             </RadioGroup>
             <br />
-            <div className="flex items-center">
+            <div className="flex items-center" onClick={console.log}>
               <label htmlFor='select'>Select：</label>
               <Select inputId='select' placeholder='请选择' value={selectValue} onValueChange={setSelectValue} name='select' options={[
                 {
@@ -149,27 +149,29 @@ const App = () => {
             <Button theme='warning'>GO</Button>
             <Button theme='default'>GO</Button>
           </div>
-          <div className='mt-32px flex items-center gap-12px flex-wrap'>
+          <div className='mt-32px flex items-center gap-12px flex-wrap' onClick={console.log}>
             <p>outlined button</p>
             <Button outlined theme='primary' className='text-32px fontmono'>GO</Button>
             <Button outlined theme='danger' className='bg-white'>GO</Button>
-            <Popover
-              triggerType='hover'
-              content={
-                <div className='p-64px rounded border bg-white'>
-                  <p>1231234512345</p>
-                  <Input placeholder='请输入' />
-                  <PopoverClose>close</PopoverClose>
-                </div>
-              }
-              placement='bottom-end'
-            >
-              <Button outlined theme='success'>Popover</Button>
-            </Popover>
+            <Button outlined theme='success'>
+              <Popover
+                triggerType='hover'
+                content={
+                  <div className='p-64px rounded border bg-white'>
+                    <p>1231234512345</p>
+                    <Input placeholder='请输入' />
+                    <PopoverClose>close</PopoverClose>
+                  </div>
+                }
+                placement='bottom-end'
+              >
+                <span tabIndex={0} onClick={(e) => e.stopPropagation()}>Popover</span>
+              </Popover>
+            </Button>
             <Button outlined theme='warning' loading>LOADING BUTTON</Button>
             <Button outlined theme='default'>GO</Button>
           </div>
-          <div className='mt-32px flex items-center gap-12px flex-wrap'>
+          <div className='mt-32px flex items-center gap-12px flex-wrap' onClick={console.log}>
             <p>text button</p>
             <Tooltip enterable content='Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa veritatis ab at earum voluptates dolore rem provident, perferendis, fugit rerum quaerat laudantium quis maxime beatae quibusdam excepturi iste? Iure, nisi?' placement='top-start'>
               <Button text theme='primary' className='max-w-120px'><span className='truncate'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa veritatis ab at earum voluptates dolore rem provident, perferendis, fugit rerum quaerat laudantium quis maxime beatae quibusdam excepturi iste? Iure, nisi?</span></Button>

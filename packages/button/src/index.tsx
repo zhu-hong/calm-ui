@@ -90,14 +90,14 @@ export const Button = memo(forwardRef<
     if(!outlined && !tag) return 'transparent'
 
     const { r, g, b } = new TinyColor(textColor).toRgb()
-    return `rgba(${r},${g},${b},.2)`
+    return `rgba(${r},${g},${b},${outlined?'.2':'.5'})`
   }, [outlined, tag, textColor])
 
   const borderHoverColor = useMemo<string>(() => {
     if(!outlined && !tag) return 'transparent'
 
     const { r, g, b } = new TinyColor(textColor).toRgb()
-    return `rgba(${r},${g},${b},.4)`
+    return `rgba(${r},${g},${b},${outlined?'.4':'1'})`
   }, [outlined, tag, textColor])
 
   const startIconInner = useMemo(() => {
