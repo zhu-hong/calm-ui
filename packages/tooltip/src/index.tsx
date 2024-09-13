@@ -36,7 +36,7 @@ type ContextType = (ReturnType<typeof useTooltip>) | null
 
 const useTooltip = ({
   placement = 'bottom',
-  zIndex = 50,
+  zIndex = 150,
   children: trigger,
   content,
   delay = 520,

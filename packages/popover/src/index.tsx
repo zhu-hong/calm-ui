@@ -36,7 +36,7 @@ const usePopover = ({
   placement = 'bottom',
   open: controlledOpen,
   onOpenChange: setControlledOpen,
-  zIndex = 50,
+  zIndex = 150,
   triggerType,
   children: trigger,
   content,

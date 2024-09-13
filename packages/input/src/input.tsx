@@ -6,8 +6,8 @@ type InputAttrs = InputHTMLAttributes<HTMLInputElement>
 
 type InputProps = {
   inputAttrs?: InputAttrs
-  prefix?: ReactNode
-  suffix?: ReactNode
+  prefixNode?: ReactNode
+  suffixNode?: ReactNode
   inputId?: InputAttrs['id']
   name?: InputAttrs['name']
   inputType?: InputAttrs['type']
@@ -24,8 +24,8 @@ export const Input = forwardRef<
   HTMLInputElement,
   HTMLAttributes<HTMLDivElement> & InputProps
 >(({
-  prefix,
-  suffix,
+  prefixNode,
+  suffixNode,
   inputId,
   name,
   inputType,
@@ -40,7 +40,7 @@ export const Input = forwardRef<
   ...props
 }, ref) => {
   return <InputEffect {...props} disabled={disabled ?? inputAttrs?.disabled} className={clsx('cm-input', props.className)}>
-    {prefix}
+    {prefixNode}
     <input
       id={inputId}
       name={name}
@@ -56,6 +56,6 @@ export const Input = forwardRef<
       className={clsx('cm-input-inner', inputAttrs?.className)}
       ref={ref}
     />
-    {suffix}
+    {suffixNode}
   </InputEffect>
 })

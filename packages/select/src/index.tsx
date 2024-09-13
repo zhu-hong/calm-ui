@@ -26,7 +26,7 @@ import { TinyColor } from '@ctrl/tinycolor'
 type InputAttrs = InputHTMLAttributes<HTMLInputElement>
 
 type SelectProps = {
-  options?: ({ name?: string; value: any; })[]
+  options?: ({ name?: string; value: any; })[] | undefined | null
   inputAttrs?: InputAttrs
   zIndex?: number
   inputId?: InputAttrs['id']
@@ -43,7 +43,7 @@ export const Select = forwardRef<
   HTMLAttributes<HTMLDivElement> & SelectProps
 >(({
   options,
-  zIndex = 50,
+  zIndex = 150,
   inputId,
   name,
   placeholder,
@@ -81,13 +81,6 @@ export const Select = forwardRef<
     if(!options) return []
 
     return options.map((option) => {
-      if(!Object.prototype.hasOwnProperty.call(option, 'value')) {
-        return {
-          name: `${option}`,
-          value: option,
-          key: `${option}`,
-        }
-      }
       return {
         name: option.name ?? `${option.value}`,
         value: option.value,
