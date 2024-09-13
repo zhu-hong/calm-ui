@@ -230,21 +230,11 @@ export const Select = forwardRef<
                 zIndex,
                 ...styleCssVar,
               } as CSSProperties,
-              onClick(e) {
-                e.stopPropagation()
-              },
-              onMouseDown(e) {
-                e.stopPropagation()
-              },
-              onTouchStart(e) {
-                e.stopPropagation()
-              },
-              onKeyDown(e) {
-                e.stopPropagation()
-              },
-              onFocus(e) {
-                e.stopPropagation()
-              },
+              onClick: (e) => e.stopPropagation(),
+              onMouseDown: (e) => e.stopPropagation(),
+              onTouchStart: (e) => e.stopPropagation(),
+              onKeyDown: (e) => e.stopPropagation(),
+              onFocus: (e) => e.stopPropagation(),
             })}
           >
             {

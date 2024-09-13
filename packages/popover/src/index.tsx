@@ -203,21 +203,11 @@ const PopoverContent = () => {
             ...transition.styles,
           },
           // stop trigger parentNode ripple
-          onClick(e) {
-            e.stopPropagation()
-          },
-          onMouseDown(e) {
-            e.stopPropagation()
-          },
-          onTouchStart(e) {
-            e.stopPropagation()
-          },
-          onKeyDown(e) {
-            e.stopPropagation()
-          },
-          onFocus(e) {
-            e.stopPropagation()
-          },
+          onClick: (e) => e.stopPropagation(),
+          onMouseDown: (e) => e.stopPropagation(),
+          onTouchStart: (e) => e.stopPropagation(),
+          onKeyDown: (e) => e.stopPropagation(),
+          onFocus: (e) => e.stopPropagation(),
         })}
       >
         {content}
