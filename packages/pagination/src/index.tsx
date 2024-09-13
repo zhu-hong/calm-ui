@@ -72,7 +72,7 @@ export const Pagination = forwardRef<
   useEffect(() => {
     if(page <= totalPage) return
 
-    onPageChange?.(totalPage)
+    onPageChange?.(1)
   }, [page, totalPage])
 
   return <div {...props} ref={ref} className={clsx('cm-pagination', props.className)}>

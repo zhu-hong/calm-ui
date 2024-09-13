@@ -29,13 +29,13 @@ type SelectProps = {
   options?: ({ name?: string; value: any; })[] | undefined | null
   inputAttrs?: InputAttrs
   zIndex?: number
-  inputId?: InputAttrs['id']
   name?: InputAttrs['name']
   placeholder?: InputAttrs['placeholder']
   autoFocus?: InputAttrs['autoFocus']
   value?: InputAttrs['value']
   onValueChange?: (value: string) => void
   disabled?: InputAttrs['disabled']
+  wrapperId?: HTMLAttributes<HTMLDivElement>['id']
 }
 
 export const Select = forwardRef<
@@ -44,7 +44,7 @@ export const Select = forwardRef<
 >(({
   options,
   zIndex = 150,
-  inputId,
+  id,
   name,
   placeholder,
   autoFocus,
@@ -52,6 +52,7 @@ export const Select = forwardRef<
   onValueChange,
   disabled,
   inputAttrs,
+  wrapperId,
   ...props
 }, ref) => {
   const { palette: { primary, default: defaultColor } } = useThemeContext()
@@ -89,18 +90,20 @@ export const Select = forwardRef<
     })
   }, [options])
 
+  const inputValue = useMemo(() => {
+    return inputAttrs?.value ?? value
+  }, [value, inputAttrs?.value])
+
   useEffect(() => {
     if(!isOpen) return
-    const inputValue = inputAttrs?.value ?? value
     setSelectedIndex(optionList.findIndex((o) => o.value === inputValue) ?? null)
-  }, [optionList, value, inputAttrs?.value, isOpen])
+  }, [optionList, inputValue, isOpen])
 
   const valueLabel = useMemo(() => {
-    const inputValue = inputAttrs?.value ?? value
-    if(inputValue === undefined) return undefined
+    if(inputValue === undefined) return
 
     return optionList.find((o) => o.value === inputValue)?.name ?? `${inputValue}`
-  }, [optionList, value, inputAttrs?.value])
+  }, [optionList, inputValue])
 
   const { x, y, strategy, refs, context } = useFloating({
     placement: 'bottom-start',
@@ -178,7 +181,6 @@ export const Select = forwardRef<
 
   const handleSelect = (optionValue: any) => {
     setIsOpen(false)
-    const inputValue = inputAttrs?.value ?? value
     if(optionValue === inputValue) return
     onValueChange?.(optionValue)
   }
@@ -186,18 +188,19 @@ export const Select = forwardRef<
   return <>
     <InputEffect
       ref={refs.setReference}
-      aria-labelledby='select-label'
       aria-autocomplete='none'
-      data-open={isOpen ? '' : undefined}
+      data-state={isOpen ? 'open' : 'closed'}
       disabled={disabled}
       {...getReferenceProps({
         ...props,
         className: clsx('cm-select', isOpen && INPUT_EFFECT_FOCUSED_CLASSNAME, props?.className),
         tabIndex: 0,
+        id: wrapperId,
       })}
     >
+      <p className='cm-select-value' aria-label={valueLabel}>{valueLabel}</p>
       <input
-        id={inputId}
+        id={id}
         name={name}
         placeholder={placeholder}
         autoFocus={autoFocus}
@@ -212,7 +215,6 @@ export const Select = forwardRef<
         tabIndex={-1}
       />
       <svg className='cm-select-arrow' xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24"><path fill="currentColor" d="M11.178 19.569a.998.998 0 0 0 1.644 0l9-13A.999.999 0 0 0 21 5H3a1.002 1.002 0 0 0-.822 1.569z"></path></svg>
-      <p className='cm-select-value' aria-hidden aria-label={valueLabel}>{valueLabel}</p>
     </InputEffect>
 
     {

@@ -188,8 +188,8 @@ const TooltipContent = () => {
         className: 'cm-tooltip',
         style: {
           position: context.strategy,
-          top: isNaN(context.y) ? 0 : (context.y ?? 0),
-          left: isNaN(context.x) ? 0 : (context.x ?? 0),
+          top: context.y ?? 0,
+          left: context.x ?? 0,
           zIndex,
           '--cm-tooltip-bg-color': tooltipColor,
           ...styles,

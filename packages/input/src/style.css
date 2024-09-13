@@ -1,25 +1,29 @@
 .cm-input-effect {
   position: relative;
   width: fit-content;
-  background-color: rgba(0, 0, 0, 0.06);;
+  background-color: rgba(0, 0, 0, 0.06);
   border-radius: 4px 4px 0 0;
   transition-property: background-color;
   transition-duration: 200ms;
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
   display: flex;
   align-items: center;
+
   &[data-disabled] {
     background-color: rgba(0, 0, 0, 0.12);
     color: #8b8b8b;
     pointer-events: none;
     cursor: default;
+
     &::before {
       background-color: #828282;
     }
   }
+
   &:not([data-disabled]):hover {
     background-color: rgba(0, 0, 0, 0.09);
   }
+
   &::before {
     content: "";
     display: block;
@@ -33,9 +37,11 @@
     transition-duration: 200ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
+
   &:not([data-disabled]):hover::before {
     background-color: rgb(30, 30, 30, 1);
   }
+
   &::after {
     content: "";
     display: block;
@@ -51,25 +57,22 @@
     transition-duration: 170ms;
     transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
   }
-  &:not([data-disabled]).cm-input-effect-focused::after, &:not([data-disabled]):focus-within::after {
+
+  &:not([data-disabled]).cm-input-effect-focused::after,
+  &:not([data-disabled]):focus-within::after {
     transform: scaleX(1);
   }
+}
 
-  .cm-input-inner {
+.cm-input,
+.cm-textarea {
+  padding: 6px 12px;
+
+  input,
+  textarea {
     flex: auto;
-    padding: 6px 12px;
     outline: none;
     border: none;
     background: transparent;
-  }
-  
-  .cm-textarea-inner {
-    flex: auto;
-    resize: none;
-    outline: none;
-    border: none;
-    padding: 0 12px;
-    margin: 6px 0;
-    background-color: transparent;
   }
 }

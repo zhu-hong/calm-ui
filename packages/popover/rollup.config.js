@@ -3,6 +3,7 @@ import commonjs from '@rollup/plugin-commonjs'
 import nodeResolve from '@rollup/plugin-node-resolve'
 import typescript from '@rollup/plugin-typescript'
 import babel from '@rollup/plugin-babel'
+import { lightningcssPlugin } from '@zhuh/rollup-plugin-lightningcss'
 import { dts } from 'rollup-plugin-dts'
 import { resolve } from 'node:path'
 
@@ -25,6 +26,11 @@ export default [
           ],
         ],
       }),
+      lightningcssPlugin({
+        injectOptions: {
+          tag: 'cm-popover',
+        },
+      }),
     ],
     output: {
       dir: 'dist',
@@ -34,6 +40,7 @@ export default [
   }),
   defineConfig({
     input: './src/index.tsx',
+    external: [/\.css$/u],
     plugins: [
       dts(),
     ],

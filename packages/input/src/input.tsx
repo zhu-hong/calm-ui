@@ -8,16 +8,15 @@ type InputProps = {
   inputAttrs?: InputAttrs
   prefixNode?: ReactNode
   suffixNode?: ReactNode
-  inputId?: InputAttrs['id']
   name?: InputAttrs['name']
-  inputType?: InputAttrs['type']
+  type?: InputAttrs['type']
   placeholder?: InputAttrs['placeholder']
   autoFocus?: InputAttrs['autoFocus']
-  maxLength?: InputAttrs['maxLength']
   value?: InputAttrs['value']
   onValueChange?: (value: string) => void
   readOnly?: InputAttrs['readOnly']
   disabled?: InputAttrs['disabled']
+  wrapperId?: HTMLAttributes<HTMLDivElement>['id']
 }
 
 export const Input = forwardRef<
@@ -26,28 +25,27 @@ export const Input = forwardRef<
 >(({
   prefixNode,
   suffixNode,
-  inputId,
+  id,
   name,
-  inputType,
+  type,
   placeholder,
   autoFocus,
-  maxLength,
   value,
   onValueChange,
   readOnly,
   disabled,
   inputAttrs,
+  wrapperId,
   ...props
 }, ref) => {
-  return <InputEffect {...props} disabled={disabled ?? inputAttrs?.disabled} className={clsx('cm-input', props.className)}>
+  return <InputEffect {...props} id={wrapperId} disabled={disabled ?? inputAttrs?.disabled} className={clsx('cm-input', props.className)}>
     {prefixNode}
     <input
-      id={inputId}
+      id={id}
       name={name}
-      type={inputType}
+      type={type}
       placeholder={placeholder}
       autoFocus={autoFocus}
-      maxLength={maxLength}
       value={value}
       onChange={(e) => onValueChange?.(e.target.value)}
       readOnly={readOnly}
