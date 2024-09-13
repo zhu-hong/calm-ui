@@ -1,4 +1,4 @@
-import { cloneElement, createContext, FC, forwardRef, HTMLAttributes, isValidElement, MouseEvent, ReactNode, useContext, useMemo, useState } from 'react'
+import { cloneElement, createContext, FC, FocusEvent, forwardRef, HTMLAttributes, isValidElement, KeyboardEvent, MouseEvent, ReactNode, TouchEvent, useContext, useMemo, useState } from 'react'
 import {
   autoUpdate,
   flip,
@@ -203,11 +203,11 @@ const PopoverContent = () => {
             ...transition.styles,
           },
           // stop trigger parentNode ripple
-          onClick: (e) => e.stopPropagation(),
-          onMouseDown: (e) => e.stopPropagation(),
-          onTouchStart: (e) => e.stopPropagation(),
-          onKeyDown: (e) => e.stopPropagation(),
-          onFocus: (e) => e.stopPropagation(),
+          onClick: (e: MouseEvent) => e.stopPropagation(),
+          onMouseDown: (e: MouseEvent) => e.stopPropagation(),
+          onTouchStart: (e: TouchEvent) => e.stopPropagation(),
+          onKeyDown: (e: KeyboardEvent) => e.stopPropagation(),
+          onFocus: (e: FocusEvent) => e.stopPropagation(),
         })}
       >
         {content}

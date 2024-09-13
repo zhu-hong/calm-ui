@@ -1,4 +1,4 @@
-import { cloneElement, createContext, CSSProperties, FC, isValidElement, ReactNode, useContext, useMemo, useRef, useState } from 'react'
+import { cloneElement, createContext, CSSProperties, FC, FocusEvent, isValidElement, KeyboardEvent, MouseEvent, ReactNode, TouchEvent, useContext, useMemo, useRef, useState } from 'react'
 import {
   arrow,
   autoUpdate,
@@ -194,11 +194,11 @@ const TooltipContent = () => {
           '--cm-tooltip-bg-color': tooltipColor,
           ...styles,
         } as CSSProperties,
-        onClick: (e) => e.stopPropagation(),
-        onMouseDown: (e) => e.stopPropagation(),
-        onTouchStart: (e) => e.stopPropagation(),
-        onKeyDown: (e) => e.stopPropagation(),
-        onFocus: (e) => e.stopPropagation(),
+        onClick: (e: MouseEvent) => e.stopPropagation(),
+        onMouseDown: (e: MouseEvent) => e.stopPropagation(),
+        onTouchStart: (e: TouchEvent) => e.stopPropagation(),
+        onKeyDown: (e: KeyboardEvent) => e.stopPropagation(),
+        onFocus: (e: FocusEvent) => e.stopPropagation(),
       })}
     >
       {content}

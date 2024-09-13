@@ -3,7 +3,7 @@ import './style.css'
 import { InputEffect, INPUT_EFFECT_FOCUSED_CLASSNAME } from '@calm-ui/input'
 import { Ripple } from '@calm-ui/ripple'
 import { useThemeContext } from '@calm-ui/theme'
-import { CSSProperties, forwardRef, HTMLAttributes, InputHTMLAttributes, useEffect, useMemo, useRef, useState } from 'react'
+import { CSSProperties, FocusEvent, forwardRef, HTMLAttributes, InputHTMLAttributes, KeyboardEvent, MouseEvent, TouchEvent, useEffect, useMemo, useRef, useState } from 'react'
 import clsx from 'clsx'
 import {
   autoUpdate,
@@ -230,11 +230,11 @@ export const Select = forwardRef<
                 zIndex,
                 ...styleCssVar,
               } as CSSProperties,
-              onClick: (e) => e.stopPropagation(),
-              onMouseDown: (e) => e.stopPropagation(),
-              onTouchStart: (e) => e.stopPropagation(),
-              onKeyDown: (e) => e.stopPropagation(),
-              onFocus: (e) => e.stopPropagation(),
+              onClick: (e: MouseEvent) => e.stopPropagation(),
+              onMouseDown: (e: MouseEvent) => e.stopPropagation(),
+              onTouchStart: (e: TouchEvent) => e.stopPropagation(),
+              onKeyDown: (e: KeyboardEvent) => e.stopPropagation(),
+              onFocus: (e: FocusEvent) => e.stopPropagation(),
             })}
           >
             {
