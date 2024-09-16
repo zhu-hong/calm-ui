@@ -19,7 +19,7 @@
     "build": "rollup -c"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.26.23"
+    "@floating-ui/react": "^0.26.24"
   },
   "peerDependencies": {
     "react": "18.x"
