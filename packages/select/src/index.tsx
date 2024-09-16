@@ -68,13 +68,16 @@ export const Select = forwardRef<
 
     return {
       '--cm-select-color': defaultColor,
-      '--cm-select-selected-bg-color': `rgba(${r}, ${g}, ${b}, .1)`,
-      '--cm-select-selected-actived-color': `rgba(${r}, ${g}, ${b}, .2)`,
       '--cm-select-selected-color': primary,
       '--cm-select-hover-color': `rgba(${dr}, ${dg}, ${db}, .1)`,
+      '--cm-select-selected-actived-color': `rgba(${r}, ${g}, ${b}, .2)`,
+      '--cm-select-selected-bg-color': `rgba(${r}, ${g}, ${b}, .1)`,
     }
   }, [primary, defaultColor])
 
+  const inputValue = useMemo(() => {
+    return inputAttrs?.value ?? value
+  }, [value, inputAttrs?.value])
   const optionList = useMemo(() => {
     if(!options) return []
 
@@ -86,21 +89,16 @@ export const Select = forwardRef<
       }
     })
   }, [options])
-
-  const inputValue = useMemo(() => {
-    return inputAttrs?.value ?? value
-  }, [value, inputAttrs?.value])
-
-  useEffect(() => {
-    if(!isOpen) return
-    setSelectedIndex(optionList.findIndex((o) => o.value === inputValue) ?? null)
-  }, [optionList, inputValue, isOpen])
-
   const valueLabel = useMemo(() => {
     if(inputValue === undefined) return
 
     return optionList.find((o) => o.value === inputValue)?.name ?? `${inputValue}`
   }, [optionList, inputValue])
+
+  useEffect(() => {
+    if(!isOpen) return
+    setSelectedIndex(optionList.findIndex((o) => o.value === inputValue) ?? null)
+  }, [optionList, inputValue, isOpen])
 
   const { x, y, strategy, refs, context } = useFloating({
     placement: 'bottom-start',
