@@ -112,7 +112,7 @@ export const Select = forwardRef<
         apply({ rects, elements, availableHeight }) {
           Object.assign(elements.floating.style, {
             maxHeight: `${Math.min(Math.max(250, availableHeight), 340)}px`,
-            minWidth: `${rects.reference.width}px`,
+            width: `${rects.reference.width}px`,
           } as CSSProperties)
         },
         padding: 12,
@@ -262,7 +262,7 @@ export const Select = forwardRef<
               ))
             }
             {
-              options && optionList.length === 0 && <div className='cm-select-list-empty'>暂无数据</div>
+              (!options || options.length === 0) && <div className='cm-select-list-empty'>暂无数据</div>
             }
           </div>
         </FloatingFocusManager>

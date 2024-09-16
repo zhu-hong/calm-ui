@@ -30,7 +30,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    padding: 6px 26px 6px 12px;
+    padding: 6px 28px 6px 12px;
     top: 50%;
     left: 0;
     transform: translateY(-50%);
@@ -53,6 +53,9 @@
     color: var(--cm-select-color);
     outline: none;
     border: none;
+    overflow: auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     &.cm-select-list-selected-item {
       color: var(--cm-select-selected-color);
