@@ -19,7 +19,6 @@ import {
   useListNavigation,
   useRole,
   useTransitionStyles,
-  useTypeahead,
 } from '@floating-ui/react'
 import { TinyColor } from '@ctrl/tinycolor'
 
@@ -62,8 +61,6 @@ export const Select = forwardRef<
   const [selectedIndex, setSelectedIndex] = useState<number|null>(null)
 
   const listRef = useRef<(HTMLElement|null)[]>([])
-  const listContentRef = useRef<string[]>([])
-  const isTypingRef = useRef(false)
 
   const styleCssVar = useMemo(() => {
     const { r, g, b } = new TinyColor(primary).toRgb()
@@ -142,13 +139,6 @@ export const Select = forwardRef<
     onNavigate: setActiveIndex,
     loop: true,
   })
-  const typeahead = useTypeahead(context, {
-    listRef: listContentRef,
-    activeIndex,
-    selectedIndex,
-    onMatch: isOpen ? (index) => setActiveIndex(index) : (index) => setSelectedIndex(index),
-    onTypingChange: (isTyping) => isTypingRef.current = isTyping,
-  })
 
   const transition = useTransitionStyles(context, {
     duration: 150,
@@ -176,7 +166,6 @@ export const Select = forwardRef<
     dismiss,
     role,
     listNav,
-    typeahead,
   ])
 
   const handleSelect = (optionValue: any) => {
@@ -194,11 +183,9 @@ export const Select = forwardRef<
       {...getReferenceProps({
         ...props,
         className: clsx('cm-select', isOpen && INPUT_EFFECT_FOCUSED_CLASSNAME, props?.className),
-        tabIndex: 0,
         id: wrapperId,
       })}
     >
-      <p className='cm-select-value' aria-label={valueLabel}>{valueLabel}</p>
       <input
         id={id}
         name={name}
@@ -212,8 +199,8 @@ export const Select = forwardRef<
         type='text'
         className={clsx('cm-select-input', inputAttrs?.className)}
         readOnly
-        tabIndex={-1}
       />
+      <p className='cm-select-label'>{valueLabel}</p>
       <svg className='cm-select-arrow' xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24"><path fill="currentColor" d="M11.178 19.569a.998.998 0 0 0 1.644 0l9-13A.999.999 0 0 0 21 5H3a1.002 1.002 0 0 0-.822 1.569z"></path></svg>
     </InputEffect>
 
@@ -247,26 +234,24 @@ export const Select = forwardRef<
                   ref={(node) => {
                     listRef.current[i] = node
                   }}
-                  aria-selected={i === selectedIndex && i === activeIndex}
+                  aria-selected={i === selectedIndex}
                   {...getItemProps({
                     role: 'option',
                     tabIndex: i === activeIndex ? 0 : -1,
                     className: clsx('cm-select-list-item', selectedIndex === i && 'cm-select-list-selected-item', activeIndex === i && 'cm-select-list-actived-item'),
-                    onClick() {
-                      handleSelect(option.value)
-                    },
+                    onClick: () => handleSelect(option.value),
                     onKeyDown(event) {
                       if(event.key === 'Enter') {
                         event.preventDefault()
                         handleSelect(option.value)
                       }
 
-                      if(event.key === ' ' && !isTypingRef.current) {
+                      if(event.key === ' ') {
                         event.preventDefault()
                       }
                     },
                     onKeyUp(event) {
-                      if(event.key === ' ' && !isTypingRef.current) {
+                      if(event.key === ' ') {
                         handleSelect(option.value)
                       }
                     },

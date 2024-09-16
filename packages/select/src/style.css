@@ -26,7 +26,7 @@
     }
   }
 
-  .cm-select-value {
+  .cm-select-label {
     position: absolute;
     line-height: 100%;
     max-width: 100%;
@@ -47,7 +47,6 @@
   overflow-y: auto;
   outline: none;
   border: none;
-  padding: 2px;
 
   .cm-select-list-item {
     position: relative;

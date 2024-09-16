@@ -127,6 +127,42 @@ const App = () => {
                   value: 'kale4',
                   name: '卡了4',
                 },
+                {
+                  value: 'kale5',
+                  name: '卡了5',
+                },
+                {
+                  value: 'kale6',
+                  name: '卡了6',
+                },
+                {
+                  value: 'kale7',
+                  name: '卡了7',
+                },
+                {
+                  value: 'kale8',
+                  name: '卡了8',
+                },
+                {
+                  value: 'kale9',
+                  name: '卡了9',
+                },
+                {
+                  value: 'kale10',
+                  name: '卡了410'
+                },
+                {
+                  value: 'kale11',
+                  name: '卡了211'
+                },
+                {
+                  value: 'kale12',
+                  name: '卡了312'
+                },
+                {
+                  value: 'kale13',
+                  name: '卡了413'
+                },
               ]} />
             </div>
             <br />
