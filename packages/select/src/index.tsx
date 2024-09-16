@@ -178,6 +178,7 @@ export const Select = forwardRef<
       aria-autocomplete='none'
       data-state={isOpen ? 'open' : 'closed'}
       disabled={disabled}
+      tabIndex={0}
       {...getReferenceProps({
         ...props,
         className: clsx('cm-select', isOpen && INPUT_EFFECT_FOCUSED_CLASSNAME, props?.className),
@@ -197,9 +198,10 @@ export const Select = forwardRef<
         type='text'
         className={clsx('cm-select-input', inputAttrs?.className)}
         readOnly
+        tabIndex={-1}
       />
-      <p className='cm-select-label'>{valueLabel}</p>
-      <svg className='cm-select-arrow' xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24"><path fill="currentColor" d="M11.178 19.569a.998.998 0 0 0 1.644 0l9-13A.999.999 0 0 0 21 5H3a1.002 1.002 0 0 0-.822 1.569z"></path></svg>
+      <svg className='cm-select-arrow' xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 17a1.72 1.72 0 0 1-1.33-.64l-4.21-5.1a2.1 2.1 0 0 1-.26-2.21A1.76 1.76 0 0 1 7.79 8h8.42a1.76 1.76 0 0 1 1.59 1.05a2.1 2.1 0 0 1-.26 2.21l-4.21 5.1A1.72 1.72 0 0 1 12 17"></path></svg>
+      <span className='cm-select-label'>{valueLabel}</span>
     </InputEffect>
 
     {

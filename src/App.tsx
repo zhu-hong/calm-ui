@@ -27,7 +27,7 @@ const App = () => {
   const [switchDisabled, setSwitchDisabled] = useState(true)
   const [checkboxChecked, setCheckboxChecked] = useState<boolean|'indeterminate'>('indeterminate')
   const [primaryColor, setPrimaryColor] = useState(COLORS[1])
-  const [selectValue, setSelectValue] = useState('及时的回复客户送快递卡绝世独立卡')
+  const [selectValue, setSelectValue] = useState('')
 
   return <div>
     <div className='w-full overflow-hidden relative'>
@@ -161,7 +161,7 @@ const App = () => {
                 },
                 {
                   value: 'kale13',
-                  name: '卡了413'
+                  name: '卡了413卡了413卡了413卡了413卡了413卡了413卡了413卡了413卡了413'
                 },
               ]} />
             </div>
