@@ -53,7 +53,7 @@
     color: var(--cm-select-color);
     outline: none;
     border: none;
-    overflow: auto;
+    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 

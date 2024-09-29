@@ -8,6 +8,9 @@ import { Switch } from '@calm-ui/switch'
 import { Checkbox } from '@calm-ui/checkbox'
 import { Radio, RadioGroup } from '@calm-ui/radio-group'
 import { Select } from '@calm-ui/select'
+import { MultipleSelect } from '@calm-ui/select'
+import { Popover, PopoverClose } from '@calm-ui/popover'
+import { Tooltip } from '@calm-ui/tooltip'
 
 const options = [
   {
@@ -76,6 +79,7 @@ const App = () => {
 
   const [checkboxChecked, setCheckboxChecked] = useState<boolean|'indeterminate'>('indeterminate')
   const [selectValue, setSelectValue] = useState('')
+  const [MSelectValue, setMSelectValue] = useState<string[]>([])
 
   const [perPage, setPerPage] = useState(20)
   const [page, setPage] = useState(1)
@@ -109,13 +113,151 @@ const App = () => {
           <Button theme='warning'>Warning</Button>
           <Button theme='default'>Default</Button>
         </div>
-        <div className='mt-32px flex items-center gap-12px'>
-          <p>outlined button</p>
-          <Button outlined theme='primary'>Primary</Button>
-          <Button outlined theme='danger'>Danger</Button>
-          <Button outlined theme='success'>Success</Button>
-          <Button outlined theme='warning'>Warning</Button>
-          <Button outlined theme='default'>Default</Button>
+        <div className='p-32px'>
+          <label htmlFor='mselect'>MSelect：</label>
+          <MultipleSelect id='mselect' placeholder='请选择' value={MSelectValue} onValueChange={setMSelectValue} name='select' options={[
+            {
+              value: 'kale',
+              name: '卡了',
+            },
+            {
+              value: 'kale2',
+              name: '卡了2',
+            },
+            {
+              value: 'kale3',
+              name: '卡了3',
+            },
+            {
+              value: 'kale4',
+              name: '卡了4',
+            },
+            {
+              value: 'kale5',
+              name: '卡了5',
+            },
+            {
+              value: 'kale6',
+              name: '卡了6',
+            },
+            {
+              value: 'kale7',
+              name: '卡了7',
+            },
+            {
+              value: 'kale8',
+              name: '卡了8',
+            },
+            {
+              value: 'kale9',
+              name: '卡了9',
+            },
+            {
+              value: 'kale10',
+              name: '卡了410'
+            },
+            {
+              value: 'kale11',
+              name: '卡了211'
+            },
+            {
+              value: 'kale12',
+              name: '卡了312'
+            },
+            {
+              value: 'kale13',
+              name: '卡了413卡了413卡了413卡了413卡了413卡了413卡了413卡了413卡了413'
+            },
+          ]} />
+        </div>
+        <div className="p-32px">
+          <div className='flex items-center gap-12px flex-wrap relative'>
+            <p>normal button</p>
+            <Button theme='primary' className='font-500 text-32px'>
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32">
+                <g fill="none">
+                  <path fill="#86d72f" d="M29.84 15.92C29.84 23.61 18.92 30 15.92 30S2 23.61 2 15.92S8.23 2 15.92 2s13.92 6.23 13.92 13.92"></path>
+                  <path fill="#212121" d="M13.368 24.225a1 1 0 0 1 1.407.143c.376.461.825.645 1.225.645s.85-.184 1.225-.645a1 1 0 1 1 1.55 1.264c-.724.889-1.726 1.38-2.775 1.38c-1.05 0-2.05-.491-2.775-1.38a1 1 0 0 1 .143-1.407"></path>
+                  <path fill="#533566" d="M6.474 19.527c2.254 2.253 4.6 3.549 6.845 1.306c2.253-2.242 2.233-5.905-.01-8.147c-2.244-2.243-5.898-2.253-8.142 0s-.946 4.588 1.307 6.84m19.051.001c-2.255 2.253-4.602 3.549-6.847 1.306s-2.234-5.905.01-8.147c2.245-2.243 5.9-2.253 8.144 0c2.245 2.253.947 4.588-1.307 6.84"></path>
+                  <path fill="#fff" d="M12.62 15.62c.61-.61.47-1.73-.31-2.51c-.78-.77-1.9-.92-2.51-.31s-.47 1.73.31 2.51s1.9.92 2.51.31m13.28 0c.61-.61.47-1.73-.31-2.51c-.77-.77-1.9-.92-2.51-.31s-.47 1.73.31 2.51s1.9.92 2.51.31"></path>
+                </g>
+              </svg>
+              Primary
+            </Button>
+            <Button theme='danger' onClick={() => setOpen(true)}>Dialog</Button>
+            <Button theme='success' onClick={() => setOpen2(true)}>Drawer KeepMount</Button>
+            <Button theme='warning'>GO</Button>
+            <Button theme='default'>GO</Button>
+          </div>
+          <div className='mt-32px flex items-center gap-12px flex-wrap'>
+            <p>outlined button</p>
+            <Button outlined theme='primary' className='text-32px fontmono'>GO</Button>
+            <Button outlined theme='danger' className='bg-white'>GO</Button>
+            <Button outlined theme='success'>
+              <Popover
+                content={
+                  <div className='p-64px rounded border'>
+                    <p>1231234512345</p>
+                    <Input placeholder='请输入' />
+                    <PopoverClose>close</PopoverClose>
+                  </div>
+                }
+                placement='bottom-end'
+              >
+                <span tabIndex={0} onClick={(e) => e.stopPropagation()}>Button内span触发 Popover</span>
+              </Popover>
+            </Button>
+            <Button outlined theme='warning' loading>LOADING BUTTON</Button>
+            <Button outlined theme='default'>GO</Button>
+          </div>
+          <div className='mt-32px flex items-center gap-12px flex-wrap'>
+            <p>text button</p>
+            <Tooltip enterable content='Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa veritatis ab at earum voluptates dolore rem provident, perferendis, fugit rerum quaerat laudantium quis maxime beatae quibusdam excepturi iste? Iure, nisi?' placement='top-start'>
+              <Button text theme='primary' className='max-w-120px'><span className='truncate'>可移入的Tooltip Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa veritatis ab at earum voluptates dolore rem provident, perferendis, fugit rerum quaerat laudantium quis maxime beatae quibusdam excepturi iste? Iure, nisi?</span></Button>
+            </Tooltip>
+            <Tooltip content='tooltip' placement='bottom' delay={0}>
+              <Button text theme='danger'>直接显示的Tooltip</Button>
+            </Tooltip>
+            <Button text theme='success'>GO</Button>
+            <Button text theme='warning'>GO</Button>
+            <Button text theme='default'>GO</Button>
+          </div>
+          <div className='mt-32px flex items-center gap-12px flex-wrap'>
+            <p>tag button</p>
+            <Button tag theme='primary'>GO</Button>
+            <Button tag theme='danger'>GO</Button>
+            <Button tag theme='success'>GO</Button>
+            <Button tag theme='warning'>GO</Button>
+            <Button tag theme='default'>GO</Button>
+          </div>
+          <div className='mt-32px flex items-center gap-12px flex-wrap'>
+            <p>icon button</p>
+            <IconButton theme='primary'>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path>
+              </svg>
+            </IconButton>
+            <IconButton theme='danger'>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path>
+              </svg>
+            </IconButton>
+            <IconButton theme='success'>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path>
+              </svg>
+            </IconButton>
+            <IconButton theme='warning'>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path>
+              </svg>
+            </IconButton>
+            <IconButton theme='default'>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path>
+              </svg>
+            </IconButton>
+          </div>
         </div>
         <div className='mt-32px flex items-center gap-12px'>
           <p>text button</p>
