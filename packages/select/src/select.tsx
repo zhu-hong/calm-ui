@@ -33,6 +33,7 @@ type SelectProps = {
   onValueChange?: (value: string) => void
   disabled?: InputAttrs['disabled']
   wrapperId?: HTMLAttributes<HTMLDivElement>['id']
+  onOpen?: () => void
 }
 
 export const Select = forwardRef<
@@ -50,6 +51,7 @@ export const Select = forwardRef<
   disabled,
   inputAttrs,
   wrapperId,
+  onOpen,
   ...props
 }, ref) => {
   const { palette: { primary, default: defaultColor } } = useThemeContext()
@@ -57,6 +59,12 @@ export const Select = forwardRef<
   const [isOpen, setIsOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState<number|null>(null)
   const [selectedIndex, setSelectedIndex] = useState<number|null>(null)
+
+  useEffect(() => {
+    if(isOpen) {
+      onOpen?.()
+    }
+  }, [isOpen])
 
   const listRef = useRef<(HTMLElement|null)[]>([])
 
@@ -259,7 +267,7 @@ export const Select = forwardRef<
               ))
             }
             {
-              (!options || options.length === 0) && <div className='cm-select-list-empty'>暂无数据</div>
+              (!options || options.length === 0) && <div className='cm-select-list-empty'>{options?.length === 0 && '暂无数据'}</div>
             }
           </div>
         </FloatingFocusManager>
