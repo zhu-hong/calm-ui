@@ -267,7 +267,7 @@ export const Select = forwardRef<
               ))
             }
             {
-              (!options || options.length === 0) && <div className='cm-select-list-empty'>{options?.length === 0 && '暂无数据'}</div>
+              (!options || options.length === 0) && <div className='cm-select-list-empty'>暂无数据</div>
             }
           </div>
         </FloatingFocusManager>
