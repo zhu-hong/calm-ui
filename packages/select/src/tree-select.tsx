@@ -31,7 +31,7 @@ type SelectProps = {
   placeholder?: InputAttrs['placeholder']
   autoFocus?: InputAttrs['autoFocus']
   value?: InputAttrs['value']
-  onValueChange?: (value: string[]) => void
+  onValueChange?: (value: string) => void
   disabled?: InputAttrs['disabled']
   wrapperId?: HTMLAttributes<HTMLDivElement>['id']
   onOpen?: () => void
