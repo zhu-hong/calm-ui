@@ -55,17 +55,23 @@
     border: none;
     white-space: pre-wrap;
     line-break: anywhere;
-
-    &.cm-select-list-selected-item {
-      color: var(--cm-select-selected-color);
-      background-color: var(--cm-select-selected-bg-color);
-      &.cm-select-list-actived-item {
-        background-color: var(--cm-select-selected-actived-color);
+    
+    &:not(.cm-select-list-item-disabled) {
+      &.cm-select-list-selected-item {
+        color: var(--cm-select-selected-color);
+        background-color: var(--cm-select-selected-bg-color);
+        &.cm-select-list-actived-item {
+          background-color: var(--cm-select-selected-actived-color);
+        }
+      }
+  
+      &.cm-select-list-actived-item:not(.cm-select-list-selected-item) {
+        background-color: var(--cm-select-hover-color);
       }
     }
-
-    &.cm-select-list-actived-item:not(.cm-select-list-selected-item) {
-      background-color: var(--cm-select-hover-color);
+    &.cm-select-list-item-disabled {
+      opacity: .5;
+      cursor: not-allowed;
     }
   }
 

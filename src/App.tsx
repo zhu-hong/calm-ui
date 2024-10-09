@@ -78,7 +78,7 @@ const App = () => {
 
   const [checkboxChecked, setCheckboxChecked] = useState<boolean|'indeterminate'>('indeterminate')
   const [selectValue, setSelectValue] = useState('')
-  const [MSelectValue, setMSelectValue] = useState<string[]>([])
+  const [MSelectValue, setMSelectValue] = useState<string>('')
 
   const [perPage, setPerPage] = useState(20)
   const [page, setPage] = useState(1)
@@ -150,6 +150,7 @@ const App = () => {
             {
               "value": "3992fa11-6e54-403d-93b2-f524a4333e07",
               "name": "2",
+              disabled: true,
               "children": [
                 {
                   "value": "23cbd533-9cc6-42d3-a95f-efbc3b114b24",

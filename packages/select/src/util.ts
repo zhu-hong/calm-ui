@@ -1,4 +1,4 @@
-export type Option = { name?: string; value: any; children?: Option[] }
+export type Option = { name?: string; value: any; disabled?: boolean; children?: Option[] }
 
 type OptionsExpand = Option & { level: number; canExpand: boolean; expand: boolean; show: boolean; }
 
@@ -9,7 +9,7 @@ const expandOption = (options: Option[], level = 0, unExpandKeys: string[], show
       ...o,
       level,
       expand,
-      children: (!!o.children && o.children.length > 0) ? expandOption(o.children, level + 1, unExpandKeys, expand) : [],
+      children: (!!o.children && o.children.length > 0) ? expandOption(o.children, level + 1, unExpandKeys, expand && show) : [],
       canExpand: !!o.children && o.children.length > 0,
       show,
     }
