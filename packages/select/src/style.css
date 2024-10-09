@@ -53,9 +53,8 @@
     color: var(--cm-select-color);
     outline: none;
     border: none;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: pre-wrap;
+    line-break: anywhere;
 
     &.cm-select-list-selected-item {
       color: var(--cm-select-selected-color);
@@ -67,6 +66,30 @@
 
     &.cm-select-list-actived-item:not(.cm-select-list-selected-item) {
       background-color: var(--cm-select-hover-color);
+    }
+  }
+
+  .cm-select-treelist-item {
+    display: flex;
+    align-items: center;
+    .cm-select-treelist-item-expand {
+      flex: none;
+      margin-right: 4px;
+      color: transparent;
+      &.cm-select-treelist-item-canexpan {
+        color: currentColor;
+        cursor: pointer;
+        transform: rotate(-90deg);
+        &.cm-select-treelist-item-expaned {
+          transform: rotate(0);
+        }
+      }
+    }
+    .cm-select-treelist-item-value {
+      flex: auto;
+      white-space: pre-wrap;
+      line-break: anywhere;
+      user-select: none;
     }
   }
 

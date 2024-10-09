@@ -19,24 +19,25 @@ import {
   useTransitionStyles,
 } from '@floating-ui/react'
 import { TinyColor } from '@ctrl/tinycolor'
+import { DFSOptions, Option } from './util'
 
 type InputAttrs = InputHTMLAttributes<HTMLInputElement>
 
 type SelectProps = {
-  options?: ({ name?: string; value: any; })[] | undefined | null
+  options?: Option[] | undefined | null
   inputAttrs?: InputAttrs
   zIndex?: number
   name?: InputAttrs['name']
   placeholder?: InputAttrs['placeholder']
   autoFocus?: InputAttrs['autoFocus']
   value?: InputAttrs['value']
-  onValueChange?: (value: string) => void
+  onValueChange?: (value: string[]) => void
   disabled?: InputAttrs['disabled']
   wrapperId?: HTMLAttributes<HTMLDivElement>['id']
   onOpen?: () => void
 }
 
-export const Select = forwardRef<
+export const TreeSelect = forwardRef<
   HTMLInputElement,
   HTMLAttributes<HTMLDivElement> & SelectProps
 >(({
@@ -84,17 +85,19 @@ export const Select = forwardRef<
   const inputValue = useMemo(() => {
     return inputAttrs?.value ?? value
   }, [value, inputAttrs?.value])
+  
+  const [unExpandKeys, setUnExpandKeys] = useState<string[]>([])
   const optionList = useMemo(() => {
     if(!options) return []
 
-    return options.map((option) => {
+    return DFSOptions(options, unExpandKeys).map((option) => {
       return {
+        ...option,
         name: option.name ?? `${option.value}`,
-        value: option.value,
         key: option.name ?? `${option.value}`,
       }
     })
-  }, [options])
+  }, [options, unExpandKeys])
   const valueLabel = useMemo(() => {
     if(inputValue === undefined) return
 
@@ -103,7 +106,7 @@ export const Select = forwardRef<
 
   useEffect(() => {
     if(!isOpen) return
-    setSelectedIndex(optionList.findIndex((o) => o.value === inputValue) ?? null)
+    setSelectedIndex(optionList.filter((o) => o.show).findIndex((o) => o.value === inputValue) ?? null)
   }, [optionList, inputValue, isOpen])
 
   const { x, y, strategy, refs, context } = useFloating({
@@ -128,6 +131,14 @@ export const Select = forwardRef<
       }),
     ],
   })
+
+  const toggleShow = (key: string) => {
+    if(unExpandKeys.includes(key)) {
+      setUnExpandKeys(unExpandKeys.filter((k) => k !== key))
+      return
+    }
+    setUnExpandKeys([...unExpandKeys, key])
+  }
 
   const click = useClick(context, {
     event: 'click',
@@ -171,7 +182,6 @@ export const Select = forwardRef<
     role,
     listNav,
   ])
-
   const handleSelect = (optionValue: any) => {
     setIsOpen(false)
     if(optionValue === inputValue) return
@@ -232,7 +242,7 @@ export const Select = forwardRef<
             })}
           >
             {
-              optionList.map((option, i) => (
+              optionList.filter((o) => o.show).map((option, i) => (
                 <Ripple
                   as='div'
                   key={option.key}
@@ -243,7 +253,7 @@ export const Select = forwardRef<
                   {...getItemProps({
                     role: 'option',
                     tabIndex: i === activeIndex ? 0 : -1,
-                    className: clsx('cm-select-list-item', selectedIndex === i && 'cm-select-list-selected-item', activeIndex === i && 'cm-select-list-actived-item'),
+                    className: clsx('cm-select-list-item cm-select-treelist-item', selectedIndex === i && 'cm-select-list-selected-item', activeIndex === i && 'cm-select-list-actived-item'),
                     onClick: () => handleSelect(option.value),
                     onKeyDown(event) {
                       if(event.key === 'Enter') {
@@ -260,9 +270,20 @@ export const Select = forwardRef<
                         handleSelect(option.value)
                       }
                     },
+                    style: {
+                      paddingLeft: option.level * 12 + 12,
+                    },
                   })}
                 >
-                  {option.name}
+                  <svg onClick={(e) => {
+                    e.stopPropagation()
+                    toggleShow(option.value)
+                  }} xmlns="http://www.w3.org/2000/svg" className={clsx('cm-select-treelist-item-expand', option.canExpand && 'cm-select-treelist-item-canexpan', option.expand && 'cm-select-treelist-item-expaned')} width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M4.94 5.333 8 8.387l3.06-3.054.94.94-4 4-4-4z"></path></svg>
+                  <span className='cm-select-treelist-item-value'>
+                    {
+                      option.name
+                    }
+                  </span>
                 </Ripple>
               ))
             }
@@ -275,3 +296,4 @@ export const Select = forwardRef<
     }
   </>
 })
+

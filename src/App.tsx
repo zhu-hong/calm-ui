@@ -7,8 +7,7 @@ import { Input, Textarea } from '@calm-ui/input'
 import { Switch } from '@calm-ui/switch'
 import { Checkbox } from '@calm-ui/checkbox'
 import { Radio, RadioGroup } from '@calm-ui/radio-group'
-import { Select } from '@calm-ui/select'
-import { MultipleSelect } from '@calm-ui/select'
+import { Select, TreeSelect } from '@calm-ui/select'
 import { Popover, PopoverClose } from '@calm-ui/popover'
 import { Tooltip } from '@calm-ui/tooltip'
 
@@ -114,60 +113,51 @@ const App = () => {
           <Button theme='default'>Default</Button>
         </div>
         <div className='p-32px'>
-          <label htmlFor='mselect'>MSelect：</label>
-          <MultipleSelect id='mselect' placeholder='请选择' value={MSelectValue} onValueChange={setMSelectValue} name='select' options={[
+          <label htmlFor='mselect'>TreeMelect：</label>
+          <TreeSelect id='mselect' placeholder='请选择' value={MSelectValue} onValueChange={setMSelectValue} name='select' options={[
             {
-              value: 'kale',
-              name: '卡了',
+              "value": "8da989ea-86be-42b8-be96-f20fde95f7f0",
+              "name": "1",
+              "children": [
+                {
+                  "value": "9964d5ab-6198-40a2-8e1c-5ccd877447c3",
+                  "name": "1-1",
+                  "children": [
+                    {
+                      "value": "a55a92d8-5491-4052-8e4f-bb8b5f829702",
+                      "name": "1-1-1",
+                      "children": []
+                    },
+                    {
+                      "value": "eafdb6ae-20ec-4d7c-865a-6a0fed673020",
+                      "name": "1-1-2开始大家客户反馈及时的反馈好看科技手段和反馈速度快发货快",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "value": "aa8dcfb5-5e50-4015-bead-23924f4ea63c",
+                  "name": "1-2",
+                  "children": []
+                },
+                {
+                  "value": "fe0a9ff7-afd4-4430-b7d1-6004aa71c9b3",
+                  "name": "1-3",
+                  "children": []
+                }
+              ]
             },
             {
-              value: 'kale2',
-              name: '卡了2',
-            },
-            {
-              value: 'kale3',
-              name: '卡了3',
-            },
-            {
-              value: 'kale4',
-              name: '卡了4',
-            },
-            {
-              value: 'kale5',
-              name: '卡了5',
-            },
-            {
-              value: 'kale6',
-              name: '卡了6',
-            },
-            {
-              value: 'kale7',
-              name: '卡了7',
-            },
-            {
-              value: 'kale8',
-              name: '卡了8',
-            },
-            {
-              value: 'kale9',
-              name: '卡了9',
-            },
-            {
-              value: 'kale10',
-              name: '卡了410'
-            },
-            {
-              value: 'kale11',
-              name: '卡了211'
-            },
-            {
-              value: 'kale12',
-              name: '卡了312'
-            },
-            {
-              value: 'kale13',
-              name: '卡了413卡了413卡了413卡了413卡了413卡了413卡了413卡了413卡了413'
-            },
+              "value": "3992fa11-6e54-403d-93b2-f524a4333e07",
+              "name": "2",
+              "children": [
+                {
+                  "value": "23cbd533-9cc6-42d3-a95f-efbc3b114b24",
+                  "name": "2-1",
+                  "children": []
+                }
+              ]
+            }
           ]} />
         </div>
         <div className="p-32px">

@@ -102,7 +102,7 @@ export const MultipleSelect = forwardRef<
 
   useEffect(() => {
     if(!isOpen || !value || !value.length) return
-    setSelectedIndex(optionList.findIndex((o) => o.value === value[value.length - 1]) ?? null)
+    setSelectedIndex(optionList.findIndex((o) => o.value === value[0]) ?? null)
   }, [optionList, isOpen])
 
   const { x, y, strategy, refs, context } = useFloating({
@@ -116,7 +116,7 @@ export const MultipleSelect = forwardRef<
         // @ts-ignore
         apply({ rects, elements, availableHeight }) {
           Object.assign(elements.floating.style, {
-            maxHeight: `${Math.min(Math.max(250, availableHeight), 340)}px`,
+            maxHeight: `${Math.min(Math.max(250, availableHeight), 520)}px`,
             width: `${rects.reference.width}px`,
           } as CSSProperties)
         },
