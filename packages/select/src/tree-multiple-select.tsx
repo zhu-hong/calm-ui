@@ -256,7 +256,7 @@ export const TreeMultipleSelect = forwardRef<
                   {...getItemProps({
                     role: 'option',
                     tabIndex: i === activeIndex ? 0 : -1,
-                    className: clsx('cm-select-list-item cm-select-treelist-item', selectedIndex === i && 'cm-select-list-selected-item', activeIndex === i && 'cm-select-list-actived-item', option.disabled && 'cm-select-list-item-disabled'),
+                    className: clsx('cm-select-list-item cm-select-treelist-item', value?.includes(option.value) && 'cm-select-list-selected-item', activeIndex === i && 'cm-select-list-actived-item', option.disabled && 'cm-select-list-item-disabled'),
                     onClick: () => {
                       if(option.disabled) return
                       handleSelect(option.value)
