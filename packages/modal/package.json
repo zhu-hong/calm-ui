@@ -1,6 +1,6 @@
 {
   "name": "@calm-ui/modal",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@calm-ui/button": "workspace:^",
-    "@floating-ui/react": "^0.26.24",
+    "@floating-ui/react": "^0.26.25",
     "@zhuh/style-inject": "^1.0.1",
     "clsx": "^2.1.1"
   },

@@ -1,6 +1,6 @@
 {
   "name": "@calm-ui/select",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -23,7 +23,7 @@
     "@calm-ui/ripple": "workspace:^",
     "@calm-ui/theme": "workspace:^",
     "@ctrl/tinycolor": "^4.1.0",
-    "@floating-ui/react": "^0.26.24",
+    "@floating-ui/react": "^0.26.25",
     "@zhuh/style-inject": "^1.0.1",
     "clsx": "^2.1.1"
   },

@@ -1,6 +1,6 @@
 {
   "name": "@calm-ui/popover",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,7 +19,7 @@
     "build": "rollup -c"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.26.24"
+    "@floating-ui/react": "^0.26.25"
   },
   "peerDependencies": {
     "react": "18.x"
