@@ -2,7 +2,7 @@ import './style.css'
 
 import { IconButton } from '@calm-ui/button'
 import { Root, Item, Indicator } from '@radix-ui/react-radio-group'
-import { CSSProperties, forwardRef, useMemo } from 'react'
+import { ComponentProps, CSSProperties, FC, forwardRef, useMemo } from 'react'
 import clsx from 'clsx'
 import { useThemeContext } from '@calm-ui/theme'
 import { TinyColor } from '@ctrl/tinycolor'
@@ -11,7 +11,7 @@ export const RadioGroup: typeof Root = forwardRef(({ ...props }, ref) => {
   return <Root {...props} ref={ref} className={clsx('cm-radio-group', props.className)} />
 })
 
-export const Radio: typeof Item = forwardRef(({ ...props }, ref) => {
+export const Radio: FC<ComponentProps<typeof Item> & { size?: number }> = forwardRef(({ size = 24, ...props }, ref) => {
   const { palette: { primary } } = useThemeContext()
 
   const radioColors = useMemo(() => {
@@ -33,7 +33,7 @@ export const Radio: typeof Item = forwardRef(({ ...props }, ref) => {
       theme='#666666'
     >
       <Indicator asChild forceMount>
-        <span className='cm-radio-inner'></span>
+        <span className='cm-radio-inner' style={{ width: size, height: size }}></span>
       </Indicator>
     </IconButton>
   </Item>

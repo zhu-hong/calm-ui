@@ -300,12 +300,12 @@ const App = () => {
           <br />
           <label htmlFor="checkbox">checkbox</label>
           <br />
-          <Checkbox name='checkbox' id='checkbox' value='checkbox' checked={checkboxChecked} onCheckedChange={setCheckboxChecked} />
+          <Checkbox name='checkbox' id='checkbox' value='checkbox' checked={checkboxChecked} onCheckedChange={setCheckboxChecked} size={48} />
           <br />
           <br />
           <p>radio group</p>
           <RadioGroup name='radio' className='flex items-center'>
-            <Radio id='kale1' value='kale' />
+            <Radio id='kale1' value='kale' size={48} />
             <label htmlFor="kale1">卡了1</label>
             <Radio id='kale2' value='kale2' />
             <label htmlFor="kale2">卡了2</label>

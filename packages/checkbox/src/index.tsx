@@ -9,8 +9,8 @@ import clsx from 'clsx'
 
 export const Checkbox = forwardRef<
   HTMLButtonElement,
-  Omit<CheckboxProps, 'onCheckedChange'> & { onCheckedChange?: (checked: boolean) => void; }
->(({ ...props }, ref) => {
+  Omit<CheckboxProps, 'onCheckedChange'> & { onCheckedChange?: (checked: boolean) => void; size?: number }
+>(({ size = 24, ...props }, ref) => {
   const { palette: { primary } } = useThemeContext()
 
   const checkboxColors = useMemo(() => {
@@ -27,7 +27,7 @@ export const Checkbox = forwardRef<
       padding:'6px',
       ...checkboxColors,
     }}>
-      <Indicator forceMount className='cm-checkbox-inner'></Indicator>
+      <Indicator forceMount className='cm-checkbox-inner' style={{ width: size, height: size }}></Indicator>
     </IconButton>
   </Root>
 })
