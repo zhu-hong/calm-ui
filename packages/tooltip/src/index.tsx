@@ -129,6 +129,8 @@ export const Tooltip: FC<TooltipOptions & { children: ReactNode; content: ReactN
     enterable,
   })
 
+  if(!content) return null
+
   return <TooltipContext.Provider value={tooltip}>
     <TooltipTrigger />
     <TooltipContent />

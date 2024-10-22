@@ -4,14 +4,24 @@
   padding: 6px 12px;
   cursor: pointer;
 
+  &.cm-combobox {
+    padding: 0;
+  }
+
   .cm-select-input {
     cursor: pointer;
     border: none;
     outline: none;
     flex: auto;
     background-color: transparent;
-    &:not(:placeholder-shown) {
-      opacity: 0;
+
+    &.cm-combobox-input {
+      padding: 6px 12px;
+    }
+    &:not(.cm-combobox-input) {
+      &:not(:placeholder-shown) {
+        opacity: 0;
+      }
     }
   }
 

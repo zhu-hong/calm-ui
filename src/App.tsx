@@ -7,7 +7,7 @@ import { Input, Textarea } from '@calm-ui/input'
 import { Switch } from '@calm-ui/switch'
 import { Checkbox } from '@calm-ui/checkbox'
 import { Radio, RadioGroup } from '@calm-ui/radio-group'
-import { Select, TreeSelect } from '@calm-ui/select'
+import { Combobox, TreeSelect } from '@calm-ui/select'
 import { Popover, PopoverClose } from '@calm-ui/popover'
 import { Tooltip } from '@calm-ui/tooltip'
 
@@ -15,38 +15,47 @@ const options = [
   {
     value: 'kale',
     name: '卡了',
+    data: '靠靠靠靠靠靠靠',
   },
   {
     value: 'kale2',
     name: '卡了2',
+    data: '靠靠靠靠靠靠靠',
   },
   {
     value: 'kale3',
     name: '卡了3',
+    data: '靠靠靠靠靠靠靠',
   },
   {
     value: 'kale4',
     name: '卡了4',
+    data: '靠靠靠靠靠靠靠',
   },
   {
     value: 'kale5',
     name: '卡了5',
+    data: '靠靠靠靠靠靠靠',
   },
   {
     value: 'kale6',
     name: '卡了6',
+    data: '靠靠靠靠靠靠靠',
   },
   {
     value: 'kale7',
     name: '卡了7',
+    data: '靠靠靠靠靠靠靠',
   },
   {
     value: 'kale8',
     name: '卡了8',
+    data: '靠靠靠靠靠靠靠',
   },
   {
     value: 'kale9',
     name: '卡了9',
+    data: '靠靠靠靠靠靠靠',
   },
   {
     value: 'kale10',
@@ -77,7 +86,7 @@ const App = () => {
   const [primaryColor, setPrimaryColor] = useState(COLORS.at(-1))
 
   const [checkboxChecked, setCheckboxChecked] = useState<boolean|'indeterminate'>('indeterminate')
-  const [selectValue, setSelectValue] = useState('')
+  const [selectValue, setSelectValue] = useState('kale3')
   const [MSelectValue, setMSelectValue] = useState<string>('')
 
   const [perPage, setPerPage] = useState(20)
@@ -286,7 +295,7 @@ const App = () => {
         </div>
       </div>
       <div className='flex p-32px'>
-        <form className="border p-32px">
+        <form className="border p-32px" onSubmit={(e) => e.preventDefault()}>
           <label htmlFor='input' className='w-6rem text-right'>Input：</label>
           <Input name='input' id='input' value={'sdsdsdsd'} disabled />
           <br />
@@ -316,9 +325,11 @@ const App = () => {
           </RadioGroup>
           <br />
           <label htmlFor='select'>Select：</label>
-          <Select name='select' id='select' value={selectValue} onValueChange={setSelectValue} options={options} inputAttrs={{
-            onChange: console.log,
-          }}  />
+          <Combobox placeholder='combobox' options={options} value={selectValue} optionRender={(option) => {
+            return <div className='w-120px truncate'>{option.name?.repeat(10)}</div>
+          }} onSelectOption={(value) => {
+            setSelectValue(value.value)
+          }} />
           <br />
           <br />
           <Button type='submit'>SUBMIT</Button>
