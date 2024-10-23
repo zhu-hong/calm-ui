@@ -204,9 +204,9 @@ export const Combobox = forwardRef<
         aria-autocomplete='none'
         data-state={isOpen ? 'open' : 'closed'}
         disabled={disabled}
+        {...props}
         className={clsx('cm-select cm-combobox', isOpen && INPUT_EFFECT_FOCUSED_CLASSNAME, props?.className)}
         id={wrapperId}
-        {...props}
       >
         <input
           id={id}
