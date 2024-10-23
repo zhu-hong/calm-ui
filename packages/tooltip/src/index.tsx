@@ -158,8 +158,6 @@ const TooltipTrigger = () => {
 const TooltipContent = () => {
   const { content, context: floatingContext, zIndex, ...context } = useTooltipContext()
 
-  if(!content) return null
-
   const { palette: { default: tooltipColor } } = useThemeContext()
 
   const { isMounted, styles } = useTransitionStyles(floatingContext, {
@@ -183,6 +181,8 @@ const TooltipContent = () => {
       }
     },
   })
+
+  if(!content && content !== 0) return null
 
   return isMounted && <FloatingPortal>
     <div
