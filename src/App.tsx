@@ -86,7 +86,7 @@ const App = () => {
   const [primaryColor, setPrimaryColor] = useState(COLORS.at(-1))
 
   const [checkboxChecked, setCheckboxChecked] = useState<boolean|'indeterminate'>('indeterminate')
-  const [selectValue, setSelectValue] = useState('kale3')
+  const [selectValue, setSelectValue] = useState('')
   const [MSelectValue, setMSelectValue] = useState<string>('')
 
   const [perPage, setPerPage] = useState(20)
@@ -326,8 +326,9 @@ const App = () => {
           <br />
           <label htmlFor='select'>Select：</label>
           <Combobox placeholder='combobox' options={options} value={selectValue} optionRender={(option) => {
-            return <div className='w-120px truncate'>{option.name?.repeat(10)}</div>
+            return <div className='w-120px truncate'>{option.name}</div>
           }} onSelectOption={(value) => {
+            console.log(value)
             setSelectValue(value.value)
           }} />
           <br />

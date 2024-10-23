@@ -222,7 +222,7 @@ export const TreeMultipleSelect = forwardRef<
 
     {
       transition.isMounted && <FloatingPortal>
-        <FloatingFocusManager context={context} modal={false}>
+        <FloatingFocusManager context={context} modal={false} returnFocus={false}>
           <div
             ref={refs.setFloating}
             {...getFloatingProps({

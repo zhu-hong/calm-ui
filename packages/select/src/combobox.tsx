@@ -186,9 +186,13 @@ export const Combobox = forwardRef<
     }).filter(({ name }) => name.includes(inputValue))
   }, [options, inputValue])
 
+  const onBlur = () => {
+    setInputValue(inputText)
+  }
+
   const selectOption = (option: Option) => {
-    setIsOpen(false)
     onSelectOption?.(option)
+    setIsOpen(false)
     setActiveIndex(null)
   }
 
@@ -225,7 +229,7 @@ export const Combobox = forwardRef<
                 selectOption(items[activeIndex])
               }
             },
-            onBlur: () => setInputValue(inputText),
+            onBlur,
           })}
         />
       </InputEffect>
@@ -267,6 +271,7 @@ export const Combobox = forwardRef<
                     role: 'option',
                     tabIndex: i === activeIndex ? 0 : -1,
                     className: clsx('cm-select-list-item', activeIndex === i && 'cm-select-list-selected-item'),
+                    onPointerDown: (e) => e.preventDefault(),
                     onClick: () => selectOption(option),
                   })}
                 >
