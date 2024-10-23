@@ -170,12 +170,6 @@ export const Combobox = forwardRef<
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     setInputValue(value)
-
-    if (value) {
-      setIsOpen(true)
-    } else {
-      setIsOpen(false)
-    }
   }
 
   const ref = useMergeRefs([propRef, refs.setReference])
