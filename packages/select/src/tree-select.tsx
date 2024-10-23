@@ -96,7 +96,6 @@ export const TreeSelect = forwardRef<
       return {
         ...option,
         name: option.name ?? `${option.value}`,
-        key: option.name ?? `${option.value}`,
       }
     })
   }, [options, unExpandKeys])
@@ -247,7 +246,7 @@ export const TreeSelect = forwardRef<
               optionList.filter((o) => o.show).map((option, i) => (
                 <Ripple
                   as='div'
-                  key={option.key}
+                  key={option.value}
                   ref={(node) => {
                     listRef.current[i] = node
                   }}

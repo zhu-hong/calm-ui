@@ -90,9 +90,9 @@ export const MultipleSelect = forwardRef<
 
     return options.map((option) => {
       return {
+        ...option,
         name: option.name ?? `${option.value}`,
         value: option.value,
-        key: option.name ?? `${option.value}`,
       }
     })
   }, [options])
@@ -240,7 +240,7 @@ export const MultipleSelect = forwardRef<
               optionList.map((option, i) => (
                 <Ripple
                   as='div'
-                  key={option.key}
+                  key={option.value}
                   ref={(node) => {
                     listRef.current[i] = node
                   }}
