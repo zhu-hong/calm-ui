@@ -129,8 +129,6 @@ export const Tooltip: FC<TooltipOptions & { children: ReactNode; content: ReactN
     enterable,
   })
 
-  if(!content) return null
-
   return <TooltipContext.Provider value={tooltip}>
     <TooltipTrigger />
     <TooltipContent />
@@ -159,6 +157,9 @@ const TooltipTrigger = () => {
 
 const TooltipContent = () => {
   const { content, context: floatingContext, zIndex, ...context } = useTooltipContext()
+
+  if(!content) return null
+
   const { palette: { default: tooltipColor } } = useThemeContext()
 
   const { isMounted, styles } = useTransitionStyles(floatingContext, {
