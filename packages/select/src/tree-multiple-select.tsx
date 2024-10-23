@@ -1,7 +1,7 @@
 import { InputEffect, INPUT_EFFECT_FOCUSED_CLASSNAME } from '@calm-ui/input'
 import { Ripple } from '@calm-ui/ripple'
 import { useThemeContext } from '@calm-ui/theme'
-import { CSSProperties, FocusEvent, forwardRef, HTMLAttributes, InputHTMLAttributes, KeyboardEvent, MouseEvent, TouchEvent, useEffect, useMemo, useRef, useState } from 'react'
+import { CSSProperties, FocusEvent, forwardRef, HTMLAttributes, InputHTMLAttributes, KeyboardEvent, MouseEvent, ReactNode, TouchEvent, useEffect, useMemo, useRef, useState } from 'react'
 import clsx from 'clsx'
 import {
   autoUpdate,
@@ -19,12 +19,12 @@ import {
   useTransitionStyles,
 } from '@floating-ui/react'
 import { TinyColor } from '@ctrl/tinycolor'
-import { DFSOptions, Option } from './util'
+import { DFSOptions, TreeOption } from './util'
 
 type InputAttrs = InputHTMLAttributes<HTMLInputElement>
 
 type SelectProps = {
-  options?: Option[] | undefined | null
+  options?: TreeOption[] | undefined | null
   inputAttrs?: InputAttrs
   zIndex?: number
   name?: InputAttrs['name']
@@ -35,6 +35,7 @@ type SelectProps = {
   disabled?: InputAttrs['disabled']
   wrapperId?: HTMLAttributes<HTMLDivElement>['id']
   onOpen?: () => void
+  optionRender?: (option: TreeOption) => ReactNode
 }
 
 export const TreeMultipleSelect = forwardRef<
@@ -53,6 +54,7 @@ export const TreeMultipleSelect = forwardRef<
   inputAttrs,
   wrapperId,
   onOpen,
+  optionRender,
   ...props
 }, ref) => {
   const { palette: { primary, default: defaultColor } } = useThemeContext()
@@ -119,7 +121,7 @@ export const TreeMultipleSelect = forwardRef<
         apply({ rects, elements, availableHeight }) {
           Object.assign(elements.floating.style, {
             maxHeight: `${Math.min(Math.max(250, availableHeight), 520)}px`,
-            width: `${rects.reference.width}px`,
+            minWidth: `${rects.reference.width}px`,
           } as CSSProperties)
         },
         padding: 12,
@@ -286,9 +288,7 @@ export const TreeMultipleSelect = forwardRef<
                     toggleShow(option.value)
                   }} xmlns="http://www.w3.org/2000/svg" className={clsx('cm-select-treelist-item-expand', option.canExpand && 'cm-select-treelist-item-canexpan', option.expand && 'cm-select-treelist-item-expaned')} width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M4.94 5.333 8 8.387l3.06-3.054.94.94-4 4-4-4z"></path></svg>
                   <span className='cm-select-treelist-item-value'>
-                    {
-                      option.name
-                    }
+                    {optionRender ? optionRender(option) : option.name}
                   </span>
                 </Ripple>
               ))

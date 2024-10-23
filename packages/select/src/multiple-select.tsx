@@ -1,7 +1,7 @@
 import { InputEffect, INPUT_EFFECT_FOCUSED_CLASSNAME } from '@calm-ui/input'
 import { Ripple } from '@calm-ui/ripple'
 import { useThemeContext } from '@calm-ui/theme'
-import { CSSProperties, FocusEvent, forwardRef, HTMLAttributes, InputHTMLAttributes, KeyboardEvent, MouseEvent, TouchEvent, useEffect, useMemo, useRef, useState } from 'react'
+import { CSSProperties, FocusEvent, forwardRef, HTMLAttributes, InputHTMLAttributes, KeyboardEvent, MouseEvent, ReactNode, TouchEvent, useEffect, useMemo, useRef, useState } from 'react'
 import clsx from 'clsx'
 import {
   autoUpdate,
@@ -22,8 +22,10 @@ import { TinyColor } from '@ctrl/tinycolor'
 
 type InputAttrs = InputHTMLAttributes<HTMLInputElement>
 
+type Option = { name?: string; value: any; [prop: string]: any }
+
 type SelectProps = {
-  options?: ({ name?: string; value: any; })[] | undefined | null
+  options?: Option[] | undefined | null
   inputAttrs?: InputAttrs
   zIndex?: number
   name?: InputAttrs['name']
@@ -34,6 +36,7 @@ type SelectProps = {
   disabled?: InputAttrs['disabled']
   wrapperId?: HTMLAttributes<HTMLDivElement>['id']
   onOpen?: () => void
+  optionRender?: (option: Option) => ReactNode
 }
 
 export const MultipleSelect = forwardRef<
@@ -52,6 +55,7 @@ export const MultipleSelect = forwardRef<
   inputAttrs,
   wrapperId,
   onOpen,
+  optionRender,
   ...props
 }, ref) => {
   const { palette: { primary, default: defaultColor } } = useThemeContext()
@@ -117,7 +121,7 @@ export const MultipleSelect = forwardRef<
         apply({ rects, elements, availableHeight }) {
           Object.assign(elements.floating.style, {
             maxHeight: `${Math.min(Math.max(250, availableHeight), 520)}px`,
-            width: `${rects.reference.width}px`,
+            minWidth: `${rects.reference.width}px`,
           } as CSSProperties)
         },
         padding: 12,
@@ -263,7 +267,7 @@ export const MultipleSelect = forwardRef<
                     },
                   })}
                 >
-                  {option.name}
+                  {optionRender ? optionRender(option) : option.name}
                 </Ripple>
               ))
             }

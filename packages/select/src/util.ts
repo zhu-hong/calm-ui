@@ -1,8 +1,8 @@
-export type Option = { name?: string; value: any; disabled?: boolean; children?: Option[] }
+export type TreeOption = { name?: string; value: any; disabled?: boolean; children?: TreeOption[]; [prop: string]: any }
 
-type OptionsExpand = Option & { level: number; canExpand: boolean; expand: boolean; show: boolean; }
+type OptionsExpand = TreeOption & { level: number; canExpand: boolean; expand: boolean; show: boolean; }
 
-const expandOption = (options: Option[], level = 0, unExpandKeys: string[], show = true): OptionsExpand[] => {
+const expandOption = (options: TreeOption[], level = 0, unExpandKeys: string[], show = true): OptionsExpand[] => {
   return options.map((o) => {
     const expand = !unExpandKeys.includes(o.value)
     return {
@@ -16,7 +16,7 @@ const expandOption = (options: Option[], level = 0, unExpandKeys: string[], show
   })
 }
 
-export const DFSOptions = (options: Option[], unExpandKeys: string[]): OptionsExpand[] => {
+export const DFSOptions = (options: TreeOption[], unExpandKeys: string[]): OptionsExpand[] => {
   const optionsWithLevel = expandOption(options, 0, unExpandKeys)
 
   const res: OptionsExpand[] = []
