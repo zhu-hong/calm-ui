@@ -38,6 +38,8 @@ type SelectProps = {
   onSelectOption?: (value: Option) => void
   optionRender?: (option: Option) => ReactNode
   onOpen?: () => void
+  allowClear?: boolean
+  onClear?: () => void
 }
 
 export const Combobox = forwardRef<
@@ -57,6 +59,8 @@ export const Combobox = forwardRef<
   onOpen,
   onSelectOption,
   optionRender,
+  allowClear = false,
+  onClear,
   ...props
 }, propRef) => {
   const { palette: { primary, default: defaultColor } } = useThemeContext()
@@ -196,6 +200,10 @@ export const Combobox = forwardRef<
     setActiveIndex(null)
   }
 
+  const isEmptyValue = useMemo(() => {
+    return value === undefined || value === null || value === ''
+  }, [value])
+
   return (
     <>
       <InputEffect
@@ -217,7 +225,7 @@ export const Combobox = forwardRef<
           disabled={disabled}
           {...inputAttrs}
           type='text'
-          className={clsx('cm-select-input cm-combobox-input', inputAttrs?.className)}
+          className={clsx('cm-select-input cm-combobox-input', !isEmptyValue && 'cm-combobox-canclear', inputAttrs?.className)}
           {...getReferenceProps({
             onChange: onInputChange,
             onKeyDown(e) {
@@ -232,6 +240,10 @@ export const Combobox = forwardRef<
             onBlur,
           })}
         />
+        
+        {
+          allowClear && !isEmptyValue && <svg xmlns="http://www.w3.org/2000/svg" onClick={() => onClear?.()} width="14" height="14" viewBox="0 0 16 16" className='cm-combobox-clear'><path fill="currentColor" fillRule="evenodd" d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M4.22 4.22a.75.75 0 0 1 1.06 0L8 6.94l2.72-2.72a.75.75 0 1 1 1.06 1.06L9.06 8l2.72 2.72a.75.75 0 1 1-1.06 1.06L8 9.06l-2.72 2.72a.75.75 0 0 1-1.06-1.06L6.94 8L4.22 5.28a.75.75 0 0 1 0-1.06" clipRule="evenodd"></path></svg>
+        }
       </InputEffect>
       {isOpen && (
         <FloatingPortal>

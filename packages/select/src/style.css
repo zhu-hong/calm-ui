@@ -6,6 +6,12 @@
 
   &.cm-combobox {
     padding: 0;
+    .cm-combobox-clear {
+      position: absolute;
+      right: 12px;
+      cursor: pointer;
+      color: #979999;
+    }
   }
 
   .cm-select-input {
@@ -13,10 +19,15 @@
     border: none;
     outline: none;
     flex: auto;
+    width: 100%;
     background-color: transparent;
 
     &.cm-combobox-input {
       padding: 6px 12px;
+
+      &.cm-combobox-canclear {
+        padding-right: 28px;
+      }
     }
     &:not(.cm-combobox-input) {
       &:not(:placeholder-shown) {
