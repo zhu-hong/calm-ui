@@ -250,7 +250,7 @@ export const Combobox = forwardRef<
           disabled={disabled}
           {...inputAttrs}
           type='text'
-          className={clsx('cm-select-input cm-combobox-input', !isEmptyValue && 'cm-combobox-canclear', inputAttrs?.className)}
+          className={clsx('cm-select-input cm-combobox-input', allowClear && !isEmptyValue && 'cm-combobox-canclear', inputAttrs?.className)}
           {...getReferenceProps({
             onChange: onInputChange,
             onKeyDown(e) {
