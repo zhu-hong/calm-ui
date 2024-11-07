@@ -40,6 +40,8 @@ type SelectProps = {
   onOpen?: () => void
   allowClear?: boolean
   onClear?: () => void
+  showAllWhenOpen?: boolean
+  hiddenWhenNoOptions?: boolean
 }
 
 export const Combobox = forwardRef<
@@ -61,6 +63,8 @@ export const Combobox = forwardRef<
   optionRender,
   allowClear = false,
   onClear,
+  showAllWhenOpen = false,
+  hiddenWhenNoOptions = false,
   ...props
 }, propRef) => {
   const { palette: { primary, default: defaultColor } } = useThemeContext()
@@ -101,8 +105,11 @@ export const Combobox = forwardRef<
     return (value as string) ?? ''
   }, [value, options])
 
+  const [firstOpen, setFirstOpen] = useState(true)
+
   useEffect(() => {
     if(isOpen) {
+      setFirstOpen(true)
       onOpen?.()
     }
   }, [isOpen])
@@ -172,8 +179,17 @@ export const Combobox = forwardRef<
   const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions([role, dismiss, navigation, focus])
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setFirstOpen(false)
+
     const value = e.target.value
     setInputValue(value)
+
+    setIsOpen(true)
+    if(value && options?.length !== 0) {
+      setActiveIndex(0)
+    } else {
+      setActiveIndex(null)
+    }
   }
 
   const ref = useMergeRefs([propRef, refs.setReference])
@@ -184,11 +200,11 @@ export const Combobox = forwardRef<
     return options.map((option) => {
       return {
         ...option,
-        name: `${option.name}`,
+        name: `${option.name ?? option.value}`,
         value: `${option.value}`,
       }
-    }).filter(({ name }) => name.includes(inputValue))
-  }, [options, inputValue])
+    }).filter(({ name }) => !showAllWhenOpen ? name.includes(inputValue) ? firstOpen : true : name.includes(inputValue))
+  }, [options, inputValue, firstOpen])
 
   const onBlur = () => {
     setInputValue(inputText)
@@ -203,6 +219,15 @@ export const Combobox = forwardRef<
   const isEmptyValue = useMemo(() => {
     return value === undefined || value === null || value === ''
   }, [value])
+
+  const shouldOpen = useMemo<boolean>(() => {
+    if(!isOpen) return false
+
+    if(hiddenWhenNoOptions) {
+      return items.length > 0
+    }
+    return true
+  }, [isOpen, items.length, hiddenWhenNoOptions])
 
   return (
     <>
@@ -245,7 +270,7 @@ export const Combobox = forwardRef<
           allowClear && !isEmptyValue && <svg xmlns="http://www.w3.org/2000/svg" onClick={() => onClear?.()} width="14" height="14" viewBox="0 0 16 16" className='cm-combobox-clear'><path fill="currentColor" fillRule="evenodd" d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M4.22 4.22a.75.75 0 0 1 1.06 0L8 6.94l2.72-2.72a.75.75 0 1 1 1.06 1.06L9.06 8l2.72 2.72a.75.75 0 1 1-1.06 1.06L8 9.06l-2.72 2.72a.75.75 0 0 1-1.06-1.06L6.94 8L4.22 5.28a.75.75 0 0 1 0-1.06" clipRule="evenodd"></path></svg>
         }
       </InputEffect>
-      {isOpen && (
+      {shouldOpen && (
         <FloatingPortal>
           <FloatingFocusManager
             context={context}
