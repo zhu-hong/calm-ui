@@ -203,7 +203,7 @@ export const Combobox = forwardRef<
         name: `${option.name ?? option.value}`,
         value: `${option.value}`,
       }
-    }).filter(({ name }) => !showAllWhenOpen ? name.includes(inputValue) ? firstOpen : true : name.includes(inputValue))
+    }).filter(({ name }) => showAllWhenOpen ? firstOpen ? true : name.includes(inputValue) : name.includes(inputValue))
   }, [options, inputValue, firstOpen])
 
   const onBlur = () => {

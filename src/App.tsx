@@ -325,7 +325,7 @@ const App = () => {
           </RadioGroup>
           <br />
           <label htmlFor='select'>Select：</label>
-          <Combobox placeholder='combobox' options={options} value={selectValue} className='w-120px!' allowClear onClear={() => setSelectValue('')} hiddenWhenNoOptions showAllWhenOpen optionRender={(option) => {
+          <Combobox placeholder='combobox' options={options} value={selectValue} className='w-120px!' allowClear onClear={() => setSelectValue('')} hiddenWhenNoOptions optionRender={(option) => {
             return <div className='w-120px truncate'>{option.name}</div>
           }} onSelectOption={(value) => {
             console.log(value)
