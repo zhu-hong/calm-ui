@@ -20,14 +20,14 @@
     "build": "rollup -c"
   },
   "peerDependencies": {
-    "react": "18.x"
+    "react": "19.x"
   },
   "license": "MIT",
   "dependencies": {
     "@calm-ui/button": "workspace:^",
     "@calm-ui/theme": "workspace:^",
     "@ctrl/tinycolor": "^4.1.0",
-    "@radix-ui/react-radio-group": "^1.2.1",
+    "@radix-ui/react-radio-group": "^1.3.7",
     "@zhuh/style-inject": "^1.0.1",
     "clsx": "^2.1.1"
   }

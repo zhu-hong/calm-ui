@@ -19,10 +19,10 @@
     "build": "rollup -c"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.26.25"
+    "@floating-ui/react": "^0.27.13"
   },
   "peerDependencies": {
-    "react": "18.x"
+    "react": "19.x"
   },
   "license": "MIT"
 }

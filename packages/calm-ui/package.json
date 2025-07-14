@@ -33,7 +33,7 @@
     "@calm-ui/tooltip": "workspace:^"
   },
   "peerDependencies": {
-    "react": "18.x"
+    "react": "19.x"
   },
   "license": "MIT"
 }

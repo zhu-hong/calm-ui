@@ -23,12 +23,12 @@
     "@calm-ui/ripple": "workspace:^",
     "@calm-ui/theme": "workspace:^",
     "@ctrl/tinycolor": "^4.1.0",
-    "@floating-ui/react": "^0.26.25",
+    "@floating-ui/react": "^0.27.13",
     "@zhuh/style-inject": "^1.0.1",
     "clsx": "^2.1.1"
   },
   "peerDependencies": {
-    "react": "18.x"
+    "react": "19.x"
   },
   "license": "MIT"
 }

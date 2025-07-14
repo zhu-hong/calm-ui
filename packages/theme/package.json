@@ -19,7 +19,7 @@
     "build": "rollup -c"
   },
   "peerDependencies": {
-    "react": "18.x"
+    "react": "19.x"
   },
   "license": "MIT"
 }

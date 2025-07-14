@@ -90,7 +90,7 @@ const RippleAnimated = styled(RippleAnimate, forwardRef)`
   }
 `
 
-export const TouchRipple = forwardRef(({ center: centerProp = false }, ref) => {
+export const TouchRipple = ({ center: centerProp = false, ref }) => {
   const [ripples, setRipples] = useState([])
   const nextKey = useRef(0)
 
@@ -252,4 +252,4 @@ export const TouchRipple = forwardRef(({ center: centerProp = false }, ref) => {
   >
     {ripples}
   </RippleRoot>
-})
+}

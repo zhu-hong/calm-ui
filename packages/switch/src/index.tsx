@@ -1,12 +1,14 @@
 import './style.css'
 
-import { CSSProperties, forwardRef, useMemo } from 'react'
+import { ComponentProps, CSSProperties, FC, useMemo } from 'react'
 import { useThemeContext } from '@calm-ui/theme'
 import { TinyColor } from '@ctrl/tinycolor'
 import clsx from 'clsx'
 import { Root, Thumb } from '@radix-ui/react-switch'
 
-export const Switch: typeof Root = forwardRef(({ ...props }, ref) => {
+export const Switch: FC<
+  ComponentProps<typeof Root>
+> = ({ ref, ...props }) => {
   const { palette: { primary } } = useThemeContext()
   
   const trackColor = useMemo(() => {
@@ -29,4 +31,4 @@ export const Switch: typeof Root = forwardRef(({ ...props }, ref) => {
       <i className='cm-switch-thumb'></i>
     </Thumb>
   </Root>
-})
+}

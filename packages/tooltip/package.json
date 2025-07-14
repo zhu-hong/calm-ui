@@ -20,11 +20,11 @@
   },
   "dependencies": {
     "@calm-ui/theme": "workspace:^",
-    "@floating-ui/react": "^0.26.25",
+    "@floating-ui/react": "^0.27.13",
     "@zhuh/style-inject": "^1.0.1"
   },
   "peerDependencies": {
-    "react": "18.x"
+    "react": "19.x"
   },
   "license": "MIT"
 }

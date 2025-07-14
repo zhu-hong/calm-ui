@@ -13,7 +13,7 @@ const RippleRoot = styled('button', forwardRef)`
   overflow: hidden;
 `
 
-const Ripple = memo(forwardRef((props, ref) => {
+const Ripple = memo((props) => {
   const {
     children,
     as = 'button',
@@ -194,7 +194,7 @@ const Ripple = memo(forwardRef((props, ref) => {
     return buttonProps
   }, [as, type, disabled, href, to])
 
-  const handleRef = useMergeRefs(ref, focusVisibleRef, buttonRef)
+  const handleRef = useMergeRefs(focusVisibleRef, buttonRef)
 
   return <RippleRoot
     ref={handleRef}
@@ -222,7 +222,7 @@ const Ripple = memo(forwardRef((props, ref) => {
     {children}
     {enableTouchRipple ? <TouchRipple center={centerRipple} ref={rippleRef} /> : null}
   </RippleRoot>
-}))
+})
 
 export {
   Ripple,
