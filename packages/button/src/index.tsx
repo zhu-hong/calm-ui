@@ -7,7 +7,7 @@ import clsx from 'clsx'
 import './style.css'
 
 type BtnProps = ButtonHTMLAttributes<HTMLButtonElement> & RippleProps & {
-  as?: keyof JSX.IntrinsicElements
+  as?: any
   theme?: keyof ReturnType<typeof useThemeContext>['palette'] | (string&{});
   text?: boolean;
   outlined?: boolean;

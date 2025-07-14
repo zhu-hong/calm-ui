@@ -301,7 +301,7 @@ export const Combobox = forwardRef<
                 <Ripple
                   as='div'
                   key={option.value}
-                  ref={(node) => {
+                  ref={(node: HTMLDivElement) => {
                     listRef.current[i] = node
                   }}
                   {...getItemProps({

@@ -247,7 +247,7 @@ export const TreeSelect = forwardRef<
                 <Ripple
                   as='div'
                   key={option.value}
-                  ref={(node) => {
+                  ref={(node: HTMLDivElement) => {
                     listRef.current[i] = node
                   }}
                   aria-selected={i === selectedIndex}

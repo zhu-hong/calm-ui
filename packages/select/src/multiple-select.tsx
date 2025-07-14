@@ -241,7 +241,7 @@ export const MultipleSelect = forwardRef<
                 <Ripple
                   as='div'
                   key={option.value}
-                  ref={(node) => {
+                  ref={(node: HTMLDivElement) => {
                     listRef.current[i] = node
                   }}
                   aria-selected={value?.includes(option.value)}
