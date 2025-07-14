@@ -1,6 +1,6 @@
 {
   "name": "@calm-ui/ripple",
-  "version": "1.0.26",
+  "version": "2.0.0",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
