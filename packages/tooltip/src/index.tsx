@@ -129,10 +129,10 @@ export const Tooltip: FC<TooltipOptions & { children: ReactNode; content: ReactN
     enterable,
   })
 
-  return <TooltipContext.Provider value={tooltip}>
+  return <TooltipContext value={tooltip}>
     <TooltipTrigger />
     <TooltipContent />
-  </TooltipContext.Provider>
+  </TooltipContext>
 }
 
 const TooltipTrigger = () => {

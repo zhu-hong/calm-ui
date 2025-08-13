@@ -174,9 +174,9 @@ export const Modal = forwardRef<
     zIndex,
   })
 
-  return <ModalContext.Provider value={modal}>
+  return <ModalContext value={modal}>
     <ModalContent {...props} ref={ref} />
-  </ModalContext.Provider>
+  </ModalContext>
 })
 
 const ModalContent = forwardRef<
@@ -295,10 +295,12 @@ export const ModalClose = forwardRef<
       {
         ref,
         ...props,
+        // @ts-ignore
         ...children.props,
         onClick: (e: MouseEvent<HTMLButtonElement>) => {
           setOpen?.(false)
           props.onClick?.(e)
+        // @ts-ignore
           children.props.onClick?.(e)
         },
       },
@@ -325,6 +327,7 @@ export const ModalAutoFocus: FC<{ children: ReactNode }> = (({ children }) => {
       children,
       {
         ref,
+        // @ts-ignore
         ...children.props,
       }
     )

@@ -158,10 +158,10 @@ export const Popover: FC<PopoverOptions & { children: ReactNode; content: ReactN
     content,
   })
 
-  return <PopoverContext.Provider value={popover}>
+  return <PopoverContext value={popover}>
     <PopoverTrigger />
     <PopoverContent />
-  </PopoverContext.Provider>
+  </PopoverContext>
 }
 
 const PopoverTrigger = () => {
@@ -232,10 +232,12 @@ export const PopoverClose = forwardRef<
       {
         ref,
         ...props,
+        // @ts-ignore
         ...children.props,
         onClick: (e: MouseEvent<HTMLDivElement>) => {
           setOpen?.(false)
           props.onClick?.(e)
+        // @ts-ignore
           children.props.onClick?.(e)
         },
       },

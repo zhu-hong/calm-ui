@@ -39,7 +39,7 @@ export const useThemeContext = () => {
 export const ThemeProvider = ({ children, value }: { children: ReactNode; value: ContextType }) => {
   const context = createTheme(value)
 
-  return <ThemeContext.Provider value={context}>
+  return <ThemeContext value={context}>
     {children}
-  </ThemeContext.Provider>
+  </ThemeContext>
 }

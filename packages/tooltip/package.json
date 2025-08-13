@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@calm-ui/theme": "workspace:^",
-    "@floating-ui/react": "^0.27.13",
+    "@floating-ui/react": "^0.27.15",
     "@zhuh/style-inject": "^1.0.1"
   },
   "peerDependencies": {
