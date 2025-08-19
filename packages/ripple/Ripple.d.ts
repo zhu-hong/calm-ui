@@ -1,3 +1,5 @@
+import { RefAttributes } from "react";
+
 interface OverridableTypeMap {
   props: {};
   defaultComponent: keyof JSX.IntrinsicElements;
@@ -29,7 +31,7 @@ type RippleProps = {
 declare const Ripple: OverridableComponent<{
   props: RippleProps;
   defaultComponent: 'button';
-}>
+} & RefAttributes<HTMLButtonElement>>
 
 export {
   Ripple,

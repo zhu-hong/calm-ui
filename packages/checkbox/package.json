@@ -27,7 +27,7 @@
     "@calm-ui/button": "workspace:^",
     "@calm-ui/theme": "workspace:^",
     "@ctrl/tinycolor": "^4.1.0",
-    "@radix-ui/react-checkbox": "^1.3.2",
+    "@radix-ui/react-checkbox": "^1.3.3",
     "@zhuh/style-inject": "^1.0.1",
     "clsx": "^2.1.1"
   }
