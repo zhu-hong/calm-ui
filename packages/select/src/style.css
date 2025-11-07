@@ -282,11 +282,12 @@
 }
 .cm-cascader-menu {
   min-width: 120px;
+  max-height: 40vh;
+  overflow: auto;
+  flex: auto;
   &:not(:last-child) {
     border-right: 1px solid #d9d9d9;
   }
-  max-height: 40vh;
-  overflow: auto;
 }
 .cm-cascader-menu-item-disabled  {
   .cm-cascader-menu-item-render {
