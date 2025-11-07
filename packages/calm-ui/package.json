@@ -1,6 +1,6 @@
 {
   "name": "@calm-ui/ui",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "calm-ui",
   "type": "module",
   "main": "dist/index.js",
