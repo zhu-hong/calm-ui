@@ -60,7 +60,6 @@ export const Pagination: FC<
   const changePerPage = (perPageNum: number) => {
     if(perPageNum === perPage) return
 
-    onPageChange?.(1)
     onPerPageChange?.(perPageNum)
   }
 
