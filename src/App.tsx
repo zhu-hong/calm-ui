@@ -95,6 +95,19 @@ const App = () => {
   
   const [open, setOpen] = useState(false)
   const [open2, setOpen2] = useState(false)
+	const [filter, setFilter] = useState(() => ({
+		key: '',
+		page: 1,
+		perPage: 20,
+	}))
+	const setFilterByKey = (key: keyof typeof filter, value: any) => {
+		console.log({ key, value });
+		
+		setFilter({
+			...filter,
+			[key]: value,
+		})
+	}
 
   return <>
     <ThemeProvider value={{
@@ -353,7 +366,13 @@ const App = () => {
       <div className='p-32px'>
         <p>pagination</p>
         <br />
-        <Pagination perPage={perPage} onPerPageChange={setPerPage} total={1000} page={page} onPageChange={setPage} />
+        <Pagination
+          total={100}
+          page={filter.page}
+          perPage={filter.perPage}
+          onPageChange={(v) => setFilterByKey('page', v)}
+          onPerPageChange={(v) => setFilterByKey('perPage', v)}
+        />
       </div>
     </ThemeProvider>
     <Drawer open={open2} onOpenChange={setOpen2} zIndex={1000} keepMount overlay={false}>
