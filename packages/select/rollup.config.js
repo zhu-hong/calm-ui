@@ -10,7 +10,7 @@ import { resolve } from 'node:path'
 export default [
   defineConfig({
     input: './src/index.tsx',
-    external: ['react', 'react/jsx-runtime', '@floating-ui/react', 'clsx', /^@calm-ui\//, /^@ctrl\//],
+    external: ['react', 'react/jsx-runtime', '@floating-ui/react', 'clsx', /^@calm-ui\//, /^@ctrl\//, 'rc-cascader/es'],
     plugins: [
       commonjs(),
       nodeResolve(),

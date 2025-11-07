@@ -7,7 +7,7 @@ import { Input, Textarea } from '@calm-ui/input'
 import { Switch } from '@calm-ui/switch'
 import { Checkbox } from '@calm-ui/checkbox'
 import { Radio, RadioGroup } from '@calm-ui/radio-group'
-import { Combobox, TreeSelect } from '@calm-ui/select'
+import { Cascader, Combobox, TreeSelect } from '@calm-ui/select'
 import { Popover, PopoverClose } from '@calm-ui/popover'
 import { Tooltip } from '@calm-ui/tooltip'
 
@@ -123,7 +123,7 @@ const App = () => {
         </div>
         <div className='p-32px'>
           <label htmlFor='mselect'>TreeMelect：</label>
-          <TreeSelect id='mselect' placeholder='请选择' value={MSelectValue} onValueChange={setMSelectValue} name='select' options={[
+          <TreeSelect disabled id='mselect' placeholder='请选择' value={MSelectValue} onValueChange={setMSelectValue} name='select' options={[
             {
               "value": "8da989ea-86be-42b8-be96-f20fde95f7f0",
               "name": "1",
@@ -169,6 +169,71 @@ const App = () => {
               ]
             }
           ]} />
+          <Cascader
+            className='w-320px'
+            options={[
+              {
+                label: '香港特别行政区香港特别行政区香港特别行政区香港特别行政区',
+                value: 'fj',
+                disabled: true,
+                children: [
+                  {
+                    label: '福州',
+                    value: 'fuzhou',
+                    children: [
+                      {
+                        label: '马尾',
+                        value: 'mawei',
+                      },
+                    ],
+                  },
+                  {
+                    label: '泉州',
+                    value: 'quanzhou',
+                  },
+                ],
+              },
+              {
+                label: '浙江',
+                value: 'zj',
+                children: [
+                  {
+                    label: '杭州',
+                    value: 'hangzhou',
+                    children: [
+                      {
+                        label: '余杭',
+                        value: 'yuhang',
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                label: '北京',
+                value: 'bj',
+                children: [
+                  {
+                    label: '朝阳区',
+                    value: 'chaoyang',
+                  },
+                  {
+                    label: '海淀区',
+                    value: 'haidian',
+                  },
+                ],
+              },
+            ]}
+            // open
+            placeholder='请选择'
+            loading
+            allowClear
+            showSearch
+            checkable
+            // checkable
+            // disabled
+          >
+          </Cascader>
         </div>
         <div className="p-32px">
           <div className='flex items-center gap-12px flex-wrap relative'>
