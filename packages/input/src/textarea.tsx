@@ -1,4 +1,4 @@
-import { forwardRef, HTMLAttributes, TextareaHTMLAttributes } from 'react'
+import { FC, HTMLAttributes, RefAttributes, TextareaHTMLAttributes } from 'react'
 import clsx from 'clsx'
 import { InputEffect } from './effect'
 
@@ -17,10 +17,11 @@ type InputProps = {
   wrapperId?: HTMLAttributes<HTMLDivElement>['id']
 }
 
-export const Textarea = forwardRef<
-  HTMLTextAreaElement,
-  HTMLAttributes<HTMLDivElement> & InputProps
->(({
+export const Textarea: FC<
+  HTMLAttributes<HTMLDivElement>
+  & InputProps
+  & RefAttributes<HTMLTextAreaElement>
+> = ({
   id,
   name,
   placeholder,
@@ -32,8 +33,9 @@ export const Textarea = forwardRef<
   disabled,
   inputAttrs,
   wrapperId,
+  ref,
   ...props
-}, ref) => {
+}) => {
   return <InputEffect {...props} id={wrapperId} disabled={inputAttrs?.disabled} className={clsx('cm-textarea', props?.className)}>
     <textarea
       id={id}
@@ -50,4 +52,4 @@ export const Textarea = forwardRef<
       ref={ref}
     />
   </InputEffect>
-})
+}

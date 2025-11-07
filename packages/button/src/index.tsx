@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState, type ButtonHTMLAttributes, type ReactNode, type MouseEventHandler, forwardRef, memo } from 'react'
+import { useCallback, useMemo, useState, type ButtonHTMLAttributes, type ReactNode, type MouseEventHandler, memo, FC, RefAttributes } from 'react'
 import { useThemeContext } from '@calm-ui/theme'
 import { Ripple, type RippleProps } from '@calm-ui/ripple'
 import { TinyColor } from '@ctrl/tinycolor'
@@ -22,10 +22,7 @@ type BtnProps = ButtonHTMLAttributes<HTMLButtonElement> & RippleProps & {
 
 const sleep = (ms = 500) => new Promise((resolve) => setTimeout(resolve, ms))
 
-export const Button = memo(forwardRef<
-  HTMLButtonElement,
-  BtnProps
->(({
+export const Button: FC<BtnProps & RefAttributes<HTMLButtonElement>> = memo(({
   children,
   as = 'button',
   theme = 'primary',
@@ -38,8 +35,9 @@ export const Button = memo(forwardRef<
   loading = false,
   loadingSize,
   action,
+  ref,
   ...props
-}, ref) => {
+}) => {
   const themeContext = useThemeContext()
 
   const [loadingInner, setLoadingInner] = useState(false)
@@ -157,15 +155,17 @@ export const Button = memo(forwardRef<
     {children}
     {endIcon}
   </Ripple>
-}))
+})
 
-export const IconButton = memo(forwardRef<
-  HTMLButtonElement,
-  ButtonHTMLAttributes<HTMLButtonElement> & RippleProps & {
+export const IconButton: FC<
+  ButtonHTMLAttributes<HTMLButtonElement>
+  & RippleProps
+  & {
     theme?: BtnProps['theme'];
     as?: BtnProps['as'];
   }
->(({ theme, ...props }, ref) => {
+  & RefAttributes<HTMLButtonElement>
+> = memo(({ theme, ref, ...props }) => {
   return <Button
     {...props}
     ref={ref}
@@ -175,4 +175,4 @@ export const IconButton = memo(forwardRef<
     className={clsx('cm-icon-button', props.className)}
     theme={theme??'default'}
   />
-}))
+})

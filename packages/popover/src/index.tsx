@@ -1,6 +1,6 @@
 import './style.css'
 
-import { cloneElement, createContext, FC, FocusEvent, forwardRef, HTMLAttributes, isValidElement, KeyboardEvent, MouseEvent, ReactNode, TouchEvent, useContext, useMemo, useState } from 'react'
+import { cloneElement, createContext, FC, FocusEvent, HTMLAttributes, isValidElement, KeyboardEvent, MouseEvent, ReactNode, RefAttributes, TouchEvent, useContext, useMemo, useState } from 'react'
 import {
   autoUpdate,
   flip,
@@ -218,10 +218,11 @@ const PopoverContent = () => {
   </FloatingPortal>
 }
 
-export const PopoverClose = forwardRef<
-  HTMLDivElement,
-  HTMLAttributes<HTMLDivElement> & { asChild?: boolean }
->(({ asChild, children, ...props }, propRef) => {
+export const PopoverClose: FC<
+  HTMLAttributes<HTMLDivElement>
+  & { asChild?: boolean }
+  & RefAttributes<HTMLDivElement>
+> = ({ asChild, children, ref: propRef, ...props }) => {
   const { setOpen } = usePopoverContext()
   const childrenRef = (children as any)?.ref
   const ref = useMergeRefs([propRef, childrenRef])
@@ -250,4 +251,4 @@ export const PopoverClose = forwardRef<
   }}>
     {children}
   </div>
-})
+}

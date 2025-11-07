@@ -1,16 +1,16 @@
 import './style.css'
 
 import { Root, Indicator, CheckboxProps } from '@radix-ui/react-checkbox'
-import { forwardRef, useMemo } from 'react'
+import { FC, RefAttributes, useMemo } from 'react'
 import { IconButton } from '@calm-ui/button'
 import { TinyColor } from '@ctrl/tinycolor'
 import { useThemeContext } from '@calm-ui/theme'
 import clsx from 'clsx'
 
-export const Checkbox = forwardRef<
-  HTMLButtonElement,
+export const Checkbox: FC<
   Omit<CheckboxProps, 'onCheckedChange'> & { onCheckedChange?: (checked: boolean) => void; size?: number }
->(({ size = 24, ...props }, ref) => {
+  & RefAttributes<HTMLButtonElement>
+> = ({ size = 24, ref, ...props }) => {
   const { palette: { primary } } = useThemeContext()
 
   const checkboxColors = useMemo(() => {
@@ -30,4 +30,4 @@ export const Checkbox = forwardRef<
       <Indicator forceMount className='cm-checkbox-inner' style={{ width: size, height: size }}></Indicator>
     </IconButton>
   </Root>
-})
+}

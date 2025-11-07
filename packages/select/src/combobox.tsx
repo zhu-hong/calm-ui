@@ -17,7 +17,7 @@ import {
 import { InputEffect, INPUT_EFFECT_FOCUSED_CLASSNAME } from '@calm-ui/input'
 import { Ripple } from '@calm-ui/ripple'
 import { useThemeContext } from '@calm-ui/theme'
-import { ChangeEvent, CSSProperties, FocusEvent, forwardRef, HTMLAttributes, InputHTMLAttributes, KeyboardEvent, MouseEvent, ReactNode, TouchEvent, useEffect, useMemo, useRef, useState } from 'react'
+import { ChangeEvent, CSSProperties, FC, FocusEvent, HTMLAttributes, InputHTMLAttributes, KeyboardEvent, MouseEvent, ReactNode, RefAttributes, TouchEvent, useEffect, useMemo, useRef, useState } from 'react'
 import clsx from 'clsx'
 import { TinyColor } from '@ctrl/tinycolor'
 
@@ -44,10 +44,11 @@ type SelectProps = {
   hiddenWhenNoOptions?: boolean
 }
 
-export const Combobox = forwardRef<
-  HTMLInputElement,
-  HTMLAttributes<HTMLDivElement> & SelectProps
->(({
+export const Combobox: FC<
+  HTMLAttributes<HTMLDivElement>
+  & SelectProps
+  & RefAttributes<HTMLInputElement>
+> = ({
   options,
   zIndex = 150,
   id,
@@ -65,8 +66,9 @@ export const Combobox = forwardRef<
   onClear,
   showAllWhenOpen = false,
   hiddenWhenNoOptions = false,
+  ref: propRef,
   ...props
-}, propRef) => {
+}) => {
   const { palette: { primary, default: defaultColor } } = useThemeContext()
   const styleCssVar = useMemo(() => {
     const { r, g, b } = new TinyColor(primary).toRgb()
@@ -324,4 +326,4 @@ export const Combobox = forwardRef<
       )}
     </>
   )
-})
+}

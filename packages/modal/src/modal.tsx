@@ -17,7 +17,6 @@ import {
   createContext,
   useContext,
   ReactNode,
-  forwardRef,
   HTMLProps,
   isValidElement,
   cloneElement,
@@ -28,6 +27,8 @@ import {
   FC,
   MouseEvent,
   CSSProperties,
+  RefAttributes,
+  HTMLAttributes,
 } from 'react'
 import clsx from 'clsx'
 import { IconButton } from '@calm-ui/button'
@@ -158,10 +159,11 @@ const useModalContext = () => {
   return context
 }
 
-export const Modal = forwardRef<
-  HTMLDivElement,
-  HTMLProps<HTMLDivElement> & ModalOptions
->(({ open, onOpenChange, afterClose, overlay, overlayClosable, keepMount, classes, contentTransition, zIndex, ...props }, ref) => {
+export const Modal: FC<
+  HTMLProps<HTMLDivElement>
+  & ModalOptions
+  & RefAttributes<HTMLDivElement>
+> = ({ open, onOpenChange, afterClose, overlay, overlayClosable, keepMount, classes, contentTransition, zIndex, ref, ...props }) => {
   const modal = useModal({
     open,
     onOpenChange,
@@ -177,12 +179,12 @@ export const Modal = forwardRef<
   return <ModalContext value={modal}>
     <ModalContent {...props} ref={ref} />
   </ModalContext>
-})
+}
 
-const ModalContent = forwardRef<
-  HTMLDivElement,
-  HTMLProps<HTMLDivElement>
->((props, propRef) => {
+const ModalContent: FC<
+  HTMLAttributes<HTMLDivElement>
+  & RefAttributes<HTMLDivElement>
+> = ({ ref: propRef, ...props }) => {
   const {
     context: floatingContext,
     afterClose,
@@ -245,12 +247,12 @@ const ModalContent = forwardRef<
       </FloatingFocusManager>
     </div>
   </FloatingPortal>
-})
+}
 
-export const ModalHeading = forwardRef<
-  HTMLHeadingElement,
-  HTMLProps<HTMLHeadingElement>
->(({ children, ...props }, ref) => {
+export const ModalHeading: FC<
+  HTMLAttributes<HTMLHeadingElement>
+  & RefAttributes<HTMLHeadingElement>
+> = ({ children, ref, ...props }) => {
   const { setLabelId } = useModalContext()
   const id = useId()
 
@@ -262,12 +264,12 @@ export const ModalHeading = forwardRef<
   return <h2 {...props} ref={ref} id={id}>
     {children}
   </h2>
-})
+}
 
-export const ModalDescription = forwardRef<
-  HTMLParagraphElement,
-  HTMLProps<HTMLParagraphElement>
->(({ children, ...props }, ref) => {
+export const ModalDescription: FC<
+  HTMLAttributes<HTMLParagraphElement>
+  & RefAttributes<HTMLParagraphElement>
+> = ({ children, ref, ...props }) => {
   const { setDescriptionId } = useModalContext()
   const id = useId()
 
@@ -279,12 +281,13 @@ export const ModalDescription = forwardRef<
   return  <p {...props} ref={ref} id={id}>
     {children}
   </p>
-})
+}
 
-export const ModalClose = forwardRef<
-  HTMLButtonElement,
-  ButtonHTMLAttributes<HTMLButtonElement> & { asChild?: boolean }
->(({ asChild, children, ...props }, propRef) => {
+export const ModalClose: FC<
+  ButtonHTMLAttributes<HTMLButtonElement>
+  & RefAttributes<HTMLButtonElement>
+  & { asChild?: boolean }
+> = ({ asChild, children, ref: propRef, ...props }) => {
   const { setOpen } = useModalContext()
   const childrenRef = (children as any)?.ref
   const ref = useMergeRefs([propRef, childrenRef])
@@ -315,7 +318,7 @@ export const ModalClose = forwardRef<
       <path fill="currentColor" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"></path>
     </svg>
   </IconButton>
-})
+}
 
 export const ModalAutoFocus: FC<{ children: ReactNode }> = (({ children }) => {
   const { initialFocus } = useModalContext()

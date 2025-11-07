@@ -1,9 +1,9 @@
-import { forwardRef, useImperativeHandle, useEffect } from 'react'
+import { useImperativeHandle, useEffect } from 'react'
 import clsx from 'clsx'
-import { useTransition } from 'react-transition-state'
+import { useTransitionState } from 'react-transition-state'
 
 export const RippleAnimate = ({ className, classes, rippleX, rippleY, rippleSize, timeout, toggles, pulsate= false, flag, onUnmounted }) => {
-  const [{ status }, toggle] = useTransition({
+  const [{ status }, toggle] = useTransitionState({
     timeout,
     initialEntered: true,
     unmountOnExit: true,

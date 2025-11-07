@@ -1,7 +1,11 @@
 import type { CheckboxProps } from '@radix-ui/react-checkbox'
-import type { ForwardRefExoticComponent, RefAttributes } from 'react'
+import type { FC, RefAttributes } from 'react'
 
-declare const Checkbox: ForwardRefExoticComponent<Omit<CheckboxProps, 'onCheckedChange'> & { onCheckedChange?: (checked: boolean) => void; size?: number } & RefAttributes<HTMLButtonElement>>
+declare const Checkbox: FC<
+  Omit<CheckboxProps, 'onCheckedChange'>
+  & { onCheckedChange?: (checked: boolean) => void; size?: number }
+  & RefAttributes<HTMLButtonElement>
+>
 
 export {
   Checkbox,

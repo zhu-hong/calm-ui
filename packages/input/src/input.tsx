@@ -1,4 +1,4 @@
-import { forwardRef, HTMLAttributes, InputHTMLAttributes, ReactNode } from 'react'
+import { FC, HTMLAttributes, InputHTMLAttributes, ReactNode, RefAttributes } from 'react'
 import { InputEffect } from './effect'
 import clsx from 'clsx'
 
@@ -19,10 +19,11 @@ type InputProps = {
   wrapperId?: HTMLAttributes<HTMLDivElement>['id']
 }
 
-export const Input = forwardRef<
-  HTMLInputElement,
-  HTMLAttributes<HTMLDivElement> & InputProps
->(({
+export const Input: FC<
+  HTMLAttributes<HTMLDivElement>
+  & InputProps
+  & RefAttributes<HTMLInputElement>
+> = ({
   prefixNode,
   suffixNode,
   id,
@@ -36,8 +37,9 @@ export const Input = forwardRef<
   disabled,
   inputAttrs,
   wrapperId,
+  ref,
   ...props
-}, ref) => {
+}) => {
   return <InputEffect {...props} id={wrapperId} disabled={disabled ?? inputAttrs?.disabled} className={clsx('cm-input', props.className)}>
     {prefixNode}
     <input
@@ -56,4 +58,4 @@ export const Input = forwardRef<
     />
     {suffixNode}
   </InputEffect>
-})
+}

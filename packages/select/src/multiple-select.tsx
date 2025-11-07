@@ -1,7 +1,7 @@
 import { InputEffect, INPUT_EFFECT_FOCUSED_CLASSNAME } from '@calm-ui/input'
 import { Ripple } from '@calm-ui/ripple'
 import { useThemeContext } from '@calm-ui/theme'
-import { CSSProperties, FocusEvent, forwardRef, HTMLAttributes, InputHTMLAttributes, KeyboardEvent, MouseEvent, ReactNode, TouchEvent, useEffect, useMemo, useRef, useState } from 'react'
+import { CSSProperties, FC, FocusEvent, HTMLAttributes, InputHTMLAttributes, KeyboardEvent, MouseEvent, ReactNode, RefAttributes, TouchEvent, useEffect, useMemo, useRef, useState } from 'react'
 import clsx from 'clsx'
 import {
   autoUpdate,
@@ -39,10 +39,11 @@ type SelectProps = {
   optionRender?: (option: Option) => ReactNode
 }
 
-export const MultipleSelect = forwardRef<
-  HTMLInputElement,
-  HTMLAttributes<HTMLDivElement> & SelectProps
->(({
+export const MultipleSelect: FC<
+  HTMLAttributes<HTMLDivElement>
+  & SelectProps
+  & RefAttributes<HTMLInputElement>
+> = ({
   options,
   zIndex = 150,
   id,
@@ -56,8 +57,9 @@ export const MultipleSelect = forwardRef<
   wrapperId,
   onOpen,
   optionRender,
+  ref,
   ...props
-}, ref) => {
+}) => {
   const { palette: { primary, default: defaultColor } } = useThemeContext()
 
   const [isOpen, setIsOpen] = useState(false)
@@ -279,4 +281,4 @@ export const MultipleSelect = forwardRef<
       </FloatingPortal>
     }
   </>
-})
+}
