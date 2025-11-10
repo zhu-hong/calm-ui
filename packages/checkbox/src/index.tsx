@@ -11,16 +11,16 @@ export const Checkbox: FC<
   Omit<CheckboxProps, 'onCheckedChange'> & { onCheckedChange?: (checked: boolean) => void; size?: number }
   & RefAttributes<HTMLButtonElement>
 > = ({ size = 24, ref, ...props }) => {
-  const { palette: { primary } } = useThemeContext()
+  const themeContext = useThemeContext()
 
   const checkboxColors = useMemo(() => {
-    const { r, g, b } = new TinyColor(primary).toRgb()
+    const { r, g, b } = new TinyColor(themeContext.palette.primary).toRgb()
 
     return {
-      '--cm-checkbox-checked-text-color': primary,
+      '--cm-checkbox-checked-text-color': themeContext.palette.primary,
       '--cm-checkbox-checked-hover-bg-color': `rgba(${r}, ${g}, ${b}, .1)`,
     }
-  }, [primary])
+  }, [themeContext])
 
   return <Root {...props} asChild ref={ref} className={clsx('cm-checkbox', props.className)}>
     <IconButton theme='#666666' style={{

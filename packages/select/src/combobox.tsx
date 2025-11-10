@@ -69,19 +69,19 @@ export const Combobox: FC<
   ref: propRef,
   ...props
 }) => {
-  const { palette: { primary, default: defaultColor } } = useThemeContext()
+  const themeContext = useThemeContext()
   const styleCssVar = useMemo(() => {
-    const { r, g, b } = new TinyColor(primary).toRgb()
-    const { r: dr, g: dg, b: db } = new TinyColor(defaultColor).toRgb()
+    const { r, g, b } = new TinyColor(themeContext.palette.primary).toRgb()
+    const { r: dr, g: dg, b: db } = new TinyColor(themeContext.palette.default).toRgb()
 
     return {
-      '--cm-select-color': defaultColor,
-      '--cm-select-selected-color': primary,
+      '--cm-select-color': themeContext.palette.default,
+      '--cm-select-selected-color': themeContext.palette.primary,
       '--cm-select-hover-color': `rgba(${dr}, ${dg}, ${db}, .1)`,
       '--cm-select-selected-actived-color': `rgba(${r}, ${g}, ${b}, .2)`,
       '--cm-select-selected-bg-color': `rgba(${r}, ${g}, ${b}, .1)`,
     }
-  }, [primary, defaultColor])
+  }, [themeContext])
 
   const [isOpen, setIsOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState<number|null>(null)

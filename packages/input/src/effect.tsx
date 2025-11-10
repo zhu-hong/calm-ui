@@ -9,14 +9,14 @@ export const InputEffect: FC<
   & { disabled?: boolean; }
   & RefAttributes<HTMLDivElement>
 > = ({ disabled, ref, ...props }) => {
-  const { palette: { primary } } = useThemeContext()
+  const themeContext = useThemeContext()
 
   return <div
     {...props}
     className={clsx('cm-input-effect', props.className)}
     data-disabled={disabled?true:undefined}
     style={{
-      '--cm-input-effect-underline-color': primary,
+      '--cm-input-effect-underline-color': themeContext.palette.primary,
       ...props.style,
     } as CSSProperties}
     ref={ref}

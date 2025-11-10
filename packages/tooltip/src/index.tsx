@@ -158,7 +158,7 @@ const TooltipTrigger = () => {
 const TooltipContent = () => {
   const { content, context: floatingContext, zIndex, ...context } = useTooltipContext()
 
-  const { palette: { default: tooltipColor } } = useThemeContext()
+  const themeContext = useThemeContext()
 
   const { isMounted, styles } = useTransitionStyles(floatingContext, {
     duration: 170,
@@ -194,7 +194,7 @@ const TooltipContent = () => {
           top: context.y ?? 0,
           left: context.x ?? 0,
           zIndex,
-          '--cm-tooltip-bg-color': tooltipColor,
+          '--cm-tooltip-bg-color': themeContext.palette.default,
           ...styles,
         } as CSSProperties,
         onClick: (e: MouseEvent) => e.stopPropagation(),
@@ -208,7 +208,7 @@ const TooltipContent = () => {
       <FloatingArrow
         ref={context.arrowRef}
         context={floatingContext}
-        fill={tooltipColor}
+        fill={themeContext.palette.default}
       />
     </div>
   </FloatingPortal>

@@ -17,12 +17,12 @@ export const Cascader: FC<ComponentProps<typeof RCCascader>> = ({ ...props }) =>
   const activeColor = useMemo<string>(() => {
     const { r, g, b } = new TinyColor(themeContext.palette.primary).toRgb()
     return `rgba(${r},${g},${b}, .2)`
-  }, [themeContext.palette.primary])
+  }, [themeContext])
 
   const activeHoverColor = useMemo<string>(() => {
     const { r, g, b } = new TinyColor(themeContext.palette.primary).toRgb()
     return `rgba(${r},${g},${b}, .3)`
-  }, [themeContext.palette.primary])
+  }, [themeContext])
 
   return (
     <InputEffect disabled={props.disabled}>

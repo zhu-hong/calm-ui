@@ -18,16 +18,16 @@ export const Radio: FC<
   &
   { size?: number }
 > = ({ size = 24, ...props }) => {
-  const { palette: { primary } } = useThemeContext()
+  const themeContext = useThemeContext()
 
   const radioColors = useMemo(() => {
-    const { r, g, b } = new TinyColor(primary).toRgb()
+    const { r, g, b } = new TinyColor(themeContext.palette.primary).toRgb()
 
     return {
-      '--cm-radio-checked-text-color': primary,
+      '--cm-radio-checked-text-color': themeContext.palette.primary,
       '--cm-radio-checked-hover-bg-color': `rgba(${r}, ${g}, ${b}, .1)`,
     }
-  }, [primary])
+  }, [themeContext])
 
   return <Item {...props} asChild>
     <IconButton

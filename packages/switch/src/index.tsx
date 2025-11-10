@@ -9,12 +9,12 @@ import { Root, Thumb } from '@radix-ui/react-switch'
 export const Switch: FC<
   ComponentProps<typeof Root>
 > = ({ ref, ...props }) => {
-  const { palette: { primary } } = useThemeContext()
+  const themeContext = useThemeContext()
   
   const trackColor = useMemo(() => {
-    const { r, g, b } = new TinyColor(primary).toRgb()
+    const { r, g, b } = new TinyColor(themeContext.palette.primary).toRgb()
     return `rgba(${r},${g},${b},${.38})`
-  }, [primary])
+  }, [themeContext])
 
   return <Root
     {...props}
@@ -25,7 +25,7 @@ export const Switch: FC<
       className='cm-switch-track'
       style={{
         '--cm-switch-track-bg-color': trackColor,
-        '--cm-switch-thumb-bg-color': primary,
+        '--cm-switch-thumb-bg-color': themeContext.palette.primary,
       } as CSSProperties}
     >
       <i className='cm-switch-thumb'></i>
