@@ -42,6 +42,8 @@ type SelectProps = {
   onClear?: () => void
   showAllWhenOpen?: boolean
   hiddenWhenNoOptions?: boolean
+  onInputValueChange?: (value: string) => void
+  resetOnBlur?: boolean
 }
 
 export const Combobox: FC<
@@ -66,6 +68,8 @@ export const Combobox: FC<
   onClear,
   showAllWhenOpen = false,
   hiddenWhenNoOptions = false,
+  onInputValueChange,
+  resetOnBlur = true,
   ref: propRef,
   ...props
 }) => {
@@ -117,6 +121,9 @@ export const Combobox: FC<
   }, [isOpen])
 
   const [inputValue, setInputValue] = useState('')
+  useEffect(() => {
+    onInputValueChange?.(inputValue)
+  }, [inputValue])
 
   const listRef = useRef<(HTMLElement | null)[]>([])
 
@@ -209,7 +216,9 @@ export const Combobox: FC<
   }, [options, inputValue, firstOpen])
 
   const onBlur = () => {
-    setInputValue(inputText)
+    if(resetOnBlur) {
+      setInputValue(inputText)
+    }
   }
 
   const selectOption = (option: Option) => {
@@ -219,8 +228,8 @@ export const Combobox: FC<
   }
 
   const isEmptyValue = useMemo(() => {
-    return value === undefined || value === null || value === ''
-  }, [value])
+    return (value === undefined || value === null || value === '') && (inputValue === undefined || inputValue === null || inputValue === '')
+  }, [value, inputValue])
 
   const shouldOpen = useMemo<boolean>(() => {
     if(!isOpen) return false
@@ -230,6 +239,10 @@ export const Combobox: FC<
     }
     return true
   }, [isOpen, items.length, hiddenWhenNoOptions])
+  const handleClear = () => {
+    setInputValue('')
+    onClear?.()
+  }
 
   return (
     <>
@@ -269,7 +282,7 @@ export const Combobox: FC<
         />
         
         {
-          allowClear && !isEmptyValue && <svg xmlns="http://www.w3.org/2000/svg" onClick={() => onClear?.()} width="14" height="14" viewBox="0 0 16 16" className='cm-combobox-clear'><path fill="currentColor" fillRule="evenodd" d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M4.22 4.22a.75.75 0 0 1 1.06 0L8 6.94l2.72-2.72a.75.75 0 1 1 1.06 1.06L9.06 8l2.72 2.72a.75.75 0 1 1-1.06 1.06L8 9.06l-2.72 2.72a.75.75 0 0 1-1.06-1.06L6.94 8L4.22 5.28a.75.75 0 0 1 0-1.06" clipRule="evenodd"></path></svg>
+          allowClear && !isEmptyValue && <svg xmlns="http://www.w3.org/2000/svg" onClick={handleClear} width="14" height="14" viewBox="0 0 16 16" className='cm-combobox-clear'><path fill="currentColor" fillRule="evenodd" d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M4.22 4.22a.75.75 0 0 1 1.06 0L8 6.94l2.72-2.72a.75.75 0 1 1 1.06 1.06L9.06 8l2.72 2.72a.75.75 0 1 1-1.06 1.06L8 9.06l-2.72 2.72a.75.75 0 0 1-1.06-1.06L6.94 8L4.22 5.28a.75.75 0 0 1 0-1.06" clipRule="evenodd"></path></svg>
         }
       </InputEffect>
       {shouldOpen && (

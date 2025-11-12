@@ -7,7 +7,7 @@ import { Input, Textarea } from '@calm-ui/input'
 import { Switch } from '@calm-ui/switch'
 import { Checkbox } from '@calm-ui/checkbox'
 import { Radio, RadioGroup } from '@calm-ui/radio-group'
-import { Cascader, Combobox, TreeSelect } from '@calm-ui/select'
+import { Cascader, Combobox, MultipleSelect, TreeSelect } from '@calm-ui/select'
 import { Popover, PopoverClose } from '@calm-ui/popover'
 import { Tooltip } from '@calm-ui/tooltip'
 import pca from './china-pca.json'
@@ -87,11 +87,14 @@ const App = () => {
   const [primaryColor, setPrimaryColor] = useState(COLORS.at(-1))
 
   const [checkboxChecked, setCheckboxChecked] = useState<boolean|'indeterminate'>('indeterminate')
-  const [selectValue, setSelectValue] = useState('')
+  const [selectValue, setSelectValue] = useState('kale9asd')
+  const [comboboxInputValue, setComboboxInputValue] = useState('')
   const [MSelectValue, setMSelectValue] = useState<string>('')
 
   const [perPage, setPerPage] = useState(20)
   const [page, setPage] = useState(1)
+
+  const [multValues, setMultValues] = useState(['123', '124'])
   
   const [open, setOpen] = useState(false)
   const [open2, setOpen2] = useState(false)
@@ -351,13 +354,19 @@ const App = () => {
             <label htmlFor="kale4">卡了4</label>
           </RadioGroup>
           <br />
+          <MultipleSelect options={options} value={multValues} onValueChange={setMultValues} />
+          <br />
           <label htmlFor='select'>Select：</label>
-          <Combobox placeholder='combobox' options={options} value={selectValue} className='w-120px!' allowClear onClear={() => setSelectValue('')} hiddenWhenNoOptions optionRender={(option) => {
+          <Combobox placeholder='combobox' options={options} value={selectValue} className='w-120px!' allowClear onClear={() => setSelectValue('')} resetOnBlur={false} onInputValueChange={(v) => {
+            console.log(v)
+            setComboboxInputValue(v)
+          }} optionRender={(option) => {
             return <div className='w-120px truncate'>{option.name}</div>
           }} onSelectOption={(value) => {
             console.log(value)
             setSelectValue(value.value)
           }} />
+          <p>comboboxInputValue：{comboboxInputValue}</p>
           <br />
           <br />
           <Button type='submit'>SUBMIT</Button>
