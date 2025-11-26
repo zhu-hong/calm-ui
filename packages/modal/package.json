@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@calm-ui/button": "workspace:^",
-    "@floating-ui/react": "^0.27.15",
+    "@floating-ui/react": "^0.27.16",
     "@zhuh/style-inject": "^1.0.1",
     "clsx": "^2.1.1"
   },

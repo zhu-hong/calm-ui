@@ -22,8 +22,8 @@
     "@calm-ui/input": "workspace:^",
     "@calm-ui/ripple": "workspace:^",
     "@calm-ui/theme": "workspace:^",
-    "@ctrl/tinycolor": "^4.1.0",
-    "@floating-ui/react": "^0.27.15",
+    "@ctrl/tinycolor": "^4.2.0",
+    "@floating-ui/react": "^0.27.16",
     "@zhuh/style-inject": "^1.0.1",
     "clsx": "^2.1.1",
     "rc-cascader": "^3.34.0"
