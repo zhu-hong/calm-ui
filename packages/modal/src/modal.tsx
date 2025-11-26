@@ -29,6 +29,7 @@ import {
   CSSProperties,
   RefAttributes,
   HTMLAttributes,
+  ComponentProps,
 } from 'react'
 import clsx from 'clsx'
 import { IconButton } from '@calm-ui/button'
@@ -47,6 +48,7 @@ interface ModalOptions {
   }
   contentTransition?: Parameters<typeof useTransitionStyles>['1']
   zIndex?: number
+  focusManagerProps?: ComponentProps<typeof FloatingFocusManager>
 }
 
 type ContextType = (ReturnType<typeof useModal>) | null
@@ -61,6 +63,7 @@ const useModal = ({
   classes,
   contentTransition: CT,
   zIndex,
+  focusManagerProps,
 }: ModalOptions) => {
   const [labelId, setLabelId] = useState<string | undefined>()
   const [descriptionId, setDescriptionId] = useState<string | undefined>()
@@ -125,6 +128,7 @@ const useModal = ({
       overlayTransition,
       contentTransition,
       zIndex,
+      focusManagerProps,
     }),
     [
       open,
@@ -143,6 +147,7 @@ const useModal = ({
       overlayTransition,
       contentTransition,
       zIndex,
+      focusManagerProps,
     ],
   )
 }
@@ -163,7 +168,7 @@ export const Modal: FC<
   HTMLProps<HTMLDivElement>
   & ModalOptions
   & RefAttributes<HTMLDivElement>
-> = ({ open, onOpenChange, afterClose, overlay, overlayClosable, keepMount, classes, contentTransition, zIndex, ref, ...props }) => {
+> = ({ open, onOpenChange, afterClose, overlay, overlayClosable, keepMount, classes, contentTransition, zIndex, focusManagerProps, ref, ...props }) => {
   const modal = useModal({
     open,
     onOpenChange,
@@ -174,6 +179,7 @@ export const Modal: FC<
     classes,
     contentTransition,
     zIndex,
+    focusManagerProps,
   })
 
   return <ModalContext value={modal}>
@@ -197,6 +203,7 @@ const ModalContent: FC<
     overlayTransition,
     contentTransition,
     zIndex = 100,
+    focusManagerProps,
     ...context
   } = useModalContext()
   const ref = useMergeRefs([context.refs.setFloating, propRef])
@@ -228,6 +235,7 @@ const ModalContent: FC<
       } as CSSProperties}
     >
       <FloatingFocusManager
+        {...focusManagerProps}
         context={floatingContext}
         initialFocus={initialFocus.current?initialFocus:0}
         disabled={!isMounted}
